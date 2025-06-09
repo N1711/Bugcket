@@ -1,7 +1,8 @@
 ﻿using BugTracker.models;
-using Microsoft.Data.Sqlite;
+//using Microsoft.Data.Sqlite;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using System.Data.SQLite;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,15 +22,15 @@ namespace BugTracker
         public static bool ConnectToDB()
         {
             //replace with db location from settings file
-            var connection = new SqliteConnection("Data Source=BugTracker.db");
+            var connection = new SQLiteConnection("Data Source=BugTracker.db");
             try
             {
                 connection.Open();
-                bool result = CreateDefaultTables(connection);
-                if(!result)
-                {
-                    return false;
-                }
+                //bool result = CreateDefaultTables(connection);
+                //if(!result)
+                //{
+                //    return false;
+                //}
                 return true;
             }
             catch (Exception ex)
@@ -38,7 +39,7 @@ namespace BugTracker
             }
         }
 
-        private static bool CreateDefaultTables(SqliteConnection conn)
+        private static bool CreateDefaultTables(SQLiteConnection conn)
         {
             var sql = @"CREATE TABLE IF NOT EXISTS bugs(
                 id INTEGER PRIMARY KEY,
@@ -78,18 +79,26 @@ namespace BugTracker
                 REFERENCES products (id) 
             )";
 
+            var sql5 = @"CREATE TABLE IF NOT EXISTS users(
+                id INTEGER PRIMARY KEY,
+                name TEXT NOT NULL,
+                accessLevel INTEGER NOT NULL
+            )";
+
             //var connection = new SqliteConnection("Data Source=BugTracker.db");
             try
             {
                 //connection.Open();
-                SqliteCommand command = new SqliteCommand(sql, conn);
-                SqliteCommand command2 = new SqliteCommand(sql2, conn);
-                SqliteCommand command3 = new SqliteCommand(sql3, conn);
-                SqliteCommand command4 = new SqliteCommand(sql4, conn);
+                SQLiteCommand command = new SQLiteCommand(sql, conn);
+                SQLiteCommand command2 = new SQLiteCommand(sql2, conn);
+                SQLiteCommand command3 = new SQLiteCommand(sql3, conn);
+                SQLiteCommand command4 = new SQLiteCommand(sql4, conn);
+                SQLiteCommand command5 = new SQLiteCommand(sql5, conn);
                 command.ExecuteNonQuery();
                 command2.ExecuteNonQuery();
                 command3.ExecuteNonQuery();
                 command4.ExecuteNonQuery();
+                command5.ExecuteNonQuery();
                 return true;
             }
             catch (Exception ex)
@@ -100,52 +109,29 @@ namespace BugTracker
 
         }
 
-        public static List<BugModelSQL> getBugItems() { 
-            List<BugModelSQL> values = new List<BugModelSQL>();
-            var sql = @"SELECT b.id, description, a.version, status, priority, detectedBy, dateDetected, IssueNotes, FixNotes FROM bugs as b left join versions as a on b.id = a.productId";
+        public static SQLiteDataAdapter getDbItems(string sql) { 
             try
             {
-                using var connection = new SqliteConnection("Data Source=BugTracker.db");
+                var connection = new SQLiteConnection("Data Source=BugTracker.db");
                 connection.Open();
 
-                using var command = new SqliteCommand(sql, connection);
-
-                using var reader = command.ExecuteReader();
-                if (reader.HasRows)
-                {
-                    while (reader.Read())
-                    {
-                        var id = reader.GetInt32(0);
-                        var description = reader.GetString(1);
-                        var version = reader.GetString(2);
-                        var status = reader.GetString(3);
-                        var priority = reader.GetString(4);
-                        var detectedBy = reader.GetString(5);
-                        var dateDetected = reader.GetString(6);
-                        var notesIssue = reader.GetString(7);
-                        var notesFixes = reader.GetString(8);
-                        BugModelSQL bm = new BugModelSQL(id, description, version, status, priority, detectedBy, DateTime.Parse(dateDetected), notesIssue, notesFixes);
-                        values.Add(bm);
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("No bugs found.");
-                }
+                SQLiteDataAdapter dataAdapter = new SQLiteDataAdapter(sql, connection);
+                return dataAdapter;
+                
 
             }
-            catch (SqliteException ex)
+            catch (SQLiteException ex)
             {
                 Console.WriteLine(ex.Message);
-                return values;
+                return null;
             }
 
-            return values; 
         }
+
+        
         public static bool ConnectToMongoDB()
         {
-            var connectionString = "mongodb+srv://sg_admin_account:Aa48975231@footballpl.wrnyt.mongodb.net/?retryWrites=true&w=majority&appName=FootballPl";
-            //var connectionString = Environment.GetEnvironmentVariable("MONGODB_URI");
+            var connectionString = Environment.GetEnvironmentVariable("MONGODB_URI");
             if (connectionString == null)
             {
                 Console.WriteLine("You must set your 'MONGODB_URI' environment variable. To learn how to set it, see https://www.mongodb.com/docs/drivers/csharp/current/quick-start/#set-your-connection-string");

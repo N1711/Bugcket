@@ -18,7 +18,7 @@ namespace BugTracker
             var form2 = new Form2();
             if (form2 != null)
             {
-                Application.Run(new Form1());
+                Application.Run(new BugTracker());
             }
         }
 

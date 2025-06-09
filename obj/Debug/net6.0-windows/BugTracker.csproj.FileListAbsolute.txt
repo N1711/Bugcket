@@ -29,7 +29,6 @@ C:\Users\TrendUser\Desktop\Projects\CBugTracker\BugTracker\bin\Debug\net6.0-wind
 C:\Users\TrendUser\Desktop\Projects\CBugTracker\BugTracker\bin\Debug\net6.0-windows\runtimes\win-x64\native\e_sqlite3.dll
 C:\Users\TrendUser\Desktop\Projects\CBugTracker\BugTracker\bin\Debug\net6.0-windows\runtimes\win-x86\native\e_sqlite3.dll
 C:\Users\TrendUser\Desktop\Projects\CBugTracker\BugTracker\obj\Debug\net6.0-windows\BugTracker.csproj.AssemblyReference.cache
-C:\Users\TrendUser\Desktop\Projects\CBugTracker\BugTracker\obj\Debug\net6.0-windows\BugTracker.Form1.resources
 C:\Users\TrendUser\Desktop\Projects\CBugTracker\BugTracker\obj\Debug\net6.0-windows\BugTracker.csproj.GenerateResource.cache
 C:\Users\TrendUser\Desktop\Projects\CBugTracker\BugTracker\obj\Debug\net6.0-windows\BugTracker.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\TrendUser\Desktop\Projects\CBugTracker\BugTracker\obj\Debug\net6.0-windows\BugTracker.AssemblyInfoInputs.cache
@@ -51,3 +50,16 @@ C:\Users\TrendUser\Desktop\Projects\CBugTracker\BugTracker\bin\Debug\net6.0-wind
 C:\Users\TrendUser\Desktop\Projects\CBugTracker\BugTracker\bin\Debug\net6.0-windows\ZstdSharp.dll
 C:\Users\TrendUser\Desktop\Projects\CBugTracker\BugTracker\obj\Debug\net6.0-windows\BugTracker.Form2.resources
 C:\Users\TrendUser\Desktop\Projects\CBugTracker\BugTracker\obj\Debug\net6.0-windows\BugTracker.Properties.Resources.resources
+C:\Users\TrendUser\Desktop\Projects\CBugTracker\BugTracker\bin\Debug\net6.0-windows\System.Data.SQLite.dll
+C:\Users\TrendUser\Desktop\Projects\CBugTracker\BugTracker\bin\Debug\net6.0-windows\System.Data.SqlClient.dll
+C:\Users\TrendUser\Desktop\Projects\CBugTracker\BugTracker\bin\Debug\net6.0-windows\runtimes\win-arm64\native\sni.dll
+C:\Users\TrendUser\Desktop\Projects\CBugTracker\BugTracker\bin\Debug\net6.0-windows\runtimes\win-x64\native\sni.dll
+C:\Users\TrendUser\Desktop\Projects\CBugTracker\BugTracker\bin\Debug\net6.0-windows\runtimes\win-x86\native\sni.dll
+C:\Users\TrendUser\Desktop\Projects\CBugTracker\BugTracker\bin\Debug\net6.0-windows\runtimes\linux-x64\native\SQLite.Interop.dll
+C:\Users\TrendUser\Desktop\Projects\CBugTracker\BugTracker\bin\Debug\net6.0-windows\runtimes\osx-x64\native\SQLite.Interop.dll
+C:\Users\TrendUser\Desktop\Projects\CBugTracker\BugTracker\bin\Debug\net6.0-windows\runtimes\win-x64\native\SQLite.Interop.dll
+C:\Users\TrendUser\Desktop\Projects\CBugTracker\BugTracker\bin\Debug\net6.0-windows\runtimes\win-x86\native\SQLite.Interop.dll
+C:\Users\TrendUser\Desktop\Projects\CBugTracker\BugTracker\bin\Debug\net6.0-windows\runtimes\unix\lib\net6.0\System.Data.SqlClient.dll
+C:\Users\TrendUser\Desktop\Projects\CBugTracker\BugTracker\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.Data.SqlClient.dll
+C:\Users\TrendUser\Desktop\Projects\CBugTracker\BugTracker\obj\Debug\net6.0-windows\BugTracker.ProductManagement.resources
+C:\Users\TrendUser\Desktop\Projects\CBugTracker\BugTracker\obj\Debug\net6.0-windows\BugTracker.BugTracker.resources
