@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             menuStrip2 = new MenuStrip();
             homeToolStripMenuItem = new ToolStripMenuItem();
             bugTrackerToolStripMenuItem = new ToolStripMenuItem();
@@ -49,19 +50,26 @@
             changesToolStripMenuItem = new ToolStripMenuItem();
             splitContainer1 = new SplitContainer();
             bugItems = new DataGridView();
+            contextMenu = new ContextMenuStrip(components);
+            newItemToolStripMenuItem = new ToolStripMenuItem();
+            deleteItemToolStripMenuItem = new ToolStripMenuItem();
+            filterToolStripMenuItem1 = new ToolStripMenuItem();
+            sortToolStripMenuItem = new ToolStripMenuItem();
+            ascendingToolStripMenuItem = new ToolStripMenuItem();
+            descendingToolStripMenuItem = new ToolStripMenuItem();
             splitContainer2 = new SplitContainer();
             tableLayoutPanel1 = new TableLayoutPanel();
-            textBox3 = new TextBox();
-            textBox4 = new TextBox();
-            textBox5 = new TextBox();
-            comboBox1 = new ComboBox();
+            txtID = new TextBox();
+            txtVersion = new TextBox();
+            txtDescription = new TextBox();
+            comboStatus = new ComboBox();
             button1 = new Button();
-            dateTimePicker1 = new DateTimePicker();
-            comboBox2 = new ComboBox();
-            textBox6 = new TextBox();
+            dtPicker = new DateTimePicker();
+            comboPriority = new ComboBox();
+            txtDetectedName = new TextBox();
             splitContainer3 = new SplitContainer();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
+            txtNotesIssue = new TextBox();
+            txtNotesFix = new TextBox();
             menuStrip2.SuspendLayout();
             menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
@@ -69,6 +77,7 @@
             splitContainer1.Panel2.SuspendLayout();
             splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)bugItems).BeginInit();
+            contextMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer2).BeginInit();
             splitContainer2.Panel1.SuspendLayout();
             splitContainer2.Panel2.SuspendLayout();
@@ -230,15 +239,64 @@
             // 
             // bugItems
             // 
+            bugItems.AllowUserToAddRows = false;
             bugItems.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             bugItems.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             bugItems.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            bugItems.ContextMenuStrip = contextMenu;
             bugItems.Dock = DockStyle.Fill;
             bugItems.Location = new Point(0, 0);
             bugItems.Name = "bugItems";
+            bugItems.ReadOnly = true;
             bugItems.RowTemplate.Height = 25;
             bugItems.Size = new Size(877, 269);
             bugItems.TabIndex = 0;
+            bugItems.SelectionChanged += bugItems_SelectionChanged;
+            // 
+            // contextMenu
+            // 
+            contextMenu.Items.AddRange(new ToolStripItem[] { newItemToolStripMenuItem, deleteItemToolStripMenuItem, filterToolStripMenuItem1, sortToolStripMenuItem });
+            contextMenu.Name = "contextMenu";
+            contextMenu.Size = new Size(135, 92);
+            // 
+            // newItemToolStripMenuItem
+            // 
+            newItemToolStripMenuItem.Name = "newItemToolStripMenuItem";
+            newItemToolStripMenuItem.Size = new Size(134, 22);
+            newItemToolStripMenuItem.Text = "New Item";
+            newItemToolStripMenuItem.Click += newItemToolStripMenuItem_Click;
+            // 
+            // deleteItemToolStripMenuItem
+            // 
+            deleteItemToolStripMenuItem.Name = "deleteItemToolStripMenuItem";
+            deleteItemToolStripMenuItem.Size = new Size(134, 22);
+            deleteItemToolStripMenuItem.Text = "Delete Item";
+            deleteItemToolStripMenuItem.Click += deleteItemToolStripMenuItem_Click;
+            // 
+            // filterToolStripMenuItem1
+            // 
+            filterToolStripMenuItem1.Name = "filterToolStripMenuItem1";
+            filterToolStripMenuItem1.Size = new Size(134, 22);
+            filterToolStripMenuItem1.Text = "Filter";
+            // 
+            // sortToolStripMenuItem
+            // 
+            sortToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { ascendingToolStripMenuItem, descendingToolStripMenuItem });
+            sortToolStripMenuItem.Name = "sortToolStripMenuItem";
+            sortToolStripMenuItem.Size = new Size(134, 22);
+            sortToolStripMenuItem.Text = "Sort";
+            // 
+            // ascendingToolStripMenuItem
+            // 
+            ascendingToolStripMenuItem.Name = "ascendingToolStripMenuItem";
+            ascendingToolStripMenuItem.Size = new Size(136, 22);
+            ascendingToolStripMenuItem.Text = "Ascending";
+            // 
+            // descendingToolStripMenuItem
+            // 
+            descendingToolStripMenuItem.Name = "descendingToolStripMenuItem";
+            descendingToolStripMenuItem.Size = new Size(136, 22);
+            descendingToolStripMenuItem.Text = "Descending";
             // 
             // splitContainer2
             // 
@@ -256,21 +314,20 @@
             splitContainer2.Size = new Size(877, 276);
             splitContainer2.SplitterDistance = 236;
             splitContainer2.TabIndex = 13;
-            splitContainer2.SplitterMoved += splitContainer2_SplitterMoved;
             // 
             // tableLayoutPanel1
             // 
             tableLayoutPanel1.AutoSize = true;
             tableLayoutPanel1.ColumnCount = 1;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Controls.Add(textBox3, 0, 0);
-            tableLayoutPanel1.Controls.Add(textBox4, 0, 1);
-            tableLayoutPanel1.Controls.Add(textBox5, 0, 2);
-            tableLayoutPanel1.Controls.Add(comboBox1, 0, 3);
+            tableLayoutPanel1.Controls.Add(txtID, 0, 0);
+            tableLayoutPanel1.Controls.Add(txtVersion, 0, 1);
+            tableLayoutPanel1.Controls.Add(txtDescription, 0, 2);
+            tableLayoutPanel1.Controls.Add(comboStatus, 0, 3);
             tableLayoutPanel1.Controls.Add(button1, 0, 7);
-            tableLayoutPanel1.Controls.Add(dateTimePicker1, 0, 6);
-            tableLayoutPanel1.Controls.Add(comboBox2, 0, 4);
-            tableLayoutPanel1.Controls.Add(textBox6, 0, 5);
+            tableLayoutPanel1.Controls.Add(dtPicker, 0, 6);
+            tableLayoutPanel1.Controls.Add(comboPriority, 0, 4);
+            tableLayoutPanel1.Controls.Add(txtDetectedName, 0, 5);
             tableLayoutPanel1.Dock = DockStyle.Top;
             tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -286,46 +343,49 @@
             tableLayoutPanel1.Size = new Size(236, 279);
             tableLayoutPanel1.TabIndex = 0;
             // 
-            // textBox3
+            // txtID
             // 
-            textBox3.Dock = DockStyle.Fill;
-            textBox3.Location = new Point(3, 3);
-            textBox3.Name = "textBox3";
-            textBox3.PlaceholderText = "ID";
-            textBox3.ReadOnly = true;
-            textBox3.Size = new Size(230, 23);
-            textBox3.TabIndex = 0;
+            txtID.Dock = DockStyle.Fill;
+            txtID.Location = new Point(3, 3);
+            txtID.Name = "txtID";
+            txtID.PlaceholderText = "ID";
+            txtID.ReadOnly = true;
+            txtID.Size = new Size(230, 23);
+            txtID.TabIndex = 0;
             // 
-            // textBox4
+            // txtVersion
             // 
-            textBox4.Dock = DockStyle.Fill;
-            textBox4.Location = new Point(3, 35);
-            textBox4.Name = "textBox4";
-            textBox4.PlaceholderText = "Version";
-            textBox4.Size = new Size(230, 23);
-            textBox4.TabIndex = 1;
+            txtVersion.Dock = DockStyle.Fill;
+            txtVersion.Location = new Point(3, 35);
+            txtVersion.Name = "txtVersion";
+            txtVersion.PlaceholderText = "Version";
+            txtVersion.ReadOnly = true;
+            txtVersion.Size = new Size(230, 23);
+            txtVersion.TabIndex = 1;
             // 
-            // textBox5
+            // txtDescription
             // 
-            textBox5.Dock = DockStyle.Fill;
-            textBox5.ForeColor = Color.White;
-            textBox5.Location = new Point(3, 68);
-            textBox5.Multiline = true;
-            textBox5.Name = "textBox5";
-            textBox5.PlaceholderText = "Description of the Bug";
-            textBox5.ScrollBars = ScrollBars.Vertical;
-            textBox5.Size = new Size(230, 41);
-            textBox5.TabIndex = 2;
+            txtDescription.Dock = DockStyle.Fill;
+            txtDescription.ForeColor = Color.Black;
+            txtDescription.Location = new Point(3, 68);
+            txtDescription.Multiline = true;
+            txtDescription.Name = "txtDescription";
+            txtDescription.PlaceholderText = "Description of the Bug";
+            txtDescription.ReadOnly = true;
+            txtDescription.ScrollBars = ScrollBars.Vertical;
+            txtDescription.Size = new Size(230, 41);
+            txtDescription.TabIndex = 2;
             // 
-            // comboBox1
+            // comboStatus
             // 
-            comboBox1.Dock = DockStyle.Fill;
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(3, 115);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(230, 23);
-            comboBox1.TabIndex = 4;
-            comboBox1.Text = "Status";
+            comboStatus.Dock = DockStyle.Fill;
+            comboStatus.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboStatus.Enabled = false;
+            comboStatus.FormattingEnabled = true;
+            comboStatus.Location = new Point(3, 115);
+            comboStatus.Name = "comboStatus";
+            comboStatus.Size = new Size(230, 23);
+            comboStatus.TabIndex = 4;
             // 
             // button1
             // 
@@ -336,35 +396,38 @@
             button1.TabIndex = 3;
             button1.Text = "Save Changes";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
-            // dateTimePicker1
+            // dtPicker
             // 
-            dateTimePicker1.Dock = DockStyle.Fill;
-            dateTimePicker1.Location = new Point(3, 206);
-            dateTimePicker1.MaxDate = new DateTime(2098, 12, 31, 0, 0, 0, 0);
-            dateTimePicker1.MinDate = new DateTime(2022, 1, 1, 0, 0, 0, 0);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(230, 23);
-            dateTimePicker1.TabIndex = 5;
+            dtPicker.Dock = DockStyle.Fill;
+            dtPicker.Location = new Point(3, 206);
+            dtPicker.MaxDate = new DateTime(2098, 12, 31, 0, 0, 0, 0);
+            dtPicker.MinDate = new DateTime(2022, 1, 1, 0, 0, 0, 0);
+            dtPicker.Name = "dtPicker";
+            dtPicker.Size = new Size(230, 23);
+            dtPicker.TabIndex = 5;
             // 
-            // comboBox2
+            // comboPriority
             // 
-            comboBox2.Dock = DockStyle.Fill;
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(3, 144);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(230, 23);
-            comboBox2.TabIndex = 6;
-            comboBox2.Text = "Priority";
+            comboPriority.Dock = DockStyle.Fill;
+            comboPriority.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboPriority.Enabled = false;
+            comboPriority.FormattingEnabled = true;
+            comboPriority.Location = new Point(3, 144);
+            comboPriority.Name = "comboPriority";
+            comboPriority.Size = new Size(230, 23);
+            comboPriority.TabIndex = 6;
             // 
-            // textBox6
+            // txtDetectedName
             // 
-            textBox6.Dock = DockStyle.Fill;
-            textBox6.Location = new Point(3, 177);
-            textBox6.Name = "textBox6";
-            textBox6.PlaceholderText = "DetectedBy";
-            textBox6.Size = new Size(230, 23);
-            textBox6.TabIndex = 7;
+            txtDetectedName.Dock = DockStyle.Fill;
+            txtDetectedName.Location = new Point(3, 177);
+            txtDetectedName.Name = "txtDetectedName";
+            txtDetectedName.PlaceholderText = "DetectedBy";
+            txtDetectedName.ReadOnly = true;
+            txtDetectedName.Size = new Size(230, 23);
+            txtDetectedName.TabIndex = 7;
             // 
             // splitContainer3
             // 
@@ -376,35 +439,35 @@
             // 
             // splitContainer3.Panel1
             // 
-            splitContainer3.Panel1.Controls.Add(textBox1);
+            splitContainer3.Panel1.Controls.Add(txtNotesIssue);
             // 
             // splitContainer3.Panel2
             // 
-            splitContainer3.Panel2.Controls.Add(textBox2);
+            splitContainer3.Panel2.Controls.Add(txtNotesFix);
             splitContainer3.Size = new Size(637, 276);
             splitContainer3.SplitterDistance = 141;
             splitContainer3.TabIndex = 0;
             // 
-            // textBox1
+            // txtNotesIssue
             // 
-            textBox1.Dock = DockStyle.Fill;
-            textBox1.Location = new Point(0, 0);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.PlaceholderText = "Notes about the issue";
-            textBox1.Size = new Size(637, 141);
-            textBox1.TabIndex = 0;
+            txtNotesIssue.Dock = DockStyle.Fill;
+            txtNotesIssue.Location = new Point(0, 0);
+            txtNotesIssue.Multiline = true;
+            txtNotesIssue.Name = "txtNotesIssue";
+            txtNotesIssue.PlaceholderText = "Notes about the issue";
+            txtNotesIssue.Size = new Size(637, 141);
+            txtNotesIssue.TabIndex = 0;
             // 
-            // textBox2
+            // txtNotesFix
             // 
-            textBox2.Dock = DockStyle.Fill;
-            textBox2.Location = new Point(0, 0);
-            textBox2.Margin = new Padding(3, 3, 3, 20);
-            textBox2.Multiline = true;
-            textBox2.Name = "textBox2";
-            textBox2.PlaceholderText = "Notes about the fix";
-            textBox2.Size = new Size(637, 131);
-            textBox2.TabIndex = 0;
+            txtNotesFix.Dock = DockStyle.Fill;
+            txtNotesFix.Location = new Point(0, 0);
+            txtNotesFix.Margin = new Padding(3, 3, 3, 20);
+            txtNotesFix.Multiline = true;
+            txtNotesFix.Name = "txtNotesFix";
+            txtNotesFix.PlaceholderText = "Notes about the fix";
+            txtNotesFix.Size = new Size(637, 131);
+            txtNotesFix.TabIndex = 0;
             // 
             // BugTracker
             // 
@@ -430,6 +493,7 @@
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
             splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)bugItems).EndInit();
+            contextMenu.ResumeLayout(false);
             splitContainer2.Panel1.ResumeLayout(false);
             splitContainer2.Panel1.PerformLayout();
             splitContainer2.Panel2.ResumeLayout(false);
@@ -463,8 +527,8 @@
         private ToolStripMenuItem enhancementsToolStripMenuItem;
         private SplitContainer splitContainer2;
         private SplitContainer splitContainer3;
-        private TextBox textBox1;
-        private TextBox textBox2;
+        private TextBox txtNotesIssue;
+        private TextBox txtNotesFix;
         private ToolStripMenuItem settingsToolStripMenuItem;
         private ToolStripMenuItem userManagementToolStripMenuItem;
         private ToolStripMenuItem aboutToolStripMenuItem;
@@ -474,14 +538,21 @@
         private ToolStripMenuItem versionsToolStripMenuItem;
         private ToolStripMenuItem exitToolStripMenuItem;
         private TableLayoutPanel tableLayoutPanel1;
-        private TextBox textBox3;
-        private TextBox textBox4;
-        private TextBox textBox5;
+        private TextBox txtID;
+        private TextBox txtVersion;
+        private TextBox txtDescription;
         private Button button1;
-        private ComboBox comboBox1;
-        private DateTimePicker dateTimePicker1;
-        private ComboBox comboBox2;
-        private TextBox textBox6;
+        private ComboBox comboStatus;
+        private DateTimePicker dtPicker;
+        private ComboBox comboPriority;
+        private TextBox txtDetectedName;
+        private ContextMenuStrip contextMenu;
+        private ToolStripMenuItem newItemToolStripMenuItem;
+        private ToolStripMenuItem deleteItemToolStripMenuItem;
+        private ToolStripMenuItem filterToolStripMenuItem1;
+        private ToolStripMenuItem sortToolStripMenuItem;
+        private ToolStripMenuItem ascendingToolStripMenuItem;
+        private ToolStripMenuItem descendingToolStripMenuItem;
     }
 
 }

@@ -9,6 +9,7 @@ using System.Linq;
 using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Data.Sqlite;
 
 namespace BugTracker
 {
@@ -128,7 +129,77 @@ namespace BugTracker
 
         }
 
-        
+        public static bool InsertBugItem(string description, string version, string status, string priority, string detectedBy, string dateDetected, string notesIssue, string notesFix)
+        {
+            var sql = "INSERT INTO bugs (description, version, status, priority, detectedBy, dateDetected, IssueNotes, FixNotes) VALUES (@description, @version, @status, @priority, @detectedBy, @dateDetected, @notesIssue, @notesFix)";
+            if(description.Length == 0 || version.Length == 0 || status.Length == 0 || priority.Length == 0 || detectedBy.Length == 0) {
+                return false;
+            }
+            try
+            {
+                var connection = new SQLiteConnection("Data Source=BugTracker.db");
+                connection.Open();
+                var command = new SQLiteCommand(sql, connection);
+                command.Parameters.AddWithValue("@description", description);
+                command.Parameters.AddWithValue("@version", version);
+                command.Parameters.AddWithValue("@status", status);
+                command.Parameters.AddWithValue("@priority", priority);
+                command.Parameters.AddWithValue("@detectedBy", detectedBy);
+                command.Parameters.AddWithValue("@dateDetected", dateDetected);
+                command.Parameters.AddWithValue("@notesIssue", notesIssue);
+                command.Parameters.AddWithValue("@notesFix", notesFix);
+                var rowInserted = command.ExecuteNonQuery();
+                return rowInserted > 0;
+            }
+            catch (SQLiteException ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+                return false;
+            }
+        }
+        public static bool DeleteItem(int id)
+        {
+            string sql = "Delete from bugs where id = @id";
+            var connection = new SQLiteConnection("Data Source=BugTracker.db");
+            connection.Open();
+            using var command = new SQLiteCommand(sql, connection);
+            command.Parameters.AddWithValue("@id", id);
+            var rowDeleted = command.ExecuteNonQuery();
+            return rowDeleted > 0;
+        }
+
+        public static bool UpdateBugItem(int id, string description, string version, string status, string priority, string detectedBy, string dateDetected, string notesIssue, string notesFix)
+        {
+            var sql = "Update bugs SET description = @description, version = @version, status = @status, priority = @priority, detectedBy = @detected, dateDetected = @dateDetected, IssueNotes = @notesIssue, FixNotes = @notesFix where id = @id";
+            if (description.Length == 0 || version.Length == 0 || status.Length == 0 || priority.Length == 0 || detectedBy.Length == 0)
+            {
+                return false;
+            }
+            try
+            {
+                var connection = new SQLiteConnection("Data Source=BugTracker.db");
+                connection.Open();
+                using var command = new SQLiteCommand(sql, connection);
+                command.Parameters.AddWithValue("@description", description);
+                command.Parameters.AddWithValue("@version", version);
+                command.Parameters.AddWithValue("@status", status);
+                command.Parameters.AddWithValue("@priority", priority);
+                command.Parameters.AddWithValue("@detectedBy", detectedBy);
+                command.Parameters.AddWithValue("@dateDetected", dateDetected);
+                command.Parameters.AddWithValue("@notesIssue", notesIssue);
+                command.Parameters.AddWithValue("@notesFix", notesFix);
+                command.Parameters.AddWithValue("@id", id);
+                var rowInserted = command.ExecuteNonQuery();
+                return rowInserted > 0;
+            }
+            catch (SQLiteException ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+                return false;
+            }
+        }
+
+
         public static bool ConnectToMongoDB()
         {
             var connectionString = Environment.GetEnvironmentVariable("MONGODB_URI");
