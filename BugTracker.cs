@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -18,6 +19,7 @@ namespace BugTracker
     public partial class BugTracker : Form
     {
         private bool updateAction = false;
+        private List<string> versions = new List<string>();
         public BugTracker()
         {
             InitializeComponent();
@@ -40,7 +42,7 @@ namespace BugTracker
             DataTable table = new DataTable();
             try
             {
-                SQLiteDataAdapter items = DBOperations.getDbItems(@"SELECT b.id, description, a.version as version, status, priority, detectedBy, dateDetected, IssueNotes, FixNotes FROM bugs as b left join versions as a on b.id = a.productId");
+                SQLiteDataAdapter items = DBOperations.getDbItems(@"SELECT b.id as id, b.description as description, b.productId as product, a.version as version, status, priority, detectedBy, dateDetected, IssueNotes, FixNotes FROM bugs as b left join products p on b.productId=p.id left join versions as a on b.id = a.productId");
                 if (items != null)
                 {
                     items.Fill(table);
@@ -89,18 +91,18 @@ namespace BugTracker
 
         private void InsertItem()
         {
-            System.Diagnostics.Debug.WriteLine("Got to insert item");
             try
             {
                 string description = txtDescription.Text;
-                string version = txtVersion.Text;
+                int product = Int32.Parse(comboProducts.SelectedItem.ToString());
+                string version = comboVersions.SelectedItem.ToString();
                 string status = comboStatus.SelectedItem.ToString();
                 string priority = comboPriority.SelectedItem.ToString();
                 string detectedBy = txtDetectedName.Text;
                 string dateDetected = dtPicker.Value.ToString();
                 string notesIssue = txtNotesIssue.Text;
                 string notesFix = txtNotesFix.Text;
-                bool result = DBOperations.InsertBugItem(description, version, status, priority, detectedBy, dateDetected, notesIssue, notesFix);
+                bool result = DBOperations.InsertBugItem(description, product, version, status, priority, detectedBy, dateDetected, notesIssue, notesFix);
                 if (result)
                 {
                     MessageBox.Show("Item added succesfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -143,11 +145,11 @@ namespace BugTracker
 
         private void UpdateItem()
         {
-            System.Diagnostics.Debug.WriteLine("Got to update item");
             try
             {
                 string description = txtDescription.Text;
-                string version = txtVersion.Text;
+                int product = Int32.Parse(comboProducts.SelectedItem.ToString());
+                string version = comboVersions.SelectedItem.ToString();
                 string status = comboStatus.SelectedItem.ToString();
                 string priority = comboPriority.SelectedItem.ToString();
                 string detectedBy = txtDetectedName.Text;
@@ -155,7 +157,7 @@ namespace BugTracker
                 string notesIssue = txtNotesIssue.Text;
                 string notesFix = txtNotesFix.Text;
                 int id = Int32.Parse(txtID.Text);
-                bool result = DBOperations.UpdateBugItem(id, description, version, status, priority, detectedBy, dateDetected, notesIssue, notesFix);
+                bool result = DBOperations.UpdateBugItem(id, description, product, version, status, priority, detectedBy, dateDetected, notesIssue, notesFix);
                 if (!result)
                 {
                     MessageBox.Show("Item updated succesfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -196,21 +198,23 @@ namespace BugTracker
                 int row = bugItems.SelectedCells[0].RowIndex;
                 DataGridViewRow r = bugItems.Rows[row];
                 txtID.Text = r.Cells[0].Value.ToString();
-                txtDescription.Text = r.Cells[1].Value.ToString(); 
-                txtVersion.Text = r.Cells[2].Value.ToString(); 
-                comboStatus.SelectedIndex = r.Cells[3].Value.ToString() == "Open" ? 0 : r.Cells[3].Value.ToString() == "In Progress" ? 1 : 2; 
-                comboPriority.SelectedIndex = r.Cells[4].Value.ToString() == "High" ? 0 : r.Cells[4].Value.ToString() == "Medium" ? 1 : 2; 
-                txtDetectedName.Text = r.Cells[5].Value.ToString();
-                dtPicker.Value = DateTime.Parse(r.Cells[6].Value.ToString());
-                txtNotesIssue.Text = r.Cells[7].Value.ToString(); 
-                txtNotesFix.Text = r.Cells[8].Value.ToString(); 
+                txtDescription.Text = r.Cells[2].Value.ToString();
+                comboVersions.SelectedIndex = 0;
+                comboProducts.SelectedIndex = 0;
+                comboStatus.SelectedIndex = r.Cells[4].Value.ToString() == "Open" ? 0 : r.Cells[4].Value.ToString() == "In Progress" ? 1 : 2; 
+                comboPriority.SelectedIndex = r.Cells[5].Value.ToString() == "High" ? 0 : r.Cells[5].Value.ToString() == "Medium" ? 1 : 2; 
+                txtDetectedName.Text = r.Cells[6].Value.ToString();
+                dtPicker.Value = DateTime.Parse(r.Cells[7].Value.ToString());
+                txtNotesIssue.Text = r.Cells[8].Value.ToString(); 
+                txtNotesFix.Text = r.Cells[9].Value.ToString(); 
                 SetReadOnlyStatus(false);
             }
             else
             {
                 txtID.Text = "";
                 txtDescription.Text = "";
-                txtVersion.Text = "";
+                comboVersions.SelectedValue = "";
+                comboProducts.SelectedValue = "";
                 comboStatus.SelectedValue = "";
                 comboPriority.SelectedValue = "";
                 txtDetectedName.Text = "";
@@ -224,7 +228,8 @@ namespace BugTracker
         private void SetReadOnlyStatus(bool state)
         {
             txtDescription.ReadOnly = state;
-            txtVersion.ReadOnly = state;
+            comboVersions.Enabled = !state;
+            comboProducts.Enabled = !state;
             txtDetectedName.ReadOnly = state;
             txtNotesIssue.ReadOnly = state;
             txtNotesFix.ReadOnly = state;
@@ -235,9 +240,22 @@ namespace BugTracker
 
         private void newItemToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            List<string> productItems = DBOperations.GetDropDown(@"Select * from products", 1);
+            List<string> versionItems = DBOperations.GetDropDown(@"Select * from versions", 2);
+            comboProducts.Items.Clear();
+            comboVersions.Items.Clear();
+            foreach (string item in productItems)
+            {
+                comboProducts.Items.Add(item);
+            }
+            foreach (string item in versionItems)
+            {
+                comboVersions.Items.Add(item);
+            }
             txtID.Text = "";
             txtDescription.Text = "";
-            txtVersion.Text = "";
+            comboVersions.SelectedValue = "";
+            comboProducts.SelectedValue = "";
             comboStatus.SelectedIndex = 0;
             comboPriority.SelectedIndex = 0;
             txtDetectedName.Text = "";

@@ -4,12 +4,14 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using System.Data.SQLite;
 using System;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Data.Sqlite;
+using System.Security.Cryptography.X509Certificates;
 
 namespace BugTracker
 {
@@ -44,6 +46,7 @@ namespace BugTracker
         {
             var sql = @"CREATE TABLE IF NOT EXISTS bugs(
                 id INTEGER PRIMARY KEY,
+                productId INTEGER NOT NULL,
                 description TEXT NOT NULL,
                 version TEXT NOT NULL,
                 status TEXT NOT NULL,
@@ -51,7 +54,9 @@ namespace BugTracker
                 detectedBy TEXT NOT NULL,
                 dateDetected TEXT NOT NULL,
                 IssueNotes TEXT NOT NULL,
-                FixNotes TEXT NOT NULL
+                FixNotes TEXT NOT NULL,
+                FOREIGN KEY (productId)
+                REFERENCES products (id)
             )";
 
             var sql2 = @"CREATE TABLE IF NOT EXISTS enhancements(
@@ -129,9 +134,9 @@ namespace BugTracker
 
         }
 
-        public static bool InsertBugItem(string description, string version, string status, string priority, string detectedBy, string dateDetected, string notesIssue, string notesFix)
+        public static bool InsertBugItem(string description, int product, string version, string status, string priority, string detectedBy, string dateDetected, string notesIssue, string notesFix)
         {
-            var sql = "INSERT INTO bugs (description, version, status, priority, detectedBy, dateDetected, IssueNotes, FixNotes) VALUES (@description, @version, @status, @priority, @detectedBy, @dateDetected, @notesIssue, @notesFix)";
+            var sql = "INSERT INTO bugs (description, version, status, priority, detectedBy, dateDetected, IssueNotes, FixNotes, productId) VALUES (@description, @version, @status, @priority, @detectedBy, @dateDetected, @notesIssue, @notesFix, @productId)";
             if(description.Length == 0 || version.Length == 0 || status.Length == 0 || priority.Length == 0 || detectedBy.Length == 0) {
                 return false;
             }
@@ -148,6 +153,7 @@ namespace BugTracker
                 command.Parameters.AddWithValue("@dateDetected", dateDetected);
                 command.Parameters.AddWithValue("@notesIssue", notesIssue);
                 command.Parameters.AddWithValue("@notesFix", notesFix);
+                command.Parameters.AddWithValue("@productId", product);
                 var rowInserted = command.ExecuteNonQuery();
                 return rowInserted > 0;
             }
@@ -168,9 +174,9 @@ namespace BugTracker
             return rowDeleted > 0;
         }
 
-        public static bool UpdateBugItem(int id, string description, string version, string status, string priority, string detectedBy, string dateDetected, string notesIssue, string notesFix)
+        public static bool UpdateBugItem(int id, string description, int product, string version, string status, string priority, string detectedBy, string dateDetected, string notesIssue, string notesFix)
         {
-            var sql = "Update bugs SET description = @description, version = @version, status = @status, priority = @priority, detectedBy = @detected, dateDetected = @dateDetected, IssueNotes = @notesIssue, FixNotes = @notesFix where id = @id";
+            var sql = "Update bugs SET description = @description, version = @version, status = @status, priority = @priority, detectedBy = @detected, dateDetected = @dateDetected, IssueNotes = @notesIssue, FixNotes = @notesFix, productId=@productId where id = @id";
             if (description.Length == 0 || version.Length == 0 || status.Length == 0 || priority.Length == 0 || detectedBy.Length == 0)
             {
                 return false;
@@ -179,7 +185,7 @@ namespace BugTracker
             {
                 var connection = new SQLiteConnection("Data Source=BugTracker.db");
                 connection.Open();
-                using var command = new SQLiteCommand(sql, connection);
+                var command = new SQLiteCommand(sql, connection);
                 command.Parameters.AddWithValue("@description", description);
                 command.Parameters.AddWithValue("@version", version);
                 command.Parameters.AddWithValue("@status", status);
@@ -188,6 +194,7 @@ namespace BugTracker
                 command.Parameters.AddWithValue("@dateDetected", dateDetected);
                 command.Parameters.AddWithValue("@notesIssue", notesIssue);
                 command.Parameters.AddWithValue("@notesFix", notesFix);
+                command.Parameters.AddWithValue("@productId", product);
                 command.Parameters.AddWithValue("@id", id);
                 var rowInserted = command.ExecuteNonQuery();
                 return rowInserted > 0;
@@ -251,6 +258,30 @@ namespace BugTracker
             return bugItems;
         }
 
-        
+        public static List<string> GetDropDown(string sql, int key)
+        {
+            List<string> versions = new List<string>();
+            var connection = new SQLiteConnection("Data Source=BugTracker.db");
+            try
+            {
+                connection.Open();
+                SQLiteCommand command = new SQLiteCommand(sql, connection);
+
+                using SQLiteDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    string version = reader.GetString(key);
+                    versions.Add(version);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"{ex.Message}");
+            }
+            
+            return versions;
+        }
+
+
     }
 }

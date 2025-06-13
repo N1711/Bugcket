@@ -60,13 +60,14 @@
             splitContainer2 = new SplitContainer();
             tableLayoutPanel1 = new TableLayoutPanel();
             txtID = new TextBox();
-            txtVersion = new TextBox();
             txtDescription = new TextBox();
-            comboStatus = new ComboBox();
             button1 = new Button();
             dtPicker = new DateTimePicker();
-            comboPriority = new ComboBox();
             txtDetectedName = new TextBox();
+            comboPriority = new ComboBox();
+            comboStatus = new ComboBox();
+            comboVersions = new ComboBox();
+            comboProducts = new ComboBox();
             splitContainer3 = new SplitContainer();
             txtNotesIssue = new TextBox();
             txtNotesFix = new TextBox();
@@ -98,7 +99,7 @@
             menuStrip2.Location = new Point(5, 66);
             menuStrip2.Name = "menuStrip2";
             menuStrip2.RenderMode = ToolStripRenderMode.Professional;
-            menuStrip2.Size = new Size(132, 549);
+            menuStrip2.Size = new Size(132, 641);
             menuStrip2.TabIndex = 1;
             menuStrip2.Text = "menuStrip2";
             // 
@@ -233,8 +234,8 @@
             // 
             splitContainer1.Panel2.Controls.Add(splitContainer2);
             splitContainer1.Panel2.Margin = new Padding(0, 0, 0, 20);
-            splitContainer1.Size = new Size(877, 549);
-            splitContainer1.SplitterDistance = 269;
+            splitContainer1.Size = new Size(877, 641);
+            splitContainer1.SplitterDistance = 314;
             splitContainer1.TabIndex = 3;
             // 
             // bugItems
@@ -249,7 +250,7 @@
             bugItems.Name = "bugItems";
             bugItems.ReadOnly = true;
             bugItems.RowTemplate.Height = 25;
-            bugItems.Size = new Size(877, 269);
+            bugItems.Size = new Size(877, 314);
             bugItems.TabIndex = 0;
             bugItems.SelectionChanged += bugItems_SelectionChanged;
             // 
@@ -311,7 +312,7 @@
             // splitContainer2.Panel2
             // 
             splitContainer2.Panel2.Controls.Add(splitContainer3);
-            splitContainer2.Size = new Size(877, 276);
+            splitContainer2.Size = new Size(877, 323);
             splitContainer2.SplitterDistance = 236;
             splitContainer2.TabIndex = 13;
             // 
@@ -321,18 +322,19 @@
             tableLayoutPanel1.ColumnCount = 1;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel1.Controls.Add(txtID, 0, 0);
-            tableLayoutPanel1.Controls.Add(txtVersion, 0, 1);
             tableLayoutPanel1.Controls.Add(txtDescription, 0, 2);
-            tableLayoutPanel1.Controls.Add(comboStatus, 0, 3);
-            tableLayoutPanel1.Controls.Add(button1, 0, 7);
-            tableLayoutPanel1.Controls.Add(dtPicker, 0, 6);
-            tableLayoutPanel1.Controls.Add(comboPriority, 0, 4);
-            tableLayoutPanel1.Controls.Add(txtDetectedName, 0, 5);
+            tableLayoutPanel1.Controls.Add(button1, 0, 8);
+            tableLayoutPanel1.Controls.Add(dtPicker, 0, 7);
+            tableLayoutPanel1.Controls.Add(txtDetectedName, 0, 6);
+            tableLayoutPanel1.Controls.Add(comboPriority, 0, 5);
+            tableLayoutPanel1.Controls.Add(comboStatus, 0, 4);
+            tableLayoutPanel1.Controls.Add(comboVersions, 0, 3);
+            tableLayoutPanel1.Controls.Add(comboProducts, 0, 1);
             tableLayoutPanel1.Dock = DockStyle.Top;
             tableLayoutPanel1.Location = new Point(0, 0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 8;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 28.7356339F));
+            tableLayoutPanel1.RowCount = 9;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 28.73563F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 29.5976982F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 41.6666679F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 29F));
@@ -340,7 +342,8 @@
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 29F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
-            tableLayoutPanel1.Size = new Size(236, 279);
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
+            tableLayoutPanel1.Size = new Size(236, 319);
             tableLayoutPanel1.TabIndex = 0;
             // 
             // txtID
@@ -352,16 +355,6 @@
             txtID.ReadOnly = true;
             txtID.Size = new Size(230, 23);
             txtID.TabIndex = 0;
-            // 
-            // txtVersion
-            // 
-            txtVersion.Dock = DockStyle.Fill;
-            txtVersion.Location = new Point(3, 35);
-            txtVersion.Name = "txtVersion";
-            txtVersion.PlaceholderText = "Version";
-            txtVersion.ReadOnly = true;
-            txtVersion.Size = new Size(230, 23);
-            txtVersion.TabIndex = 1;
             // 
             // txtDescription
             // 
@@ -376,37 +369,35 @@
             txtDescription.Size = new Size(230, 41);
             txtDescription.TabIndex = 2;
             // 
-            // comboStatus
-            // 
-            comboStatus.Dock = DockStyle.Fill;
-            comboStatus.DropDownStyle = ComboBoxStyle.DropDownList;
-            comboStatus.Enabled = false;
-            comboStatus.FormattingEnabled = true;
-            comboStatus.Location = new Point(3, 115);
-            comboStatus.Name = "comboStatus";
-            comboStatus.Size = new Size(230, 23);
-            comboStatus.TabIndex = 4;
-            // 
             // button1
             // 
             button1.Dock = DockStyle.Fill;
-            button1.Location = new Point(3, 236);
+            button1.Location = new Point(3, 281);
             button1.Name = "button1";
-            button1.Size = new Size(230, 40);
-            button1.TabIndex = 3;
+            button1.Size = new Size(230, 35);
+            button1.TabIndex = 9;
             button1.Text = "Save Changes";
             button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
             // 
             // dtPicker
             // 
             dtPicker.Dock = DockStyle.Fill;
-            dtPicker.Location = new Point(3, 206);
+            dtPicker.Location = new Point(3, 236);
             dtPicker.MaxDate = new DateTime(2098, 12, 31, 0, 0, 0, 0);
             dtPicker.MinDate = new DateTime(2022, 1, 1, 0, 0, 0, 0);
             dtPicker.Name = "dtPicker";
             dtPicker.Size = new Size(230, 23);
             dtPicker.TabIndex = 5;
+            // 
+            // txtDetectedName
+            // 
+            txtDetectedName.Dock = DockStyle.Fill;
+            txtDetectedName.Location = new Point(3, 206);
+            txtDetectedName.Name = "txtDetectedName";
+            txtDetectedName.PlaceholderText = "DetectedBy";
+            txtDetectedName.ReadOnly = true;
+            txtDetectedName.Size = new Size(230, 23);
+            txtDetectedName.TabIndex = 7;
             // 
             // comboPriority
             // 
@@ -414,20 +405,41 @@
             comboPriority.DropDownStyle = ComboBoxStyle.DropDownList;
             comboPriority.Enabled = false;
             comboPriority.FormattingEnabled = true;
-            comboPriority.Location = new Point(3, 144);
+            comboPriority.Location = new Point(3, 177);
             comboPriority.Name = "comboPriority";
             comboPriority.Size = new Size(230, 23);
             comboPriority.TabIndex = 6;
             // 
-            // txtDetectedName
+            // comboStatus
             // 
-            txtDetectedName.Dock = DockStyle.Fill;
-            txtDetectedName.Location = new Point(3, 177);
-            txtDetectedName.Name = "txtDetectedName";
-            txtDetectedName.PlaceholderText = "DetectedBy";
-            txtDetectedName.ReadOnly = true;
-            txtDetectedName.Size = new Size(230, 23);
-            txtDetectedName.TabIndex = 7;
+            comboStatus.Dock = DockStyle.Fill;
+            comboStatus.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboStatus.Enabled = false;
+            comboStatus.FormattingEnabled = true;
+            comboStatus.Location = new Point(3, 144);
+            comboStatus.Name = "comboStatus";
+            comboStatus.Size = new Size(230, 23);
+            comboStatus.TabIndex = 4;
+            // 
+            // comboVersions
+            // 
+            comboVersions.Dock = DockStyle.Fill;
+            comboVersions.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboVersions.FormattingEnabled = true;
+            comboVersions.Location = new Point(3, 115);
+            comboVersions.Name = "comboVersions";
+            comboVersions.Size = new Size(230, 23);
+            comboVersions.TabIndex = 8;
+            // 
+            // comboProducts
+            // 
+            comboProducts.Dock = DockStyle.Fill;
+            comboProducts.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboProducts.FormattingEnabled = true;
+            comboProducts.Location = new Point(3, 35);
+            comboProducts.Name = "comboProducts";
+            comboProducts.Size = new Size(230, 23);
+            comboProducts.TabIndex = 10;
             // 
             // splitContainer3
             // 
@@ -444,8 +456,8 @@
             // splitContainer3.Panel2
             // 
             splitContainer3.Panel2.Controls.Add(txtNotesFix);
-            splitContainer3.Size = new Size(637, 276);
-            splitContainer3.SplitterDistance = 141;
+            splitContainer3.Size = new Size(637, 323);
+            splitContainer3.SplitterDistance = 165;
             splitContainer3.TabIndex = 0;
             // 
             // txtNotesIssue
@@ -455,7 +467,7 @@
             txtNotesIssue.Multiline = true;
             txtNotesIssue.Name = "txtNotesIssue";
             txtNotesIssue.PlaceholderText = "Notes about the issue";
-            txtNotesIssue.Size = new Size(637, 141);
+            txtNotesIssue.Size = new Size(637, 165);
             txtNotesIssue.TabIndex = 0;
             // 
             // txtNotesFix
@@ -466,14 +478,14 @@
             txtNotesFix.Multiline = true;
             txtNotesFix.Name = "txtNotesFix";
             txtNotesFix.PlaceholderText = "Notes about the fix";
-            txtNotesFix.Size = new Size(637, 131);
+            txtNotesFix.Size = new Size(637, 154);
             txtNotesFix.TabIndex = 0;
             // 
             // BugTracker
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1019, 620);
+            ClientSize = new Size(1019, 712);
             Controls.Add(splitContainer1);
             Controls.Add(menuStrip2);
             Controls.Add(menuStrip1);
@@ -539,9 +551,7 @@
         private ToolStripMenuItem exitToolStripMenuItem;
         private TableLayoutPanel tableLayoutPanel1;
         private TextBox txtID;
-        private TextBox txtVersion;
         private TextBox txtDescription;
-        private Button button1;
         private ComboBox comboStatus;
         private DateTimePicker dtPicker;
         private ComboBox comboPriority;
@@ -553,6 +563,9 @@
         private ToolStripMenuItem sortToolStripMenuItem;
         private ToolStripMenuItem ascendingToolStripMenuItem;
         private ToolStripMenuItem descendingToolStripMenuItem;
+        private ComboBox comboVersions;
+        private Button button1;
+        private ComboBox comboProducts;
     }
 
 }
