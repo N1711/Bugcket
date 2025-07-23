@@ -47,8 +47,8 @@ namespace BugTracker
             var sql = @"CREATE TABLE IF NOT EXISTS bugs(
                 id INTEGER PRIMARY KEY,
                 productId INTEGER NOT NULL,
+                versionId INTEGER NOT NULL,
                 description TEXT NOT NULL,
-                version TEXT NOT NULL,
                 status TEXT NOT NULL,
                 priority TEXT NOT NULL,
                 detectedBy TEXT NOT NULL,
@@ -56,7 +56,9 @@ namespace BugTracker
                 IssueNotes TEXT NOT NULL,
                 FixNotes TEXT NOT NULL,
                 FOREIGN KEY (productId)
-                REFERENCES products (id)
+                REFERENCES products (id),
+                FOREIGN KEY (versionId)
+                REFERENCES versions (id)
             )";
 
             var sql2 = @"CREATE TABLE IF NOT EXISTS enhancements(
@@ -134,11 +136,11 @@ namespace BugTracker
 
         }
 
-        public static bool InsertBugItem(string description, int product, string version, string status, string priority, string detectedBy, string dateDetected, string notesIssue, string notesFix)
+        public static long InsertBugItem(string description, int product, int version, string status, string priority, string detectedBy, string dateDetected, string notesIssue, string notesFix)
         {
-            var sql = "INSERT INTO bugs (description, version, status, priority, detectedBy, dateDetected, IssueNotes, FixNotes, productId) VALUES (@description, @version, @status, @priority, @detectedBy, @dateDetected, @notesIssue, @notesFix, @productId)";
-            if(description.Length == 0 || version.Length == 0 || status.Length == 0 || priority.Length == 0 || detectedBy.Length == 0) {
-                return false;
+            var sql = "INSERT INTO bugs (description, status, priority, detectedBy, dateDetected, IssueNotes, FixNotes, productId, versionId) VALUES (@description, @status, @priority, @detectedBy, @dateDetected, @notesIssue, @notesFix, @productId, @versionId)";
+            if(description.Length == 0 || status.Length == 0 || priority.Length == 0 || detectedBy.Length == 0) {
+                return 0;
             }
             try
             {
@@ -146,7 +148,6 @@ namespace BugTracker
                 connection.Open();
                 var command = new SQLiteCommand(sql, connection);
                 command.Parameters.AddWithValue("@description", description);
-                command.Parameters.AddWithValue("@version", version);
                 command.Parameters.AddWithValue("@status", status);
                 command.Parameters.AddWithValue("@priority", priority);
                 command.Parameters.AddWithValue("@detectedBy", detectedBy);
@@ -154,13 +155,20 @@ namespace BugTracker
                 command.Parameters.AddWithValue("@notesIssue", notesIssue);
                 command.Parameters.AddWithValue("@notesFix", notesFix);
                 command.Parameters.AddWithValue("@productId", product);
+                command.Parameters.AddWithValue("@versionId", version);
                 var rowInserted = command.ExecuteNonQuery();
-                return rowInserted > 0;
+                if(rowInserted > 0)
+                {
+                    return connection.LastInsertRowId;
+                } else
+                {
+                    return 0;
+                }
             }
             catch (SQLiteException ex)
             {
-                System.Diagnostics.Debug.WriteLine(ex.Message);
-                return false;
+                Debug.WriteLine(ex.Message);
+                return 0;
             }
         }
         public static bool DeleteItem(int id)
@@ -174,10 +182,10 @@ namespace BugTracker
             return rowDeleted > 0;
         }
 
-        public static bool UpdateBugItem(int id, string description, int product, string version, string status, string priority, string detectedBy, string dateDetected, string notesIssue, string notesFix)
+        public static bool UpdateBugItem(int id, string description, string status, string priority, string notesIssue, string notesFix)
         {
-            var sql = "Update bugs SET description = @description, version = @version, status = @status, priority = @priority, detectedBy = @detected, dateDetected = @dateDetected, IssueNotes = @notesIssue, FixNotes = @notesFix, productId=@productId where id = @id";
-            if (description.Length == 0 || version.Length == 0 || status.Length == 0 || priority.Length == 0 || detectedBy.Length == 0)
+            var sql = "Update bugs SET description = @description, status = @status, priority = @priority, IssueNotes = @notesIssue, FixNotes = @notesFix WHERE id = @id";
+            if (description.Length == 0 || status.Length == 0 || priority.Length == 0)
             {
                 return false;
             }
@@ -187,21 +195,17 @@ namespace BugTracker
                 connection.Open();
                 var command = new SQLiteCommand(sql, connection);
                 command.Parameters.AddWithValue("@description", description);
-                command.Parameters.AddWithValue("@version", version);
                 command.Parameters.AddWithValue("@status", status);
                 command.Parameters.AddWithValue("@priority", priority);
-                command.Parameters.AddWithValue("@detectedBy", detectedBy);
-                command.Parameters.AddWithValue("@dateDetected", dateDetected);
                 command.Parameters.AddWithValue("@notesIssue", notesIssue);
                 command.Parameters.AddWithValue("@notesFix", notesFix);
-                command.Parameters.AddWithValue("@productId", product);
                 command.Parameters.AddWithValue("@id", id);
                 var rowInserted = command.ExecuteNonQuery();
                 return rowInserted > 0;
             }
             catch (SQLiteException ex)
             {
-                System.Diagnostics.Debug.WriteLine(ex.Message);
+                Debug.WriteLine(ex.Message);
                 return false;
             }
         }
@@ -225,8 +229,7 @@ namespace BugTracker
         public static List<string> getBugItemsMongo ()
         {
             List<string> bugItems = new List<string> ();
-            var connectionString = "mongodb+srv://sg_admin_account:Aa48975231@footballpl.wrnyt.mongodb.net/?authSource=admin&appName=FootballPl";
-            //var connectionString = Environment.GetEnvironmentVariable("MONGODB_URI");
+            var connectionString = Environment.GetEnvironmentVariable("MONGODB_URI");
             if (connectionString == null)
             {
                 Console.WriteLine("You must set your 'MONGODB_URI' environment variable. To learn how to set it, see https://www.mongodb.com/docs/drivers/csharp/current/quick-start/#set-your-connection-string");
@@ -251,27 +254,28 @@ namespace BugTracker
                 //}
             } catch (Exception e)
             {
-                System.Diagnostics.Debug.WriteLine(e.Message);
+                Debug.WriteLine(e.Message);
             }
             
             
             return bugItems;
         }
 
-        public static List<string> GetDropDown(string sql, int key)
+        public static List<PriorityModel> GetDropDown(string sql, int key)
         {
-            List<string> versions = new List<string>();
+            List<PriorityModel> versions = new List<PriorityModel>();
             var connection = new SQLiteConnection("Data Source=BugTracker.db");
             try
             {
                 connection.Open();
                 SQLiteCommand command = new SQLiteCommand(sql, connection);
-
+                //command.Parameters.AddWithValue("@description", description);
                 using SQLiteDataReader reader = command.ExecuteReader();
                 while (reader.Read())
                 {
-                    string version = reader.GetString(key);
-                    versions.Add(version);
+                    int id = reader.GetInt32(0);
+                    string name = reader.GetString(key);
+                    versions.Add(new PriorityModel(id, name));
                 }
             }
             catch (Exception ex)

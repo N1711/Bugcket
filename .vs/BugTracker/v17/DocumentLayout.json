@@ -3,7 +3,7 @@
   "WorkspaceRootPath": "C:\\Users\\TrendUser\\Desktop\\Projects\\CBugTracker\\BugTracker\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8EC6B998-7792-4FA8-BE38-2E3A6FF662F5}|BugTracker.csproj|C:\\Users\\TrendUser\\Desktop\\Projects\\CBugTracker\\BugTracker\\bugtracker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{8EC6B998-7792-4FA8-BE38-2E3A6FF662F5}|BugTracker.csproj|c:\\users\\trenduser\\desktop\\projects\\cbugtracker\\bugtracker\\bugtracker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{8EC6B998-7792-4FA8-BE38-2E3A6FF662F5}|BugTracker.csproj|solutionrelative:bugtracker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
@@ -33,7 +33,7 @@
               "ToolTip": "C:\\Users\\TrendUser\\Desktop\\Projects\\CBugTracker\\BugTracker\\BugTracker.cs [Design]",
               "RelativeToolTip": "BugTracker.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-11T11:23:03.503Z",
+              "WhenOpened": "2025-07-23T08:43:23.978Z",
               "EditorCaption": " [Design]"
             },
             {
@@ -44,7 +44,7 @@
               "RelativeDocumentMoniker": "BugTracker.cs",
               "ToolTip": "C:\\Users\\TrendUser\\Desktop\\Projects\\CBugTracker\\BugTracker\\BugTracker.cs",
               "RelativeToolTip": "BugTracker.cs",
-              "ViewState": "AgIAAOUAAAAAAAAAAAAswPcAAAANAAAAAAAAAA==",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAACgAAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-11T11:14:02.299Z",
               "EditorCaption": ""
@@ -57,10 +57,9 @@
               "RelativeDocumentMoniker": "DBOperations.cs",
               "ToolTip": "C:\\Users\\TrendUser\\Desktop\\Projects\\CBugTracker\\BugTracker\\DBOperations.cs",
               "RelativeToolTip": "DBOperations.cs",
-              "ViewState": "AgIAANkAAAAAAAAAAAAiwBYBAAAxAAAAAAAAAA==",
+              "ViewState": "AgIAAP4AAAAAAAAAAAAQwAcBAABJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-08T08:16:39.081Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-08T08:16:39.081Z"
             }
           ]
         }
