@@ -32,7 +32,11 @@
             menuStrip1 = new MenuStrip();
             newToolStripMenuItem = new ToolStripMenuItem();
             exitToolStripMenuItem = new ToolStripMenuItem();
+            exitToolStripMenuItem1 = new ToolStripMenuItem();
             deleteToolStripMenuItem = new ToolStripMenuItem();
+            bugsToolStripMenuItem = new ToolStripMenuItem();
+            enhancementsToolStripMenuItem = new ToolStripMenuItem();
+            reportsToolStripMenuItem = new ToolStripMenuItem();
             configToolStripMenuItem = new ToolStripMenuItem();
             settingsToolStripMenuItem = new ToolStripMenuItem();
             userManagementToolStripMenuItem = new ToolStripMenuItem();
@@ -78,7 +82,44 @@
             txtNotesIssue = new TextBox();
             txtNotesFix = new TextBox();
             tabPage2 = new TabPage();
+            splitContainer6 = new SplitContainer();
+            splitContainer7 = new SplitContainer();
+            label10 = new Label();
+            dataGridView1 = new DataGridView();
+            splitContainer8 = new SplitContainer();
+            splitContainer10 = new SplitContainer();
+            tableLayoutPanel3 = new TableLayoutPanel();
+            label11 = new Label();
+            label12 = new Label();
+            label13 = new Label();
+            label14 = new Label();
+            label15 = new Label();
+            label16 = new Label();
+            label17 = new Label();
+            label18 = new Label();
+            tableLayoutPanel4 = new TableLayoutPanel();
+            comboBox1 = new ComboBox();
+            comboBox2 = new ComboBox();
+            comboBox3 = new ComboBox();
+            comboBox4 = new ComboBox();
+            textBox1 = new TextBox();
+            textBox2 = new TextBox();
+            dateTimePicker1 = new DateTimePicker();
+            textBox3 = new TextBox();
+            button2 = new Button();
+            splitContainer9 = new SplitContainer();
+            textBox4 = new TextBox();
+            textBox5 = new TextBox();
             tabPage3 = new TabPage();
+            splitContainer11 = new SplitContainer();
+            splitContainer12 = new SplitContainer();
+            splitContainer13 = new SplitContainer();
+            textBox6 = new TextBox();
+            button3 = new Button();
+            flowLayoutPanel1 = new FlowLayoutPanel();
+            button4 = new Button();
+            button5 = new Button();
+            dataGridView2 = new DataGridView();
             menuStrip1.SuspendLayout();
             contextMenu.SuspendLayout();
             tabControl1.SuspendLayout();
@@ -106,6 +147,45 @@
             splitContainer5.Panel1.SuspendLayout();
             splitContainer5.Panel2.SuspendLayout();
             splitContainer5.SuspendLayout();
+            tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer6).BeginInit();
+            splitContainer6.Panel1.SuspendLayout();
+            splitContainer6.Panel2.SuspendLayout();
+            splitContainer6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer7).BeginInit();
+            splitContainer7.Panel1.SuspendLayout();
+            splitContainer7.Panel2.SuspendLayout();
+            splitContainer7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)splitContainer8).BeginInit();
+            splitContainer8.Panel1.SuspendLayout();
+            splitContainer8.Panel2.SuspendLayout();
+            splitContainer8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer10).BeginInit();
+            splitContainer10.Panel1.SuspendLayout();
+            splitContainer10.Panel2.SuspendLayout();
+            splitContainer10.SuspendLayout();
+            tableLayoutPanel3.SuspendLayout();
+            tableLayoutPanel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer9).BeginInit();
+            splitContainer9.Panel1.SuspendLayout();
+            splitContainer9.Panel2.SuspendLayout();
+            splitContainer9.SuspendLayout();
+            tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer11).BeginInit();
+            splitContainer11.Panel1.SuspendLayout();
+            splitContainer11.Panel2.SuspendLayout();
+            splitContainer11.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer12).BeginInit();
+            splitContainer12.Panel1.SuspendLayout();
+            splitContainer12.Panel2.SuspendLayout();
+            splitContainer12.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer13).BeginInit();
+            splitContainer13.Panel1.SuspendLayout();
+            splitContainer13.Panel2.SuspendLayout();
+            splitContainer13.SuspendLayout();
+            flowLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
             SuspendLayout();
             // 
             // menuStrip1
@@ -121,7 +201,7 @@
             // 
             // newToolStripMenuItem
             // 
-            newToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { exitToolStripMenuItem });
+            newToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { exitToolStripMenuItem, exitToolStripMenuItem1 });
             newToolStripMenuItem.Name = "newToolStripMenuItem";
             newToolStripMenuItem.Size = new Size(41, 57);
             newToolStripMenuItem.Text = "App";
@@ -129,14 +209,40 @@
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(93, 22);
-            exitToolStripMenuItem.Text = "Exit";
+            exitToolStripMenuItem.Size = new Size(120, 22);
+            exitToolStripMenuItem.Text = "Sign Out";
+            exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
+            // 
+            // exitToolStripMenuItem1
+            // 
+            exitToolStripMenuItem1.Name = "exitToolStripMenuItem1";
+            exitToolStripMenuItem1.Size = new Size(120, 22);
+            exitToolStripMenuItem1.Text = "Exit";
             // 
             // deleteToolStripMenuItem
             // 
+            deleteToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { bugsToolStripMenuItem, enhancementsToolStripMenuItem, reportsToolStripMenuItem });
             deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
             deleteToolStripMenuItem.Size = new Size(44, 57);
             deleteToolStripMenuItem.Text = "View";
+            // 
+            // bugsToolStripMenuItem
+            // 
+            bugsToolStripMenuItem.Name = "bugsToolStripMenuItem";
+            bugsToolStripMenuItem.Size = new Size(152, 22);
+            bugsToolStripMenuItem.Text = "Bugs";
+            // 
+            // enhancementsToolStripMenuItem
+            // 
+            enhancementsToolStripMenuItem.Name = "enhancementsToolStripMenuItem";
+            enhancementsToolStripMenuItem.Size = new Size(152, 22);
+            enhancementsToolStripMenuItem.Text = "Enhancements";
+            // 
+            // reportsToolStripMenuItem
+            // 
+            reportsToolStripMenuItem.Name = "reportsToolStripMenuItem";
+            reportsToolStripMenuItem.Size = new Size(152, 22);
+            reportsToolStripMenuItem.Text = "Reports";
             // 
             // configToolStripMenuItem
             // 
@@ -150,12 +256,14 @@
             settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
             settingsToolStripMenuItem.Size = new Size(190, 22);
             settingsToolStripMenuItem.Text = "Settings";
+            settingsToolStripMenuItem.Click += settingsToolStripMenuItem_Click;
             // 
             // userManagementToolStripMenuItem
             // 
             userManagementToolStripMenuItem.Name = "userManagementToolStripMenuItem";
             userManagementToolStripMenuItem.Size = new Size(190, 22);
             userManagementToolStripMenuItem.Text = "User Management";
+            userManagementToolStripMenuItem.Click += userManagementToolStripMenuItem_Click;
             // 
             // productManagementToolStripMenuItem
             // 
@@ -169,6 +277,7 @@
             versionsToolStripMenuItem.Name = "versionsToolStripMenuItem";
             versionsToolStripMenuItem.Size = new Size(190, 22);
             versionsToolStripMenuItem.Text = "Versions";
+            versionsToolStripMenuItem.Click += versionsToolStripMenuItem_Click;
             // 
             // helpToolStripMenuItem
             // 
@@ -619,6 +728,7 @@
             // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(splitContainer6);
             tabPage2.Location = new Point(27, 4);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
@@ -627,8 +737,368 @@
             tabPage2.Text = "Enhancements";
             tabPage2.UseVisualStyleBackColor = true;
             // 
+            // splitContainer6
+            // 
+            splitContainer6.Dock = DockStyle.Fill;
+            splitContainer6.IsSplitterFixed = true;
+            splitContainer6.Location = new Point(3, 3);
+            splitContainer6.Name = "splitContainer6";
+            splitContainer6.Orientation = Orientation.Horizontal;
+            // 
+            // splitContainer6.Panel1
+            // 
+            splitContainer6.Panel1.Controls.Add(splitContainer7);
+            // 
+            // splitContainer6.Panel2
+            // 
+            splitContainer6.Panel2.Controls.Add(splitContainer8);
+            splitContainer6.Size = new Size(972, 678);
+            splitContainer6.SplitterDistance = 351;
+            splitContainer6.TabIndex = 0;
+            // 
+            // splitContainer7
+            // 
+            splitContainer7.Dock = DockStyle.Fill;
+            splitContainer7.Location = new Point(0, 0);
+            splitContainer7.Name = "splitContainer7";
+            splitContainer7.Orientation = Orientation.Horizontal;
+            // 
+            // splitContainer7.Panel1
+            // 
+            splitContainer7.Panel1.Controls.Add(label10);
+            // 
+            // splitContainer7.Panel2
+            // 
+            splitContainer7.Panel2.Controls.Add(dataGridView1);
+            splitContainer7.Size = new Size(972, 351);
+            splitContainer7.SplitterDistance = 26;
+            splitContainer7.TabIndex = 0;
+            // 
+            // label10
+            // 
+            label10.Dock = DockStyle.Fill;
+            label10.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label10.Location = new Point(0, 0);
+            label10.Name = "label10";
+            label10.Size = new Size(972, 26);
+            label10.TabIndex = 0;
+            label10.Text = "Open Items: 0";
+            label10.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Dock = DockStyle.Fill;
+            dataGridView1.Location = new Point(0, 0);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.ReadOnly = true;
+            dataGridView1.RowTemplate.Height = 25;
+            dataGridView1.Size = new Size(972, 321);
+            dataGridView1.TabIndex = 0;
+            // 
+            // splitContainer8
+            // 
+            splitContainer8.Dock = DockStyle.Fill;
+            splitContainer8.Location = new Point(0, 0);
+            splitContainer8.Name = "splitContainer8";
+            // 
+            // splitContainer8.Panel1
+            // 
+            splitContainer8.Panel1.Controls.Add(splitContainer10);
+            // 
+            // splitContainer8.Panel2
+            // 
+            splitContainer8.Panel2.Controls.Add(splitContainer9);
+            splitContainer8.Size = new Size(972, 323);
+            splitContainer8.SplitterDistance = 324;
+            splitContainer8.TabIndex = 0;
+            // 
+            // splitContainer10
+            // 
+            splitContainer10.Dock = DockStyle.Fill;
+            splitContainer10.Location = new Point(0, 0);
+            splitContainer10.Name = "splitContainer10";
+            // 
+            // splitContainer10.Panel1
+            // 
+            splitContainer10.Panel1.Controls.Add(tableLayoutPanel3);
+            // 
+            // splitContainer10.Panel2
+            // 
+            splitContainer10.Panel2.Controls.Add(tableLayoutPanel4);
+            splitContainer10.Size = new Size(324, 323);
+            splitContainer10.SplitterDistance = 123;
+            splitContainer10.TabIndex = 0;
+            // 
+            // tableLayoutPanel3
+            // 
+            tableLayoutPanel3.ColumnCount = 1;
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel3.Controls.Add(label11, 0, 7);
+            tableLayoutPanel3.Controls.Add(label12, 0, 6);
+            tableLayoutPanel3.Controls.Add(label13, 0, 5);
+            tableLayoutPanel3.Controls.Add(label14, 0, 4);
+            tableLayoutPanel3.Controls.Add(label15, 0, 3);
+            tableLayoutPanel3.Controls.Add(label16, 0, 2);
+            tableLayoutPanel3.Controls.Add(label17, 0, 1);
+            tableLayoutPanel3.Controls.Add(label18, 0, 0);
+            tableLayoutPanel3.Dock = DockStyle.Top;
+            tableLayoutPanel3.Location = new Point(0, 0);
+            tableLayoutPanel3.Name = "tableLayoutPanel3";
+            tableLayoutPanel3.RowCount = 8;
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 53.57143F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 46.42857F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 27F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 28F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 71F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 26F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 22F));
+            tableLayoutPanel3.Size = new Size(123, 261);
+            tableLayoutPanel3.TabIndex = 1;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Dock = DockStyle.Fill;
+            label11.Location = new Point(3, 238);
+            label11.Name = "label11";
+            label11.Size = new Size(117, 23);
+            label11.TabIndex = 7;
+            label11.Text = "ID";
+            label11.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Dock = DockStyle.Fill;
+            label12.Location = new Point(3, 212);
+            label12.Name = "label12";
+            label12.Size = new Size(117, 26);
+            label12.TabIndex = 6;
+            label12.Text = "Detected On";
+            label12.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Dock = DockStyle.Fill;
+            label13.Location = new Point(3, 182);
+            label13.Name = "label13";
+            label13.Size = new Size(117, 30);
+            label13.TabIndex = 5;
+            label13.Text = "Detected By";
+            label13.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Dock = DockStyle.Fill;
+            label14.Location = new Point(3, 111);
+            label14.Name = "label14";
+            label14.Size = new Size(117, 71);
+            label14.TabIndex = 4;
+            label14.Text = "Description";
+            label14.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Dock = DockStyle.Fill;
+            label15.Location = new Point(3, 83);
+            label15.Name = "label15";
+            label15.Size = new Size(117, 28);
+            label15.TabIndex = 3;
+            label15.Text = "Priority";
+            label15.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Dock = DockStyle.Fill;
+            label16.Location = new Point(3, 56);
+            label16.Name = "label16";
+            label16.Size = new Size(117, 27);
+            label16.TabIndex = 2;
+            label16.Text = "Status";
+            label16.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.Dock = DockStyle.Fill;
+            label17.Location = new Point(3, 30);
+            label17.Name = "label17";
+            label17.Size = new Size(117, 26);
+            label17.TabIndex = 1;
+            label17.Text = "Version";
+            label17.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label18
+            // 
+            label18.AutoSize = true;
+            label18.Dock = DockStyle.Fill;
+            label18.Location = new Point(3, 0);
+            label18.Name = "label18";
+            label18.Size = new Size(117, 30);
+            label18.TabIndex = 0;
+            label18.Text = "Product";
+            label18.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // tableLayoutPanel4
+            // 
+            tableLayoutPanel4.AutoSize = true;
+            tableLayoutPanel4.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            tableLayoutPanel4.ColumnCount = 1;
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel4.Controls.Add(comboBox1, 0, 0);
+            tableLayoutPanel4.Controls.Add(comboBox2, 0, 1);
+            tableLayoutPanel4.Controls.Add(comboBox3, 0, 2);
+            tableLayoutPanel4.Controls.Add(comboBox4, 0, 3);
+            tableLayoutPanel4.Controls.Add(textBox1, 0, 4);
+            tableLayoutPanel4.Controls.Add(textBox2, 0, 5);
+            tableLayoutPanel4.Controls.Add(dateTimePicker1, 0, 6);
+            tableLayoutPanel4.Controls.Add(textBox3, 0, 7);
+            tableLayoutPanel4.Controls.Add(button2, 0, 8);
+            tableLayoutPanel4.Dock = DockStyle.Top;
+            tableLayoutPanel4.Location = new Point(0, 0);
+            tableLayoutPanel4.Name = "tableLayoutPanel4";
+            tableLayoutPanel4.RowCount = 9;
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 9.570957F));
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 29F));
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 28F));
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 28F));
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 67F));
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 31F));
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 26F));
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 47F));
+            tableLayoutPanel4.Size = new Size(197, 315);
+            tableLayoutPanel4.TabIndex = 1;
+            // 
+            // comboBox1
+            // 
+            comboBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(3, 3);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(191, 23);
+            comboBox1.TabIndex = 0;
+            // 
+            // comboBox2
+            // 
+            comboBox2.Dock = DockStyle.Fill;
+            comboBox2.FormattingEnabled = true;
+            comboBox2.Location = new Point(3, 32);
+            comboBox2.Name = "comboBox2";
+            comboBox2.Size = new Size(191, 23);
+            comboBox2.TabIndex = 1;
+            // 
+            // comboBox3
+            // 
+            comboBox3.Dock = DockStyle.Fill;
+            comboBox3.FormattingEnabled = true;
+            comboBox3.Location = new Point(3, 61);
+            comboBox3.Name = "comboBox3";
+            comboBox3.Size = new Size(191, 23);
+            comboBox3.TabIndex = 2;
+            // 
+            // comboBox4
+            // 
+            comboBox4.Dock = DockStyle.Fill;
+            comboBox4.FormattingEnabled = true;
+            comboBox4.Location = new Point(3, 89);
+            comboBox4.Name = "comboBox4";
+            comboBox4.Size = new Size(191, 23);
+            comboBox4.TabIndex = 3;
+            // 
+            // textBox1
+            // 
+            textBox1.Dock = DockStyle.Fill;
+            textBox1.Location = new Point(3, 117);
+            textBox1.Multiline = true;
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(191, 61);
+            textBox1.TabIndex = 4;
+            // 
+            // textBox2
+            // 
+            textBox2.Dock = DockStyle.Fill;
+            textBox2.Location = new Point(3, 184);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(191, 23);
+            textBox2.TabIndex = 5;
+            // 
+            // dateTimePicker1
+            // 
+            dateTimePicker1.Dock = DockStyle.Fill;
+            dateTimePicker1.Location = new Point(3, 215);
+            dateTimePicker1.Name = "dateTimePicker1";
+            dateTimePicker1.Size = new Size(191, 23);
+            dateTimePicker1.TabIndex = 6;
+            // 
+            // textBox3
+            // 
+            textBox3.Dock = DockStyle.Fill;
+            textBox3.Location = new Point(3, 241);
+            textBox3.Name = "textBox3";
+            textBox3.ReadOnly = true;
+            textBox3.Size = new Size(191, 23);
+            textBox3.TabIndex = 7;
+            // 
+            // button2
+            // 
+            button2.Dock = DockStyle.Fill;
+            button2.Location = new Point(3, 271);
+            button2.Name = "button2";
+            button2.Size = new Size(191, 41);
+            button2.TabIndex = 8;
+            button2.Text = "Save";
+            button2.UseVisualStyleBackColor = true;
+            // 
+            // splitContainer9
+            // 
+            splitContainer9.Dock = DockStyle.Fill;
+            splitContainer9.Location = new Point(0, 0);
+            splitContainer9.Name = "splitContainer9";
+            splitContainer9.Orientation = Orientation.Horizontal;
+            // 
+            // splitContainer9.Panel1
+            // 
+            splitContainer9.Panel1.Controls.Add(textBox4);
+            // 
+            // splitContainer9.Panel2
+            // 
+            splitContainer9.Panel2.Controls.Add(textBox5);
+            splitContainer9.Size = new Size(644, 323);
+            splitContainer9.SplitterDistance = 161;
+            splitContainer9.TabIndex = 0;
+            // 
+            // textBox4
+            // 
+            textBox4.Dock = DockStyle.Fill;
+            textBox4.Location = new Point(0, 0);
+            textBox4.Multiline = true;
+            textBox4.Name = "textBox4";
+            textBox4.PlaceholderText = "Notes about the enhancement...";
+            textBox4.Size = new Size(644, 161);
+            textBox4.TabIndex = 1;
+            // 
+            // textBox5
+            // 
+            textBox5.Dock = DockStyle.Fill;
+            textBox5.Location = new Point(0, 0);
+            textBox5.Multiline = true;
+            textBox5.Name = "textBox5";
+            textBox5.PlaceholderText = "Notes about the implementaition...";
+            textBox5.Size = new Size(644, 158);
+            textBox5.TabIndex = 1;
+            // 
             // tabPage3
             // 
+            tabPage3.Controls.Add(splitContainer11);
             tabPage3.Location = new Point(27, 4);
             tabPage3.Name = "tabPage3";
             tabPage3.Padding = new Padding(3);
@@ -636,6 +1106,117 @@
             tabPage3.TabIndex = 2;
             tabPage3.Text = "Reports";
             tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // splitContainer11
+            // 
+            splitContainer11.Dock = DockStyle.Fill;
+            splitContainer11.Location = new Point(3, 3);
+            splitContainer11.Name = "splitContainer11";
+            // 
+            // splitContainer11.Panel1
+            // 
+            splitContainer11.Panel1.Controls.Add(splitContainer12);
+            // 
+            // splitContainer11.Panel2
+            // 
+            splitContainer11.Panel2.Controls.Add(dataGridView2);
+            splitContainer11.Size = new Size(972, 678);
+            splitContainer11.SplitterDistance = 195;
+            splitContainer11.TabIndex = 0;
+            // 
+            // splitContainer12
+            // 
+            splitContainer12.Dock = DockStyle.Fill;
+            splitContainer12.Location = new Point(0, 0);
+            splitContainer12.Name = "splitContainer12";
+            splitContainer12.Orientation = Orientation.Horizontal;
+            // 
+            // splitContainer12.Panel1
+            // 
+            splitContainer12.Panel1.Controls.Add(splitContainer13);
+            // 
+            // splitContainer12.Panel2
+            // 
+            splitContainer12.Panel2.Controls.Add(flowLayoutPanel1);
+            splitContainer12.Size = new Size(195, 678);
+            splitContainer12.SplitterDistance = 228;
+            splitContainer12.TabIndex = 0;
+            // 
+            // splitContainer13
+            // 
+            splitContainer13.Dock = DockStyle.Fill;
+            splitContainer13.Location = new Point(0, 0);
+            splitContainer13.Name = "splitContainer13";
+            splitContainer13.Orientation = Orientation.Horizontal;
+            // 
+            // splitContainer13.Panel1
+            // 
+            splitContainer13.Panel1.Controls.Add(textBox6);
+            // 
+            // splitContainer13.Panel2
+            // 
+            splitContainer13.Panel2.Controls.Add(button3);
+            splitContainer13.Size = new Size(195, 228);
+            splitContainer13.SplitterDistance = 181;
+            splitContainer13.TabIndex = 0;
+            // 
+            // textBox6
+            // 
+            textBox6.Dock = DockStyle.Fill;
+            textBox6.Location = new Point(0, 0);
+            textBox6.Multiline = true;
+            textBox6.Name = "textBox6";
+            textBox6.PlaceholderText = "Type your query...";
+            textBox6.Size = new Size(195, 181);
+            textBox6.TabIndex = 0;
+            // 
+            // button3
+            // 
+            button3.Dock = DockStyle.Fill;
+            button3.Location = new Point(0, 0);
+            button3.Name = "button3";
+            button3.Size = new Size(195, 43);
+            button3.TabIndex = 0;
+            button3.Text = "Run";
+            button3.UseVisualStyleBackColor = true;
+            // 
+            // flowLayoutPanel1
+            // 
+            flowLayoutPanel1.Controls.Add(button4);
+            flowLayoutPanel1.Controls.Add(button5);
+            flowLayoutPanel1.Dock = DockStyle.Fill;
+            flowLayoutPanel1.Location = new Point(0, 0);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(195, 446);
+            flowLayoutPanel1.TabIndex = 0;
+            // 
+            // button4
+            // 
+            button4.Location = new Point(3, 3);
+            button4.Name = "button4";
+            button4.Size = new Size(189, 40);
+            button4.TabIndex = 0;
+            button4.Text = "Export";
+            button4.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            button5.Location = new Point(3, 49);
+            button5.Name = "button5";
+            button5.Size = new Size(189, 40);
+            button5.TabIndex = 1;
+            button5.Text = "Save Query";
+            button5.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView2
+            // 
+            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView2.Dock = DockStyle.Fill;
+            dataGridView2.Location = new Point(0, 0);
+            dataGridView2.Name = "dataGridView2";
+            dataGridView2.RowTemplate.Height = 25;
+            dataGridView2.Size = new Size(773, 678);
+            dataGridView2.TabIndex = 0;
             // 
             // BugTracker
             // 
@@ -645,6 +1226,7 @@
             ClientSize = new Size(1019, 763);
             Controls.Add(tabControl1);
             Controls.Add(menuStrip1);
+            FormBorderStyle = FormBorderStyle.Fixed3D;
             MainMenuStrip = menuStrip1;
             MaximizeBox = false;
             Name = "BugTracker";
@@ -686,6 +1268,51 @@
             splitContainer5.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer5).EndInit();
             splitContainer5.ResumeLayout(false);
+            tabPage2.ResumeLayout(false);
+            splitContainer6.Panel1.ResumeLayout(false);
+            splitContainer6.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainer6).EndInit();
+            splitContainer6.ResumeLayout(false);
+            splitContainer7.Panel1.ResumeLayout(false);
+            splitContainer7.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainer7).EndInit();
+            splitContainer7.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            splitContainer8.Panel1.ResumeLayout(false);
+            splitContainer8.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainer8).EndInit();
+            splitContainer8.ResumeLayout(false);
+            splitContainer10.Panel1.ResumeLayout(false);
+            splitContainer10.Panel2.ResumeLayout(false);
+            splitContainer10.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer10).EndInit();
+            splitContainer10.ResumeLayout(false);
+            tableLayoutPanel3.ResumeLayout(false);
+            tableLayoutPanel3.PerformLayout();
+            tableLayoutPanel4.ResumeLayout(false);
+            tableLayoutPanel4.PerformLayout();
+            splitContainer9.Panel1.ResumeLayout(false);
+            splitContainer9.Panel1.PerformLayout();
+            splitContainer9.Panel2.ResumeLayout(false);
+            splitContainer9.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer9).EndInit();
+            splitContainer9.ResumeLayout(false);
+            tabPage3.ResumeLayout(false);
+            splitContainer11.Panel1.ResumeLayout(false);
+            splitContainer11.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainer11).EndInit();
+            splitContainer11.ResumeLayout(false);
+            splitContainer12.Panel1.ResumeLayout(false);
+            splitContainer12.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainer12).EndInit();
+            splitContainer12.ResumeLayout(false);
+            splitContainer13.Panel1.ResumeLayout(false);
+            splitContainer13.Panel1.PerformLayout();
+            splitContainer13.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainer13).EndInit();
+            splitContainer13.ResumeLayout(false);
+            flowLayoutPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
             ResumeLayout(false);
         }
 
@@ -740,6 +1367,47 @@
         private Label label3;
         private Label label2;
         private Button button1;
+        private SplitContainer splitContainer6;
+        private SplitContainer splitContainer7;
+        private Label label10;
+        private DataGridView dataGridView1;
+        private SplitContainer splitContainer8;
+        private SplitContainer splitContainer9;
+        private SplitContainer splitContainer10;
+        private TableLayoutPanel tableLayoutPanel3;
+        private Label label11;
+        private Label label12;
+        private Label label13;
+        private Label label14;
+        private Label label15;
+        private Label label16;
+        private Label label17;
+        private Label label18;
+        private TableLayoutPanel tableLayoutPanel4;
+        private ComboBox comboBox1;
+        private ComboBox comboBox2;
+        private ComboBox comboBox3;
+        private ComboBox comboBox4;
+        private TextBox textBox1;
+        private TextBox textBox2;
+        private DateTimePicker dateTimePicker1;
+        private TextBox textBox3;
+        private Button button2;
+        private TextBox textBox4;
+        private TextBox textBox5;
+        private SplitContainer splitContainer11;
+        private DataGridView dataGridView2;
+        private SplitContainer splitContainer12;
+        private SplitContainer splitContainer13;
+        private TextBox textBox6;
+        private Button button3;
+        private FlowLayoutPanel flowLayoutPanel1;
+        private Button button4;
+        private Button button5;
+        private ToolStripMenuItem exitToolStripMenuItem1;
+        private ToolStripMenuItem bugsToolStripMenuItem;
+        private ToolStripMenuItem enhancementsToolStripMenuItem;
+        private ToolStripMenuItem reportsToolStripMenuItem;
     }
 
 }

@@ -66,6 +66,8 @@
             // 
             // productItems
             // 
+            productItems.AllowUserToAddRows = false;
+            productItems.AllowUserToDeleteRows = false;
             productItems.AllowUserToOrderColumns = true;
             productItems.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             productItems.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
@@ -73,6 +75,7 @@
             productItems.Dock = DockStyle.Fill;
             productItems.Location = new Point(0, 0);
             productItems.Name = "productItems";
+            productItems.ReadOnly = true;
             productItems.RowTemplate.Height = 25;
             productItems.Size = new Size(480, 217);
             productItems.TabIndex = 0;
@@ -177,6 +180,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(480, 464);
             Controls.Add(splitContainer1);
+            FormBorderStyle = FormBorderStyle.Fixed3D;
             Name = "ProductManagement";
             Text = "ProductManagement";
             splitContainer1.Panel1.ResumeLayout(false);

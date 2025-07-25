@@ -341,5 +341,27 @@ namespace BugTracker
             DeleteItem();
         }
 
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var settingsForm = new ConnectionForm();
+            settingsForm.ShowDialog();
+        }
+
+        private void userManagementToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var userManagementForm = new UserManagementForm();
+            userManagementForm.ShowDialog();
+        }
+
+        private void versionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var versionForm = new VersionManagementForm();
+            versionForm.ShowDialog();
+        }
     }
 }

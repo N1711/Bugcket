@@ -63,3 +63,6 @@ C:\Users\TrendUser\Desktop\Projects\CBugTracker\BugTracker\bin\Debug\net6.0-wind
 C:\Users\TrendUser\Desktop\Projects\CBugTracker\BugTracker\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.Data.SqlClient.dll
 C:\Users\TrendUser\Desktop\Projects\CBugTracker\BugTracker\obj\Debug\net6.0-windows\BugTracker.ProductManagement.resources
 C:\Users\TrendUser\Desktop\Projects\CBugTracker\BugTracker\obj\Debug\net6.0-windows\BugTracker.BugTracker.resources
+C:\Users\TrendUser\Desktop\Projects\CBugTracker\BugTracker\obj\Debug\net6.0-windows\BugTracker.ConnectionForm.resources
+C:\Users\TrendUser\Desktop\Projects\CBugTracker\BugTracker\obj\Debug\net6.0-windows\BugTracker.VersionManagementForm.resources
+C:\Users\TrendUser\Desktop\Projects\CBugTracker\BugTracker\obj\Debug\net6.0-windows\BugTracker.UserManagementForm.resources
