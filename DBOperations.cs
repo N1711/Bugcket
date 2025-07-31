@@ -210,6 +210,97 @@ namespace BugTracker
             }
         }
 
+        public static long InsertProductItem(string description, string notes, string technology)
+        {
+            var sql = "INSERT INTO products (description, notes, technology) VALUES (@description, @notes, @technology)";
+            if (description.Length == 0 || notes.Length == 0 || technology.Length == 0)
+            {
+                return 0;
+            }
+            try
+            {
+                var connection = new SQLiteConnection("Data Source=BugTracker.db");
+                connection.Open();
+                var command = new SQLiteCommand(sql, connection);
+                command.Parameters.AddWithValue("@description", description);
+                command.Parameters.AddWithValue("@notes", notes);
+                command.Parameters.AddWithValue("@technology", technology);
+                var rowInserted = command.ExecuteNonQuery();
+                if (rowInserted > 0)
+                {
+                    return connection.LastInsertRowId;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            catch (SQLiteException ex)
+            {
+                Debug.WriteLine(ex.Message);
+                return 0;
+            }
+        }
+        public static bool DeleteProductItem(int id)
+        {
+            string sql = "Delete from products where id = @id";
+            var connection = new SQLiteConnection("Data Source=BugTracker.db");
+            connection.Open();
+            using var command = new SQLiteCommand(sql, connection);
+            command.Parameters.AddWithValue("@id", id);
+            var rowDeleted = command.ExecuteNonQuery();
+            return rowDeleted > 0;
+        }
+
+        public static bool UpdateProductItem(int id, string description, string notes, string technology)
+        {
+            var sql = "Update products SET description = @description, notes = @notes, technology = @technology WHERE id = @id";
+            if (description.Length == 0 || notes.Length == 0 || technology.Length == 0)
+            {
+                return false;
+            }
+            try
+            {
+                var connection = new SQLiteConnection("Data Source=BugTracker.db");
+                connection.Open();
+                var command = new SQLiteCommand(sql, connection);
+                command.Parameters.AddWithValue("@description", description);
+                command.Parameters.AddWithValue("@notes", notes);
+                command.Parameters.AddWithValue("@technology", technology);
+                command.Parameters.AddWithValue("@id", id);
+                var rowInserted = command.ExecuteNonQuery();
+                return rowInserted > 0;
+            }
+            catch (SQLiteException ex)
+            {
+                Debug.WriteLine(ex.Message);
+                return false;
+            }
+        }
+
+        public static string GetProductItemVersion(int id)
+        {
+            string versions = "";
+            string sql = "Select * from versions where productId = @id order by version desc LIMIT 1";
+            var connection = new SQLiteConnection("Data Source=BugTracker.db");
+            try
+            {
+                connection.Open();
+                using var command = new SQLiteCommand(sql, connection);
+                command.Parameters.AddWithValue("@id", id);
+                using SQLiteDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    versions = reader.GetString(2);
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"{ex.Message}");
+            }
+
+            return versions;
+        }
 
         public static bool ConnectToMongoDB()
         {

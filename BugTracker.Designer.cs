@@ -114,12 +114,12 @@
             splitContainer11 = new SplitContainer();
             splitContainer12 = new SplitContainer();
             splitContainer13 = new SplitContainer();
-            textBox6 = new TextBox();
-            button3 = new Button();
+            txtReportQuery = new TextBox();
+            btnReportRun = new Button();
             flowLayoutPanel1 = new FlowLayoutPanel();
-            button4 = new Button();
-            button5 = new Button();
-            dataGridView2 = new DataGridView();
+            btnReportExport = new Button();
+            btnReportSaveQuery = new Button();
+            dataGridReport = new DataGridView();
             menuStrip1.SuspendLayout();
             contextMenu.SuspendLayout();
             tabControl1.SuspendLayout();
@@ -185,7 +185,7 @@
             splitContainer13.Panel2.SuspendLayout();
             splitContainer13.SuspendLayout();
             flowLayoutPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridReport).BeginInit();
             SuspendLayout();
             // 
             // menuStrip1
@@ -335,6 +335,7 @@
             refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
             refreshToolStripMenuItem.Size = new Size(134, 22);
             refreshToolStripMenuItem.Text = "Refresh";
+            refreshToolStripMenuItem.Click += refreshToolStripMenuItem_Click;
             // 
             // tabControl1
             // 
@@ -1119,7 +1120,7 @@
             // 
             // splitContainer11.Panel2
             // 
-            splitContainer11.Panel2.Controls.Add(dataGridView2);
+            splitContainer11.Panel2.Controls.Add(dataGridReport);
             splitContainer11.Size = new Size(972, 678);
             splitContainer11.SplitterDistance = 195;
             splitContainer11.TabIndex = 0;
@@ -1151,72 +1152,78 @@
             // 
             // splitContainer13.Panel1
             // 
-            splitContainer13.Panel1.Controls.Add(textBox6);
+            splitContainer13.Panel1.Controls.Add(txtReportQuery);
             // 
             // splitContainer13.Panel2
             // 
-            splitContainer13.Panel2.Controls.Add(button3);
+            splitContainer13.Panel2.Controls.Add(btnReportRun);
             splitContainer13.Size = new Size(195, 228);
             splitContainer13.SplitterDistance = 181;
             splitContainer13.TabIndex = 0;
             // 
-            // textBox6
+            // txtReportQuery
             // 
-            textBox6.Dock = DockStyle.Fill;
-            textBox6.Location = new Point(0, 0);
-            textBox6.Multiline = true;
-            textBox6.Name = "textBox6";
-            textBox6.PlaceholderText = "Type your query...";
-            textBox6.Size = new Size(195, 181);
-            textBox6.TabIndex = 0;
+            txtReportQuery.Dock = DockStyle.Fill;
+            txtReportQuery.Location = new Point(0, 0);
+            txtReportQuery.Multiline = true;
+            txtReportQuery.Name = "txtReportQuery";
+            txtReportQuery.PlaceholderText = "Type your query...";
+            txtReportQuery.Size = new Size(195, 181);
+            txtReportQuery.TabIndex = 0;
             // 
-            // button3
+            // btnReportRun
             // 
-            button3.Dock = DockStyle.Fill;
-            button3.Location = new Point(0, 0);
-            button3.Name = "button3";
-            button3.Size = new Size(195, 43);
-            button3.TabIndex = 0;
-            button3.Text = "Run";
-            button3.UseVisualStyleBackColor = true;
+            btnReportRun.Dock = DockStyle.Fill;
+            btnReportRun.Location = new Point(0, 0);
+            btnReportRun.Name = "btnReportRun";
+            btnReportRun.Size = new Size(195, 43);
+            btnReportRun.TabIndex = 0;
+            btnReportRun.Text = "Run";
+            btnReportRun.UseVisualStyleBackColor = true;
+            btnReportRun.Click += btnReportRun_Click;
             // 
             // flowLayoutPanel1
             // 
-            flowLayoutPanel1.Controls.Add(button4);
-            flowLayoutPanel1.Controls.Add(button5);
+            flowLayoutPanel1.Controls.Add(btnReportExport);
+            flowLayoutPanel1.Controls.Add(btnReportSaveQuery);
             flowLayoutPanel1.Dock = DockStyle.Fill;
             flowLayoutPanel1.Location = new Point(0, 0);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
             flowLayoutPanel1.Size = new Size(195, 446);
             flowLayoutPanel1.TabIndex = 0;
             // 
-            // button4
+            // btnReportExport
             // 
-            button4.Location = new Point(3, 3);
-            button4.Name = "button4";
-            button4.Size = new Size(189, 40);
-            button4.TabIndex = 0;
-            button4.Text = "Export";
-            button4.UseVisualStyleBackColor = true;
+            btnReportExport.Location = new Point(3, 3);
+            btnReportExport.Name = "btnReportExport";
+            btnReportExport.Size = new Size(189, 40);
+            btnReportExport.TabIndex = 0;
+            btnReportExport.Text = "Export";
+            btnReportExport.UseVisualStyleBackColor = true;
             // 
-            // button5
+            // btnReportSaveQuery
             // 
-            button5.Location = new Point(3, 49);
-            button5.Name = "button5";
-            button5.Size = new Size(189, 40);
-            button5.TabIndex = 1;
-            button5.Text = "Save Query";
-            button5.UseVisualStyleBackColor = true;
+            btnReportSaveQuery.Location = new Point(3, 49);
+            btnReportSaveQuery.Name = "btnReportSaveQuery";
+            btnReportSaveQuery.Size = new Size(189, 40);
+            btnReportSaveQuery.TabIndex = 1;
+            btnReportSaveQuery.Text = "Save Query";
+            btnReportSaveQuery.UseVisualStyleBackColor = true;
             // 
-            // dataGridView2
+            // dataGridReport
             // 
-            dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView2.Dock = DockStyle.Fill;
-            dataGridView2.Location = new Point(0, 0);
-            dataGridView2.Name = "dataGridView2";
-            dataGridView2.RowTemplate.Height = 25;
-            dataGridView2.Size = new Size(773, 678);
-            dataGridView2.TabIndex = 0;
+            dataGridReport.AllowUserToAddRows = false;
+            dataGridReport.AllowUserToDeleteRows = false;
+            dataGridReport.AllowUserToResizeColumns = false;
+            dataGridReport.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridReport.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridReport.Dock = DockStyle.Fill;
+            dataGridReport.Location = new Point(0, 0);
+            dataGridReport.Name = "dataGridReport";
+            dataGridReport.ReadOnly = true;
+            dataGridReport.RowTemplate.Height = 25;
+            dataGridReport.Size = new Size(773, 678);
+            dataGridReport.TabIndex = 0;
             // 
             // BugTracker
             // 
@@ -1226,14 +1233,13 @@
             ClientSize = new Size(1019, 763);
             Controls.Add(tabControl1);
             Controls.Add(menuStrip1);
-            FormBorderStyle = FormBorderStyle.Fixed3D;
+            FormBorderStyle = FormBorderStyle.FixedToolWindow;
             MainMenuStrip = menuStrip1;
             MaximizeBox = false;
             Name = "BugTracker";
             Padding = new Padding(5);
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Bug Tracker";
-            WindowState = FormWindowState.Maximized;
             Load += BugTracker_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
@@ -1312,7 +1318,7 @@
             ((System.ComponentModel.ISupportInitialize)splitContainer13).EndInit();
             splitContainer13.ResumeLayout(false);
             flowLayoutPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dataGridReport).EndInit();
             ResumeLayout(false);
         }
 
@@ -1396,14 +1402,14 @@
         private TextBox textBox4;
         private TextBox textBox5;
         private SplitContainer splitContainer11;
-        private DataGridView dataGridView2;
+        private DataGridView dataGridReport;
         private SplitContainer splitContainer12;
         private SplitContainer splitContainer13;
-        private TextBox textBox6;
-        private Button button3;
+        private TextBox txtReportQuery;
+        private Button btnReportRun;
         private FlowLayoutPanel flowLayoutPanel1;
-        private Button button4;
-        private Button button5;
+        private Button btnReportExport;
+        private Button btnReportSaveQuery;
         private ToolStripMenuItem exitToolStripMenuItem1;
         private ToolStripMenuItem bugsToolStripMenuItem;
         private ToolStripMenuItem enhancementsToolStripMenuItem;

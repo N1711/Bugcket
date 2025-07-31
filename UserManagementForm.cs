@@ -16,5 +16,20 @@ namespace BugTracker
         {
             InitializeComponent();
         }
+
+        private void newItemToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void deleteItemToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void refreshToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

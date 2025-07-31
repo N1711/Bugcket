@@ -25,6 +25,8 @@ namespace BugTracker
         private BindingList<PriorityModel> pDropDown = new BindingList<PriorityModel>();
         private BindingList<PriorityModel> vDropDown = new BindingList<PriorityModel>();
         private DataTable table = new DataTable();
+        private DataTable reportTable = new DataTable();
+        public string lastQuery = "";
         public BugTracker()
         {
             InitializeComponent();
@@ -362,6 +364,36 @@ namespace BugTracker
         {
             var versionForm = new VersionManagementForm();
             versionForm.ShowDialog();
+        }
+
+        private void btnReportRun_Click(object sender, EventArgs e)
+        {
+            if (txtReportQuery.Text.Length < 10 || txtReportQuery.Text.ToUpper().Contains("UPDATE") || txtReportQuery.Text.ToUpper().Contains("DELETE")
+                || txtReportQuery.Text.ToUpper().Contains("DROP") || !txtReportQuery.Text.ToUpper().Contains("SELECT")) return;
+            lastQuery = txtReportQuery.Text;
+            dataGridReport.DataSource = null;
+            try
+            {
+                SQLiteDataAdapter items = DBOperations.getDbItems(txtReportQuery.Text);
+                if (items != null)
+                {
+                    items.Fill(reportTable);
+                    //for (int i = 0; i < items.FieldCount; i++)
+                    //    table.Columns.Add(new DataColumn(items.GetName(i)));
+                    dataGridReport.DataSource = reportTable;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Report run failed", "Report error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Debug.WriteLine(ex.Message);
+            }
+
+        }
+
+        private void refreshToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            bugItems.Refresh();
         }
     }
 }
