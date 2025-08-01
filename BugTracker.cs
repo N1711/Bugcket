@@ -15,6 +15,7 @@ using System.Data.Common;
 using System.Globalization;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.AxHost;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace BugTracker
 {
@@ -369,17 +370,17 @@ namespace BugTracker
         private void btnReportRun_Click(object sender, EventArgs e)
         {
             if (txtReportQuery.Text.Length < 10 || txtReportQuery.Text.ToUpper().Contains("UPDATE") || txtReportQuery.Text.ToUpper().Contains("DELETE")
-                || txtReportQuery.Text.ToUpper().Contains("DROP") || !txtReportQuery.Text.ToUpper().Contains("SELECT")) return;
+                || txtReportQuery.Text.ToUpper().Contains("DROP") || !txtReportQuery.Text.ToUpper().Contains("SELECT") || lastQuery == txtReportQuery.Text) return;
             lastQuery = txtReportQuery.Text;
+            reportTable.Clear();
             dataGridReport.DataSource = null;
+            
             try
             {
                 SQLiteDataAdapter items = DBOperations.getDbItems(txtReportQuery.Text);
                 if (items != null)
                 {
                     items.Fill(reportTable);
-                    //for (int i = 0; i < items.FieldCount; i++)
-                    //    table.Columns.Add(new DataColumn(items.GetName(i)));
                     dataGridReport.DataSource = reportTable;
                 }
             }
@@ -389,6 +390,147 @@ namespace BugTracker
                 Debug.WriteLine(ex.Message);
             }
 
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            if (dataGridReport.Rows.Count > 0)
+            {
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.Filter = "Excel (.xlsx)|  *.xlsx";
+                sfd.FileName = "Output.xlsx";
+                bool fileError = false;
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    if (File.Exists(sfd.FileName))
+                    {
+                        try
+                        {
+                            File.Delete(sfd.FileName);
+                        }
+                        catch (IOException ex)
+                        {
+                            fileError = true;
+                            MessageBox.Show("Unable to write the data to the disk." + ex.Message);
+                        }
+                    }
+                    if (!fileError)
+                    {
+                        try
+                        {
+                            Excel.Application XcelApp = new Excel.Application();
+                            Excel._Workbook workbook = XcelApp.Workbooks.Add(Type.Missing);
+                            Excel._Worksheet worksheet = null;
+
+                            worksheet = workbook.Sheets["Sheet1"];
+                            worksheet = workbook.ActiveSheet;
+                            worksheet.Name = "Output";
+                            worksheet.Application.ActiveWindow.SplitRow = 1;
+                            worksheet.Application.ActiveWindow.FreezePanes = true;
+
+                            for (int i = 1; i < dataGridReport.Columns.Count + 1; i++)
+                            {
+                                worksheet.Cells[1, i] = dataGridReport.Columns[i - 1].HeaderText;
+                                worksheet.Cells[1, i].Font.NAME = "Calibri";
+                                worksheet.Cells[1, i].Font.Bold = true;
+                                worksheet.Cells[1, i].Interior.Color = Color.Wheat;
+                                worksheet.Cells[1, i].Font.Size = 12;
+                            }
+
+                            for (int i = 0; i < dataGridReport.Rows.Count; i++)
+                            {
+                                for (int j = 0; j < dataGridReport.Columns.Count; j++)
+                                {
+                                    worksheet.Cells[i + 2, j + 1] = dataGridReport.Rows[i].Cells[j].Value.ToString();
+                                }
+                            }
+
+                            worksheet.Columns.AutoFit();
+                            workbook.SaveAs(sfd.FileName);
+                            XcelApp.Quit();
+
+                            ReleaseObject(worksheet);
+                            ReleaseObject(workbook);
+                            ReleaseObject(XcelApp);
+
+                            MessageBox.Show("Report Data Exported Successfully", "Info");
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Error :" + ex.Message);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("No Report Data To Export", "Info");
+            }
+        }
+
+        private void btnSaveQuery_Click(object sender, EventArgs e)
+        {
+            if(txtReportQuery.Text.Length > 0)
+            {
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.Filter = "Text Files | *.txt";
+                sfd.DefaultExt = "txt";
+                sfd.FileName = "SQLQuery.txt";
+                bool fileError = false;
+
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    if (File.Exists(sfd.FileName))
+                    {
+                        try
+                        {
+                            File.Delete(sfd.FileName);
+                        }
+                        catch (IOException ex)
+                        {
+                            fileError = true;
+                            MessageBox.Show("Unable to write the data to the disk." + ex.Message);
+                        }
+                    }
+                    if (!fileError)
+                    {
+                        try
+                        {
+                            Stream fileStream = sfd.OpenFile();
+                            StreamWriter sw = new StreamWriter(fileStream);
+                            sw.WriteLine(txtReportQuery.Text);
+                            sw.Flush();
+                            sw.Close();
+                            MessageBox.Show("Query Exported Successfully", "Info");
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Error :" + ex.Message);
+                        }
+                    }
+                }
+            } else
+            {
+                MessageBox.Show("Nothing to export", "Info");
+            }
+        }
+
+        private static void ReleaseObject(object obj)
+        {
+            try
+            {
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(obj);
+                obj = null;
+            }
+            catch (Exception ex)
+            {
+                obj = null;
+                MessageBox.Show("Exception Occured while releasing object " + ex.Message, "Error");
+            }
+            finally
+            {
+                GC.Collect();
+            }
         }
 
         private void refreshToolStripMenuItem_Click(object sender, EventArgs e)

@@ -116,7 +116,8 @@
             splitContainer13 = new SplitContainer();
             txtReportQuery = new TextBox();
             btnReportRun = new Button();
-            flowLayoutPanel1 = new FlowLayoutPanel();
+            splitContainer14 = new SplitContainer();
+            splitContainer15 = new SplitContainer();
             btnReportExport = new Button();
             btnReportSaveQuery = new Button();
             dataGridReport = new DataGridView();
@@ -184,7 +185,13 @@
             splitContainer13.Panel1.SuspendLayout();
             splitContainer13.Panel2.SuspendLayout();
             splitContainer13.SuspendLayout();
-            flowLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer14).BeginInit();
+            splitContainer14.Panel1.SuspendLayout();
+            splitContainer14.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer15).BeginInit();
+            splitContainer15.Panel1.SuspendLayout();
+            splitContainer15.Panel2.SuspendLayout();
+            splitContainer15.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridReport).BeginInit();
             SuspendLayout();
             // 
@@ -1138,7 +1145,7 @@
             // 
             // splitContainer12.Panel2
             // 
-            splitContainer12.Panel2.Controls.Add(flowLayoutPanel1);
+            splitContainer12.Panel2.Controls.Add(splitContainer14);
             splitContainer12.Size = new Size(195, 678);
             splitContainer12.SplitterDistance = 228;
             splitContainer12.TabIndex = 0;
@@ -1182,33 +1189,59 @@
             btnReportRun.UseVisualStyleBackColor = true;
             btnReportRun.Click += btnReportRun_Click;
             // 
-            // flowLayoutPanel1
+            // splitContainer14
             // 
-            flowLayoutPanel1.Controls.Add(btnReportExport);
-            flowLayoutPanel1.Controls.Add(btnReportSaveQuery);
-            flowLayoutPanel1.Dock = DockStyle.Fill;
-            flowLayoutPanel1.Location = new Point(0, 0);
-            flowLayoutPanel1.Name = "flowLayoutPanel1";
-            flowLayoutPanel1.Size = new Size(195, 446);
-            flowLayoutPanel1.TabIndex = 0;
+            splitContainer14.Dock = DockStyle.Fill;
+            splitContainer14.Location = new Point(0, 0);
+            splitContainer14.Name = "splitContainer14";
+            splitContainer14.Orientation = Orientation.Horizontal;
+            // 
+            // splitContainer14.Panel1
+            // 
+            splitContainer14.Panel1.Controls.Add(splitContainer15);
+            splitContainer14.Size = new Size(195, 446);
+            splitContainer14.SplitterDistance = 84;
+            splitContainer14.TabIndex = 0;
+            // 
+            // splitContainer15
+            // 
+            splitContainer15.Dock = DockStyle.Fill;
+            splitContainer15.Location = new Point(0, 0);
+            splitContainer15.Name = "splitContainer15";
+            splitContainer15.Orientation = Orientation.Horizontal;
+            // 
+            // splitContainer15.Panel1
+            // 
+            splitContainer15.Panel1.Controls.Add(btnReportExport);
+            // 
+            // splitContainer15.Panel2
+            // 
+            splitContainer15.Panel2.Controls.Add(btnReportSaveQuery);
+            splitContainer15.Size = new Size(195, 84);
+            splitContainer15.SplitterDistance = 40;
+            splitContainer15.TabIndex = 0;
             // 
             // btnReportExport
             // 
-            btnReportExport.Location = new Point(3, 3);
+            btnReportExport.Dock = DockStyle.Fill;
+            btnReportExport.Location = new Point(0, 0);
             btnReportExport.Name = "btnReportExport";
-            btnReportExport.Size = new Size(189, 40);
+            btnReportExport.Size = new Size(195, 40);
             btnReportExport.TabIndex = 0;
             btnReportExport.Text = "Export";
             btnReportExport.UseVisualStyleBackColor = true;
+            btnReportExport.Click += btnExport_Click;
             // 
             // btnReportSaveQuery
             // 
-            btnReportSaveQuery.Location = new Point(3, 49);
+            btnReportSaveQuery.Dock = DockStyle.Fill;
+            btnReportSaveQuery.Location = new Point(0, 0);
             btnReportSaveQuery.Name = "btnReportSaveQuery";
-            btnReportSaveQuery.Size = new Size(189, 40);
+            btnReportSaveQuery.Size = new Size(195, 40);
             btnReportSaveQuery.TabIndex = 1;
             btnReportSaveQuery.Text = "Save Query";
             btnReportSaveQuery.UseVisualStyleBackColor = true;
+            btnReportSaveQuery.Click += btnSaveQuery_Click;
             // 
             // dataGridReport
             // 
@@ -1317,7 +1350,13 @@
             splitContainer13.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer13).EndInit();
             splitContainer13.ResumeLayout(false);
-            flowLayoutPanel1.ResumeLayout(false);
+            splitContainer14.Panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainer14).EndInit();
+            splitContainer14.ResumeLayout(false);
+            splitContainer15.Panel1.ResumeLayout(false);
+            splitContainer15.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainer15).EndInit();
+            splitContainer15.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridReport).EndInit();
             ResumeLayout(false);
         }
@@ -1407,13 +1446,14 @@
         private SplitContainer splitContainer13;
         private TextBox txtReportQuery;
         private Button btnReportRun;
-        private FlowLayoutPanel flowLayoutPanel1;
         private Button btnReportExport;
         private Button btnReportSaveQuery;
         private ToolStripMenuItem exitToolStripMenuItem1;
         private ToolStripMenuItem bugsToolStripMenuItem;
         private ToolStripMenuItem enhancementsToolStripMenuItem;
         private ToolStripMenuItem reportsToolStripMenuItem;
+        private SplitContainer splitContainer14;
+        private SplitContainer splitContainer15;
     }
 
 }
