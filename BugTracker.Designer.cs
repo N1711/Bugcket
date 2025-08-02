@@ -84,8 +84,13 @@
             tabPage2 = new TabPage();
             splitContainer6 = new SplitContainer();
             splitContainer7 = new SplitContainer();
-            label10 = new Label();
-            dataGridView1 = new DataGridView();
+            txtOpenItemsEn = new Label();
+            enhancementItems = new DataGridView();
+            contextMenu2 = new ContextMenuStrip(components);
+            newItemToolStripMenuItem1 = new ToolStripMenuItem();
+            deleteItemToolStripMenuItem1 = new ToolStripMenuItem();
+            refreshToolStripMenuItem1 = new ToolStripMenuItem();
+            filterToolStripMenuItem = new ToolStripMenuItem();
             splitContainer8 = new SplitContainer();
             splitContainer10 = new SplitContainer();
             tableLayoutPanel3 = new TableLayoutPanel();
@@ -98,18 +103,16 @@
             label17 = new Label();
             label18 = new Label();
             tableLayoutPanel4 = new TableLayoutPanel();
-            comboBox1 = new ComboBox();
-            comboBox2 = new ComboBox();
-            comboBox3 = new ComboBox();
-            comboBox4 = new ComboBox();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            dateTimePicker1 = new DateTimePicker();
-            textBox3 = new TextBox();
-            button2 = new Button();
-            splitContainer9 = new SplitContainer();
-            textBox4 = new TextBox();
-            textBox5 = new TextBox();
+            comboEnProduct = new ComboBox();
+            comboEnVersion = new ComboBox();
+            comboEnStatus = new ComboBox();
+            comboEnPriority = new ComboBox();
+            txtEnDescription = new TextBox();
+            txtEnDetected = new TextBox();
+            dtDetected = new DateTimePicker();
+            txtEnID = new TextBox();
+            btnSaveEn = new Button();
+            txtEnNotes = new TextBox();
             tabPage3 = new TabPage();
             splitContainer11 = new SplitContainer();
             splitContainer12 = new SplitContainer();
@@ -157,7 +160,8 @@
             splitContainer7.Panel1.SuspendLayout();
             splitContainer7.Panel2.SuspendLayout();
             splitContainer7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)enhancementItems).BeginInit();
+            contextMenu2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer8).BeginInit();
             splitContainer8.Panel1.SuspendLayout();
             splitContainer8.Panel2.SuspendLayout();
@@ -168,10 +172,6 @@
             splitContainer10.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
             tableLayoutPanel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)splitContainer9).BeginInit();
-            splitContainer9.Panel1.SuspendLayout();
-            splitContainer9.Panel2.SuspendLayout();
-            splitContainer9.SuspendLayout();
             tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer11).BeginInit();
             splitContainer11.Panel1.SuspendLayout();
@@ -773,38 +773,74 @@
             // 
             // splitContainer7.Panel1
             // 
-            splitContainer7.Panel1.Controls.Add(label10);
+            splitContainer7.Panel1.Controls.Add(txtOpenItemsEn);
             // 
             // splitContainer7.Panel2
             // 
-            splitContainer7.Panel2.Controls.Add(dataGridView1);
+            splitContainer7.Panel2.Controls.Add(enhancementItems);
             splitContainer7.Size = new Size(972, 351);
             splitContainer7.SplitterDistance = 26;
             splitContainer7.TabIndex = 0;
             // 
-            // label10
+            // txtOpenItemsEn
             // 
-            label10.Dock = DockStyle.Fill;
-            label10.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label10.Location = new Point(0, 0);
-            label10.Name = "label10";
-            label10.Size = new Size(972, 26);
-            label10.TabIndex = 0;
-            label10.Text = "Open Items: 0";
-            label10.TextAlign = ContentAlignment.MiddleLeft;
+            txtOpenItemsEn.Dock = DockStyle.Fill;
+            txtOpenItemsEn.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            txtOpenItemsEn.Location = new Point(0, 0);
+            txtOpenItemsEn.Name = "txtOpenItemsEn";
+            txtOpenItemsEn.Size = new Size(972, 26);
+            txtOpenItemsEn.TabIndex = 0;
+            txtOpenItemsEn.Text = "Open Items: 0";
+            txtOpenItemsEn.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // dataGridView1
+            // enhancementItems
             // 
-            dataGridView1.AllowUserToAddRows = false;
-            dataGridView1.AllowUserToDeleteRows = false;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Dock = DockStyle.Fill;
-            dataGridView1.Location = new Point(0, 0);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.ReadOnly = true;
-            dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(972, 321);
-            dataGridView1.TabIndex = 0;
+            enhancementItems.AllowUserToAddRows = false;
+            enhancementItems.AllowUserToDeleteRows = false;
+            enhancementItems.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            enhancementItems.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            enhancementItems.ContextMenuStrip = contextMenu2;
+            enhancementItems.Dock = DockStyle.Fill;
+            enhancementItems.Location = new Point(0, 0);
+            enhancementItems.Name = "enhancementItems";
+            enhancementItems.ReadOnly = true;
+            enhancementItems.RowTemplate.Height = 25;
+            enhancementItems.Size = new Size(972, 321);
+            enhancementItems.TabIndex = 0;
+            enhancementItems.SelectionChanged += enhancementItems_SelectionChanged;
+            // 
+            // contextMenu2
+            // 
+            contextMenu2.Items.AddRange(new ToolStripItem[] { newItemToolStripMenuItem1, deleteItemToolStripMenuItem1, refreshToolStripMenuItem1, filterToolStripMenuItem });
+            contextMenu2.Name = "contextMenu2";
+            contextMenu2.Size = new Size(135, 92);
+            // 
+            // newItemToolStripMenuItem1
+            // 
+            newItemToolStripMenuItem1.Name = "newItemToolStripMenuItem1";
+            newItemToolStripMenuItem1.Size = new Size(134, 22);
+            newItemToolStripMenuItem1.Text = "New Item";
+            newItemToolStripMenuItem1.Click += newItemToolStripMenuItem1_Click;
+            // 
+            // deleteItemToolStripMenuItem1
+            // 
+            deleteItemToolStripMenuItem1.Name = "deleteItemToolStripMenuItem1";
+            deleteItemToolStripMenuItem1.Size = new Size(134, 22);
+            deleteItemToolStripMenuItem1.Text = "Delete Item";
+            deleteItemToolStripMenuItem1.Click += deleteItemToolStripMenuItem1_Click;
+            // 
+            // refreshToolStripMenuItem1
+            // 
+            refreshToolStripMenuItem1.Name = "refreshToolStripMenuItem1";
+            refreshToolStripMenuItem1.Size = new Size(134, 22);
+            refreshToolStripMenuItem1.Text = "Refresh";
+            refreshToolStripMenuItem1.Click += refreshToolStripMenuItem1_Click;
+            // 
+            // filterToolStripMenuItem
+            // 
+            filterToolStripMenuItem.Name = "filterToolStripMenuItem";
+            filterToolStripMenuItem.Size = new Size(134, 22);
+            filterToolStripMenuItem.Text = "Filter";
             // 
             // splitContainer8
             // 
@@ -818,7 +854,7 @@
             // 
             // splitContainer8.Panel2
             // 
-            splitContainer8.Panel2.Controls.Add(splitContainer9);
+            splitContainer8.Panel2.Controls.Add(txtEnNotes);
             splitContainer8.Size = new Size(972, 323);
             splitContainer8.SplitterDistance = 324;
             splitContainer8.TabIndex = 0;
@@ -961,15 +997,15 @@
             tableLayoutPanel4.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             tableLayoutPanel4.ColumnCount = 1;
             tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel4.Controls.Add(comboBox1, 0, 0);
-            tableLayoutPanel4.Controls.Add(comboBox2, 0, 1);
-            tableLayoutPanel4.Controls.Add(comboBox3, 0, 2);
-            tableLayoutPanel4.Controls.Add(comboBox4, 0, 3);
-            tableLayoutPanel4.Controls.Add(textBox1, 0, 4);
-            tableLayoutPanel4.Controls.Add(textBox2, 0, 5);
-            tableLayoutPanel4.Controls.Add(dateTimePicker1, 0, 6);
-            tableLayoutPanel4.Controls.Add(textBox3, 0, 7);
-            tableLayoutPanel4.Controls.Add(button2, 0, 8);
+            tableLayoutPanel4.Controls.Add(comboEnProduct, 0, 0);
+            tableLayoutPanel4.Controls.Add(comboEnVersion, 0, 1);
+            tableLayoutPanel4.Controls.Add(comboEnStatus, 0, 2);
+            tableLayoutPanel4.Controls.Add(comboEnPriority, 0, 3);
+            tableLayoutPanel4.Controls.Add(txtEnDescription, 0, 4);
+            tableLayoutPanel4.Controls.Add(txtEnDetected, 0, 5);
+            tableLayoutPanel4.Controls.Add(dtDetected, 0, 6);
+            tableLayoutPanel4.Controls.Add(txtEnID, 0, 7);
+            tableLayoutPanel4.Controls.Add(btnSaveEn, 0, 8);
             tableLayoutPanel4.Dock = DockStyle.Top;
             tableLayoutPanel4.Location = new Point(0, 0);
             tableLayoutPanel4.Name = "tableLayoutPanel4";
@@ -986,123 +1022,96 @@
             tableLayoutPanel4.Size = new Size(197, 315);
             tableLayoutPanel4.TabIndex = 1;
             // 
-            // comboBox1
+            // comboEnProduct
             // 
-            comboBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(3, 3);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(191, 23);
-            comboBox1.TabIndex = 0;
+            comboEnProduct.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            comboEnProduct.FormattingEnabled = true;
+            comboEnProduct.Location = new Point(3, 3);
+            comboEnProduct.Name = "comboEnProduct";
+            comboEnProduct.Size = new Size(191, 23);
+            comboEnProduct.TabIndex = 0;
             // 
-            // comboBox2
+            // comboEnVersion
             // 
-            comboBox2.Dock = DockStyle.Fill;
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Location = new Point(3, 32);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(191, 23);
-            comboBox2.TabIndex = 1;
+            comboEnVersion.Dock = DockStyle.Fill;
+            comboEnVersion.FormattingEnabled = true;
+            comboEnVersion.Location = new Point(3, 32);
+            comboEnVersion.Name = "comboEnVersion";
+            comboEnVersion.Size = new Size(191, 23);
+            comboEnVersion.TabIndex = 1;
             // 
-            // comboBox3
+            // comboEnStatus
             // 
-            comboBox3.Dock = DockStyle.Fill;
-            comboBox3.FormattingEnabled = true;
-            comboBox3.Location = new Point(3, 61);
-            comboBox3.Name = "comboBox3";
-            comboBox3.Size = new Size(191, 23);
-            comboBox3.TabIndex = 2;
+            comboEnStatus.Dock = DockStyle.Fill;
+            comboEnStatus.FormattingEnabled = true;
+            comboEnStatus.Location = new Point(3, 61);
+            comboEnStatus.Name = "comboEnStatus";
+            comboEnStatus.Size = new Size(191, 23);
+            comboEnStatus.TabIndex = 2;
             // 
-            // comboBox4
+            // comboEnPriority
             // 
-            comboBox4.Dock = DockStyle.Fill;
-            comboBox4.FormattingEnabled = true;
-            comboBox4.Location = new Point(3, 89);
-            comboBox4.Name = "comboBox4";
-            comboBox4.Size = new Size(191, 23);
-            comboBox4.TabIndex = 3;
+            comboEnPriority.Dock = DockStyle.Fill;
+            comboEnPriority.FormattingEnabled = true;
+            comboEnPriority.Location = new Point(3, 89);
+            comboEnPriority.Name = "comboEnPriority";
+            comboEnPriority.Size = new Size(191, 23);
+            comboEnPriority.TabIndex = 3;
             // 
-            // textBox1
+            // txtEnDescription
             // 
-            textBox1.Dock = DockStyle.Fill;
-            textBox1.Location = new Point(3, 117);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(191, 61);
-            textBox1.TabIndex = 4;
+            txtEnDescription.Dock = DockStyle.Fill;
+            txtEnDescription.Location = new Point(3, 117);
+            txtEnDescription.Multiline = true;
+            txtEnDescription.Name = "txtEnDescription";
+            txtEnDescription.Size = new Size(191, 61);
+            txtEnDescription.TabIndex = 4;
             // 
-            // textBox2
+            // txtEnDetected
             // 
-            textBox2.Dock = DockStyle.Fill;
-            textBox2.Location = new Point(3, 184);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(191, 23);
-            textBox2.TabIndex = 5;
+            txtEnDetected.Dock = DockStyle.Fill;
+            txtEnDetected.Location = new Point(3, 184);
+            txtEnDetected.Name = "txtEnDetected";
+            txtEnDetected.Size = new Size(191, 23);
+            txtEnDetected.TabIndex = 5;
             // 
-            // dateTimePicker1
+            // dtDetected
             // 
-            dateTimePicker1.Dock = DockStyle.Fill;
-            dateTimePicker1.Location = new Point(3, 215);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(191, 23);
-            dateTimePicker1.TabIndex = 6;
+            dtDetected.Dock = DockStyle.Fill;
+            dtDetected.Location = new Point(3, 215);
+            dtDetected.Name = "dtDetected";
+            dtDetected.Size = new Size(191, 23);
+            dtDetected.TabIndex = 6;
             // 
-            // textBox3
+            // txtEnID
             // 
-            textBox3.Dock = DockStyle.Fill;
-            textBox3.Location = new Point(3, 241);
-            textBox3.Name = "textBox3";
-            textBox3.ReadOnly = true;
-            textBox3.Size = new Size(191, 23);
-            textBox3.TabIndex = 7;
+            txtEnID.Dock = DockStyle.Fill;
+            txtEnID.Location = new Point(3, 241);
+            txtEnID.Name = "txtEnID";
+            txtEnID.ReadOnly = true;
+            txtEnID.Size = new Size(191, 23);
+            txtEnID.TabIndex = 7;
             // 
-            // button2
+            // btnSaveEn
             // 
-            button2.Dock = DockStyle.Fill;
-            button2.Location = new Point(3, 271);
-            button2.Name = "button2";
-            button2.Size = new Size(191, 41);
-            button2.TabIndex = 8;
-            button2.Text = "Save";
-            button2.UseVisualStyleBackColor = true;
+            btnSaveEn.Dock = DockStyle.Fill;
+            btnSaveEn.Location = new Point(3, 271);
+            btnSaveEn.Name = "btnSaveEn";
+            btnSaveEn.Size = new Size(191, 41);
+            btnSaveEn.TabIndex = 8;
+            btnSaveEn.Text = "Save";
+            btnSaveEn.UseVisualStyleBackColor = true;
+            btnSaveEn.Click += btnSaveEn_Click;
             // 
-            // splitContainer9
+            // txtEnNotes
             // 
-            splitContainer9.Dock = DockStyle.Fill;
-            splitContainer9.Location = new Point(0, 0);
-            splitContainer9.Name = "splitContainer9";
-            splitContainer9.Orientation = Orientation.Horizontal;
-            // 
-            // splitContainer9.Panel1
-            // 
-            splitContainer9.Panel1.Controls.Add(textBox4);
-            // 
-            // splitContainer9.Panel2
-            // 
-            splitContainer9.Panel2.Controls.Add(textBox5);
-            splitContainer9.Size = new Size(644, 323);
-            splitContainer9.SplitterDistance = 161;
-            splitContainer9.TabIndex = 0;
-            // 
-            // textBox4
-            // 
-            textBox4.Dock = DockStyle.Fill;
-            textBox4.Location = new Point(0, 0);
-            textBox4.Multiline = true;
-            textBox4.Name = "textBox4";
-            textBox4.PlaceholderText = "Notes about the enhancement...";
-            textBox4.Size = new Size(644, 161);
-            textBox4.TabIndex = 1;
-            // 
-            // textBox5
-            // 
-            textBox5.Dock = DockStyle.Fill;
-            textBox5.Location = new Point(0, 0);
-            textBox5.Multiline = true;
-            textBox5.Name = "textBox5";
-            textBox5.PlaceholderText = "Notes about the implementaition...";
-            textBox5.Size = new Size(644, 158);
-            textBox5.TabIndex = 1;
+            txtEnNotes.Dock = DockStyle.Fill;
+            txtEnNotes.Location = new Point(0, 0);
+            txtEnNotes.Multiline = true;
+            txtEnNotes.Name = "txtEnNotes";
+            txtEnNotes.PlaceholderText = "Notes about the enhancement...";
+            txtEnNotes.Size = new Size(644, 323);
+            txtEnNotes.TabIndex = 2;
             // 
             // tabPage3
             // 
@@ -1316,9 +1325,11 @@
             splitContainer7.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer7).EndInit();
             splitContainer7.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)enhancementItems).EndInit();
+            contextMenu2.ResumeLayout(false);
             splitContainer8.Panel1.ResumeLayout(false);
             splitContainer8.Panel2.ResumeLayout(false);
+            splitContainer8.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer8).EndInit();
             splitContainer8.ResumeLayout(false);
             splitContainer10.Panel1.ResumeLayout(false);
@@ -1330,12 +1341,6 @@
             tableLayoutPanel3.PerformLayout();
             tableLayoutPanel4.ResumeLayout(false);
             tableLayoutPanel4.PerformLayout();
-            splitContainer9.Panel1.ResumeLayout(false);
-            splitContainer9.Panel1.PerformLayout();
-            splitContainer9.Panel2.ResumeLayout(false);
-            splitContainer9.Panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)splitContainer9).EndInit();
-            splitContainer9.ResumeLayout(false);
             tabPage3.ResumeLayout(false);
             splitContainer11.Panel1.ResumeLayout(false);
             splitContainer11.Panel2.ResumeLayout(false);
@@ -1414,10 +1419,9 @@
         private Button button1;
         private SplitContainer splitContainer6;
         private SplitContainer splitContainer7;
-        private Label label10;
-        private DataGridView dataGridView1;
+        private Label txtOpenItemsEn;
+        private DataGridView enhancementItems;
         private SplitContainer splitContainer8;
-        private SplitContainer splitContainer9;
         private SplitContainer splitContainer10;
         private TableLayoutPanel tableLayoutPanel3;
         private Label label11;
@@ -1429,17 +1433,15 @@
         private Label label17;
         private Label label18;
         private TableLayoutPanel tableLayoutPanel4;
-        private ComboBox comboBox1;
-        private ComboBox comboBox2;
-        private ComboBox comboBox3;
-        private ComboBox comboBox4;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private DateTimePicker dateTimePicker1;
-        private TextBox textBox3;
-        private Button button2;
-        private TextBox textBox4;
-        private TextBox textBox5;
+        private ComboBox comboEnProduct;
+        private ComboBox comboEnVersion;
+        private ComboBox comboEnStatus;
+        private ComboBox comboEnPriority;
+        private TextBox txtEnDescription;
+        private TextBox txtEnDetected;
+        private DateTimePicker dtDetected;
+        private TextBox txtEnID;
+        private Button btnSaveEn;
         private SplitContainer splitContainer11;
         private DataGridView dataGridReport;
         private SplitContainer splitContainer12;
@@ -1454,6 +1456,12 @@
         private ToolStripMenuItem reportsToolStripMenuItem;
         private SplitContainer splitContainer14;
         private SplitContainer splitContainer15;
+        private TextBox txtEnNotes;
+        private ContextMenuStrip contextMenu2;
+        private ToolStripMenuItem newItemToolStripMenuItem1;
+        private ToolStripMenuItem deleteItemToolStripMenuItem1;
+        private ToolStripMenuItem refreshToolStripMenuItem1;
+        private ToolStripMenuItem filterToolStripMenuItem;
     }
 
 }

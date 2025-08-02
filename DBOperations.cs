@@ -63,13 +63,19 @@ namespace BugTracker
 
             var sql2 = @"CREATE TABLE IF NOT EXISTS enhancements(
                 id INTEGER PRIMARY KEY,
+                productId INTEGER NOT NULL,
+                versionId INTEGER NOT NULL,
                 description TEXT NOT NULL,
                 version TEXT NOT NULL,
                 status TEXT NOT NULL,
                 priority TEXT NOT NULL,
                 detectedBy TEXT NOT NULL,
                 dateDetected TEXT NOT NULL,
-                notes TEXT NOT NULL
+                notes TEXT NOT NULL,
+                FOREIGN KEY (productId)
+                REFERENCES products (id),
+                FOREIGN KEY (versionId)
+                REFERENCES versions (id)
             )";
 
             var sql3 = @"CREATE TABLE IF NOT EXISTS products(
@@ -111,7 +117,7 @@ namespace BugTracker
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Debug.WriteLine(ex.Message);
+                Debug.WriteLine(ex.Message);
                 return false;
             }
 
@@ -171,9 +177,57 @@ namespace BugTracker
                 return 0;
             }
         }
+
+        public static long InsertEnhancementItem(string description, int product, int version, string status, string priority, string detectedBy, string dateDetected, string notes)
+        {
+            var sql = "INSERT INTO enhancements (description, status, priority, detectedBy, dateDetected, notes, productId, versionId) VALUES (@description, @status, @priority, @detectedBy, @dateDetected, @notes, @productId, @versionId)";
+            if (description.Length == 0 || status.Length == 0 || priority.Length == 0 || detectedBy.Length == 0)
+            {
+                return 0;
+            }
+            try
+            {
+                var connection = new SQLiteConnection("Data Source=BugTracker.db");
+                connection.Open();
+                var command = new SQLiteCommand(sql, connection);
+                command.Parameters.AddWithValue("@description", description);
+                command.Parameters.AddWithValue("@status", status);
+                command.Parameters.AddWithValue("@priority", priority);
+                command.Parameters.AddWithValue("@detectedBy", detectedBy);
+                command.Parameters.AddWithValue("@dateDetected", dateDetected);
+                command.Parameters.AddWithValue("@notes", notes);
+                command.Parameters.AddWithValue("@productId", product);
+                command.Parameters.AddWithValue("@versionId", version);
+                var rowInserted = command.ExecuteNonQuery();
+                if (rowInserted > 0)
+                {
+                    return connection.LastInsertRowId;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            catch (SQLiteException ex)
+            {
+                Debug.WriteLine(ex.Message);
+                return 0;
+            }
+        }
         public static bool DeleteItem(int id)
         {
             string sql = "Delete from bugs where id = @id";
+            var connection = new SQLiteConnection("Data Source=BugTracker.db");
+            connection.Open();
+            using var command = new SQLiteCommand(sql, connection);
+            command.Parameters.AddWithValue("@id", id);
+            var rowDeleted = command.ExecuteNonQuery();
+            return rowDeleted > 0;
+        }
+
+        public static bool DeleteEnhancementItem(int id)
+        {
+            string sql = "Delete from enhancements where id = @id";
             var connection = new SQLiteConnection("Data Source=BugTracker.db");
             connection.Open();
             using var command = new SQLiteCommand(sql, connection);
@@ -199,6 +253,33 @@ namespace BugTracker
                 command.Parameters.AddWithValue("@priority", priority);
                 command.Parameters.AddWithValue("@notesIssue", notesIssue);
                 command.Parameters.AddWithValue("@notesFix", notesFix);
+                command.Parameters.AddWithValue("@id", id);
+                var rowInserted = command.ExecuteNonQuery();
+                return rowInserted > 0;
+            }
+            catch (SQLiteException ex)
+            {
+                Debug.WriteLine(ex.Message);
+                return false;
+            }
+        }
+
+        public static bool UpdateEnhancementItem(int id, string description, string status, string priority, string notes)
+        {
+            var sql = "Update enhancements SET description = @description, status = @status, priority = @priority, notes = @notes WHERE id = @id";
+            if (description.Length == 0 || status.Length == 0 || priority.Length == 0)
+            {
+                return false;
+            }
+            try
+            {
+                var connection = new SQLiteConnection("Data Source=BugTracker.db");
+                connection.Open();
+                var command = new SQLiteCommand(sql, connection);
+                command.Parameters.AddWithValue("@description", description);
+                command.Parameters.AddWithValue("@status", status);
+                command.Parameters.AddWithValue("@priority", priority);
+                command.Parameters.AddWithValue("@notes", notes);
                 command.Parameters.AddWithValue("@id", id);
                 var rowInserted = command.ExecuteNonQuery();
                 return rowInserted > 0;
@@ -333,7 +414,7 @@ namespace BugTracker
                 List<string> databases = client.ListDatabaseNames().ToList();
                 foreach (string database in databases)
                 {
-                    System.Diagnostics.Debug.WriteLine(database);
+                    Debug.WriteLine(database);
                 }
                 //var _collection = client.GetDatabase("BugTracker").GetCollection<BsonDocument>("Bugs");
                 //System.Diagnostics.Debug.WriteLine("Got collection");

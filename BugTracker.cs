@@ -25,13 +25,17 @@ namespace BugTracker
         private List<string> versions = new List<string>();
         private BindingList<PriorityModel> pDropDown = new BindingList<PriorityModel>();
         private BindingList<PriorityModel> vDropDown = new BindingList<PriorityModel>();
+        private BindingList<PriorityModel> pEnDropDown = new BindingList<PriorityModel>();
+        private BindingList<PriorityModel> vEnDropDown = new BindingList<PriorityModel>();
         private DataTable table = new DataTable();
+        private DataTable enhancementTable = new DataTable();
         private DataTable reportTable = new DataTable();
         public string lastQuery = "";
         public BugTracker()
         {
             InitializeComponent();
             InitializeDialog();
+            InitializeEnhancementDialog();
 
         }
 
@@ -84,6 +88,46 @@ namespace BugTracker
 
         }
 
+        public void InitializeEnhancementDialog()
+        {
+            comboEnStatus.Items.Clear();
+            comboEnStatus.Items.Add("Open");
+            comboEnStatus.Items.Add("In Progress");
+            comboEnStatus.Items.Add("Closed");
+
+            comboEnPriority.Items.Clear();
+            comboEnPriority.Items.Add("High");
+            comboEnPriority.Items.Add("Medium");
+            comboEnPriority.Items.Add("Low");
+
+            comboEnProduct.DataSource = pEnDropDown;
+            comboEnProduct.DisplayMember = "Name";
+            comboEnProduct.ValueMember = "id";
+            comboEnVersion.DataSource = vEnDropDown;
+            comboEnVersion.DisplayMember = "Name";
+            comboEnVersion.ValueMember = "id";
+
+            try
+            {
+                SQLiteDataAdapter items = DBOperations.getDbItems(@"SELECT b.id as id, b.description as description, p.description as product, a.version as version, status, priority, detectedBy, dateDetected, b.notes FROM enhancements as b left join products p on b.productId=p.id left join versions as a on a.id = b.versionId where status = 'Open'");
+                if (items != null)
+                {
+                    items.Fill(enhancementTable);
+                    //for (int i = 0; i < items.FieldCount; i++)
+                    //    table.Columns.Add(new DataColumn(items.GetName(i)));
+                    enhancementItems.DataSource = enhancementTable;
+                    txtOpenItemsEn.Text = "Open Items: " + enhancementItems.Rows.Count.ToString();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error getting data from the database", "Initialization Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Debug.WriteLine(ex.Message);
+            }
+
+        }
+
         private void productManagementToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var form = new ProductManagement();
@@ -108,6 +152,28 @@ namespace BugTracker
             catch (Exception ex)
             {
                 InsertItem();
+            }
+
+        }
+
+        private void btnSaveEn_Click(object sender, EventArgs e)
+        {
+            int id;
+            try
+            {
+                if (int.TryParse(txtEnID.Text, out id))
+                {
+                    UpdateEnhancementItem();
+                }
+                else
+                {
+                    InsertEnhancementItem();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                InsertEnhancementItem();
             }
 
         }
@@ -157,6 +223,49 @@ namespace BugTracker
             }
         }
 
+        private void InsertEnhancementItem()
+        {
+            try
+            {
+                string description = txtEnDescription.Text;
+                int product = Int32.Parse(comboEnProduct.SelectedValue.ToString());
+                string productName = comboEnProduct.GetItemText(comboEnProduct.SelectedItem);
+                int version = Int32.Parse(comboEnVersion.SelectedValue.ToString());
+                string versionName = comboEnVersion.GetItemText(comboEnVersion.SelectedItem);
+                string status = comboEnStatus.SelectedItem.ToString();
+                string priority = comboEnPriority.SelectedItem.ToString();
+                string detectedBy = txtEnDetected.Text;
+                string dateDetected = dtDetected.Value.ToString();
+                string notes = txtEnNotes.Text;
+                long result = DBOperations.InsertEnhancementItem(description, product, version, status, priority, detectedBy, dateDetected, notes);
+                if (result > 0)
+                {
+                    MessageBox.Show("Item added succesfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    DataRow r = table.NewRow();
+                    r[0] = result;
+                    r[1] = productName;
+                    r[2] = versionName;
+                    r[3] = description;
+                    r[4] = status;
+                    r[5] = priority;
+                    r[6] = detectedBy;
+                    r[7] = dateDetected;
+                    r[8] = notes;
+                    enhancementTable.Rows.Add(r);
+                    txtOpenItemsEn.Text = "Open Items: " + enhancementItems.Rows.Count.ToString();
+                }
+                else
+                {
+                    MessageBox.Show("Operation failed", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Operation failed", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Debug.WriteLine(ex.Message);
+            }
+        }
+
         private void DeleteItem()
         {
             Int32 selectedCellCount = bugItems.GetCellCount(DataGridViewElementStates.Selected);
@@ -173,6 +282,42 @@ namespace BugTracker
                         MessageBox.Show("Item deleted succesfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         bugItems.Rows.Remove(r);
                         label1.Text = "Open Items: " + bugItems.Rows.Count.ToString();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Operation failed", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Operation failed", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Debug.WriteLine(ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("You must select at least one item", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        private void DeleteEnhancementItem()
+        {
+            Int32 selectedCellCount = enhancementItems.GetCellCount(DataGridViewElementStates.Selected);
+            if (selectedCellCount > 0)
+            {
+                int row = enhancementItems.SelectedCells[0].RowIndex;
+                DataGridViewRow r = enhancementItems.Rows[row];
+                try
+                {
+                    int id = Int32.Parse(r.Cells[0].Value.ToString());
+                    bool result = DBOperations.DeleteEnhancementItem(id);
+                    if (result)
+                    {
+                        MessageBox.Show("Item deleted succesfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        enhancementItems.Rows.Remove(r);
+                        txtOpenItemsEn.Text = "Open Items: " + enhancementItems.Rows.Count.ToString();
                     }
                     else
                     {
@@ -227,10 +372,48 @@ namespace BugTracker
             }
         }
 
+        private void UpdateEnhancementItem()
+        {
+            try
+            {
+                string description = txtEnDescription.Text;
+                string status = comboEnStatus.SelectedItem.ToString();
+                string priority = comboEnPriority.SelectedItem.ToString();
+                string notes = txtEnNotes.Text;
+                int id = Int32.Parse(txtEnID.Text);
+                bool result = DBOperations.UpdateEnhancementItem(id, description, status, priority, notes);
+                if (result)
+                {
+                    MessageBox.Show("Item updated succesfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    DataRow r = table.Rows[enhancementItems.SelectedCells[0].RowIndex];
+                    r[3] = description;
+                    r[4] = status;
+                    r[5] = priority;
+                    r[8] = notes;
+                }
+                else
+                {
+                    MessageBox.Show("Operation failed", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Operation failed", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Debug.WriteLine(ex.Message);
+            }
+        }
+
         private void bugItems_SelectionChanged(object sender, EventArgs e)
         {
             // Update the labels to reflect changes to the selection.
             UpdateLabelText();
+        }
+
+        private void enhancementItems_SelectionChanged(object sender, EventArgs e)
+        {
+            // Update the labels to reflect changes to the selection.
+            UpdateEnhancementText();
         }
 
         private void bugItems_MouseClick(object sender, MouseEventArgs e)
@@ -293,6 +476,55 @@ namespace BugTracker
             }
         }
 
+        private void UpdateEnhancementText()
+        {
+            Int32 selectedCellCount = enhancementItems.GetCellCount(DataGridViewElementStates.Selected);
+            if (selectedCellCount > 0)
+            {
+                int row = enhancementItems.SelectedCells[0].RowIndex;
+                DataGridViewRow r = enhancementItems.Rows[row];
+                txtEnID.Text = r.Cells[0].Value.ToString();
+                txtEnDescription.Text = r.Cells[1].Value.ToString();
+                List<PriorityModel> productItems = DBOperations.GetDropDown(@"Select * from products where description = " + "\"" + r.Cells[2].Value.ToString() + "\"", 1);
+                List<PriorityModel> versionItems = DBOperations.GetDropDown(@"Select * from versions where version = " + "\"" + r.Cells[3].Value.ToString() + "\"", 2);
+                pEnDropDown.Clear();
+                pEnDropDown.Add(productItems.Count() > 0 ? productItems[0] : new PriorityModel(0, "Error"));
+                comboEnProduct.SelectedIndex = 0;
+                vEnDropDown.Add(versionItems.Count() > 0 ? versionItems[0] : new PriorityModel(0, "Error"));
+                comboEnVersion.SelectedIndex = 0;
+                comboEnStatus.SelectedIndex = r.Cells[4].Value.ToString() == "Open" ? 0 : r.Cells[4].Value.ToString() == "In Progress" ? 1 : 2;
+                comboEnPriority.SelectedIndex = r.Cells[5].Value.ToString() == "High" ? 0 : r.Cells[5].Value.ToString() == "Medium" ? 1 : 2;
+                txtEnDetected.Text = r.Cells[6].Value.ToString();
+                dtDetected.Value = DateTime.Parse(r.Cells[7].Value.ToString());
+                txtEnNotes.Text = r.Cells[8].Value.ToString();
+                if (r.Cells[4].Value.ToString() == "Closed")
+                {
+                    txtEnDescription.ReadOnly = true;
+                    comboEnVersion.Enabled = false;
+                    comboEnProduct.Enabled = false;
+                    txtEnDetected.ReadOnly = true;
+                    txtEnNotes.ReadOnly = true;
+                    dtDetected.Enabled = false;
+                    comboEnPriority.Enabled = false;
+                    comboEnStatus.Enabled = false;
+                }
+                SetReadOnlyEnStatus(false, false);
+            }
+            else
+            {
+                txtEnID.Text = "";
+                txtEnDescription.Text = "";
+                pEnDropDown.Clear();
+                vEnDropDown.Clear();
+                comboEnStatus.SelectedValue = "";
+                comboEnPriority.SelectedValue = "";
+                txtEnDetected.Text = "";
+                //dtPicker.Text = "";
+                txtEnNotes.Text = "";
+                SetReadOnlyEnStatus(true, false);
+            }
+        }
+
         private void SetReadOnlyStatus(bool state, bool newItem)
         {
             txtDescription.ReadOnly = state;
@@ -304,6 +536,18 @@ namespace BugTracker
             dtPicker.Enabled = newItem ? true : state;
             comboPriority.Enabled = !state;
             comboStatus.Enabled = !state;
+        }
+
+        private void SetReadOnlyEnStatus(bool state, bool newItem)
+        {
+            txtEnDescription.ReadOnly = state;
+            comboEnVersion.Enabled = newItem ? true : state;
+            comboEnProduct.Enabled = newItem ? true : state;
+            txtEnDetected.ReadOnly = newItem ? false : !state;
+            txtEnNotes.ReadOnly = state;
+            dtDetected.Enabled = newItem ? true : state;
+            comboEnPriority.Enabled = !state;
+            comboEnStatus.Enabled = !state;
         }
 
         private void newItemToolStripMenuItem_Click(object sender, EventArgs e)
@@ -374,7 +618,7 @@ namespace BugTracker
             lastQuery = txtReportQuery.Text;
             reportTable.Clear();
             dataGridReport.DataSource = null;
-            
+
             try
             {
                 SQLiteDataAdapter items = DBOperations.getDbItems(txtReportQuery.Text);
@@ -470,7 +714,7 @@ namespace BugTracker
 
         private void btnSaveQuery_Click(object sender, EventArgs e)
         {
-            if(txtReportQuery.Text.Length > 0)
+            if (txtReportQuery.Text.Length > 0)
             {
                 SaveFileDialog sfd = new SaveFileDialog();
                 sfd.Filter = "Text Files | *.txt";
@@ -509,7 +753,8 @@ namespace BugTracker
                         }
                     }
                 }
-            } else
+            }
+            else
             {
                 MessageBox.Show("Nothing to export", "Info");
             }
@@ -536,6 +781,48 @@ namespace BugTracker
         private void refreshToolStripMenuItem_Click(object sender, EventArgs e)
         {
             bugItems.Refresh();
+        }
+
+        private void newItemToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            List<PriorityModel> productItems = DBOperations.GetDropDown(@"Select * from products", 1);
+            List<PriorityModel> versionItems = DBOperations.GetDropDown(@"Select * from versions", 2);
+            pEnDropDown.Clear();
+            vEnDropDown.Clear();
+            foreach (PriorityModel item in productItems)
+            {
+                pEnDropDown.Add(item);
+            }
+            foreach (PriorityModel item in versionItems)
+            {
+                vEnDropDown.Add(item);
+            }
+            comboEnProduct.DataSource = pEnDropDown;
+            comboEnProduct.DisplayMember = "Name";
+            comboEnProduct.ValueMember = "id";
+            comboEnVersion.DataSource = vDropDown;
+            comboEnVersion.DisplayMember = "Name";
+            comboEnVersion.ValueMember = "id";
+            txtEnID.Text = "";
+            txtEnDescription.Text = "";
+            comboEnVersion.SelectedValue = "";
+            comboEnProduct.SelectedValue = "";
+            comboEnStatus.SelectedIndex = 0;
+            comboEnPriority.SelectedIndex = 0;
+            txtEnDetected.Text = "";
+            //dtPicker.Text = "";
+            txtEnNotes.Text = "";
+            SetReadOnlyEnStatus(false, true);
+        }
+
+        private void deleteItemToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            DeleteEnhancementItem();
+        }
+
+        private void refreshToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            enhancementItems.Refresh();
         }
     }
 }
