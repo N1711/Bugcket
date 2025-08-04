@@ -55,6 +55,11 @@ namespace BugTracker
             comboStatus.Items.Add("In Progress");
             comboStatus.Items.Add("Closed");
 
+            comboView.Items.Clear();
+            comboView.Items.Add("All Items");
+            comboView.Items.Add("Custom View");
+            comboView.SelectedIndex = 0;
+
             comboPriority.Items.Clear();
             comboPriority.Items.Add("High");
             comboPriority.Items.Add("Medium");
@@ -94,6 +99,11 @@ namespace BugTracker
             comboEnStatus.Items.Add("Open");
             comboEnStatus.Items.Add("In Progress");
             comboEnStatus.Items.Add("Closed");
+
+            comboViewEn.Items.Clear();
+            comboViewEn.Items.Add("All Items");
+            comboViewEn.Items.Add("Custom View");
+            comboViewEn.SelectedIndex = 0;
 
             comboEnPriority.Items.Clear();
             comboEnPriority.Items.Add("High");

@@ -55,7 +55,13 @@
             tabPage1 = new TabPage();
             splitContainer1 = new SplitContainer();
             splitContainer2 = new SplitContainer();
+            splitContainer9 = new SplitContainer();
             label1 = new Label();
+            splitContainer16 = new SplitContainer();
+            txtFilter = new TextBox();
+            splitContainer17 = new SplitContainer();
+            lblView = new Label();
+            comboView = new ComboBox();
             bugItems = new DataGridView();
             splitContainer3 = new SplitContainer();
             splitContainer4 = new SplitContainer();
@@ -84,7 +90,13 @@
             tabPage2 = new TabPage();
             splitContainer6 = new SplitContainer();
             splitContainer7 = new SplitContainer();
+            splitContainer18 = new SplitContainer();
             txtOpenItemsEn = new Label();
+            splitContainer19 = new SplitContainer();
+            txtFilterEn = new TextBox();
+            splitContainer20 = new SplitContainer();
+            lblViewEn = new Label();
+            comboViewEn = new ComboBox();
             enhancementItems = new DataGridView();
             contextMenu2 = new ContextMenuStrip(components);
             newItemToolStripMenuItem1 = new ToolStripMenuItem();
@@ -136,6 +148,18 @@
             splitContainer2.Panel1.SuspendLayout();
             splitContainer2.Panel2.SuspendLayout();
             splitContainer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer9).BeginInit();
+            splitContainer9.Panel1.SuspendLayout();
+            splitContainer9.Panel2.SuspendLayout();
+            splitContainer9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer16).BeginInit();
+            splitContainer16.Panel1.SuspendLayout();
+            splitContainer16.Panel2.SuspendLayout();
+            splitContainer16.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer17).BeginInit();
+            splitContainer17.Panel1.SuspendLayout();
+            splitContainer17.Panel2.SuspendLayout();
+            splitContainer17.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)bugItems).BeginInit();
             ((System.ComponentModel.ISupportInitialize)splitContainer3).BeginInit();
             splitContainer3.Panel1.SuspendLayout();
@@ -160,6 +184,18 @@
             splitContainer7.Panel1.SuspendLayout();
             splitContainer7.Panel2.SuspendLayout();
             splitContainer7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer18).BeginInit();
+            splitContainer18.Panel1.SuspendLayout();
+            splitContainer18.Panel2.SuspendLayout();
+            splitContainer18.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer19).BeginInit();
+            splitContainer19.Panel1.SuspendLayout();
+            splitContainer19.Panel2.SuspendLayout();
+            splitContainer19.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer20).BeginInit();
+            splitContainer20.Panel1.SuspendLayout();
+            splitContainer20.Panel2.SuspendLayout();
+            splitContainer20.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)enhancementItems).BeginInit();
             contextMenu2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer8).BeginInit();
@@ -396,14 +432,32 @@
             // 
             // splitContainer2.Panel1
             // 
-            splitContainer2.Panel1.Controls.Add(label1);
+            splitContainer2.Panel1.Controls.Add(splitContainer9);
+            splitContainer2.Panel1MinSize = 23;
             // 
             // splitContainer2.Panel2
             // 
             splitContainer2.Panel2.Controls.Add(bugItems);
             splitContainer2.Size = new Size(978, 351);
-            splitContainer2.SplitterDistance = 32;
+            splitContainer2.SplitterDistance = 25;
             splitContainer2.TabIndex = 0;
+            // 
+            // splitContainer9
+            // 
+            splitContainer9.Dock = DockStyle.Fill;
+            splitContainer9.Location = new Point(0, 0);
+            splitContainer9.Name = "splitContainer9";
+            // 
+            // splitContainer9.Panel1
+            // 
+            splitContainer9.Panel1.Controls.Add(label1);
+            // 
+            // splitContainer9.Panel2
+            // 
+            splitContainer9.Panel2.Controls.Add(splitContainer16);
+            splitContainer9.Size = new Size(978, 25);
+            splitContainer9.SplitterDistance = 326;
+            splitContainer9.TabIndex = 0;
             // 
             // label1
             // 
@@ -411,10 +465,74 @@
             label1.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             label1.Location = new Point(0, 0);
             label1.Name = "label1";
-            label1.Size = new Size(978, 32);
-            label1.TabIndex = 0;
+            label1.Size = new Size(326, 25);
+            label1.TabIndex = 1;
             label1.Text = "Open Items: 0";
             label1.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // splitContainer16
+            // 
+            splitContainer16.Dock = DockStyle.Fill;
+            splitContainer16.Location = new Point(0, 0);
+            splitContainer16.Name = "splitContainer16";
+            // 
+            // splitContainer16.Panel1
+            // 
+            splitContainer16.Panel1.Controls.Add(txtFilter);
+            // 
+            // splitContainer16.Panel2
+            // 
+            splitContainer16.Panel2.Controls.Add(splitContainer17);
+            splitContainer16.Size = new Size(648, 25);
+            splitContainer16.SplitterDistance = 216;
+            splitContainer16.TabIndex = 0;
+            // 
+            // txtFilter
+            // 
+            txtFilter.Dock = DockStyle.Fill;
+            txtFilter.Location = new Point(0, 0);
+            txtFilter.Name = "txtFilter";
+            txtFilter.PlaceholderText = "Filter...";
+            txtFilter.Size = new Size(216, 23);
+            txtFilter.TabIndex = 0;
+            // 
+            // splitContainer17
+            // 
+            splitContainer17.Dock = DockStyle.Fill;
+            splitContainer17.Location = new Point(0, 0);
+            splitContainer17.Name = "splitContainer17";
+            // 
+            // splitContainer17.Panel1
+            // 
+            splitContainer17.Panel1.Controls.Add(lblView);
+            // 
+            // splitContainer17.Panel2
+            // 
+            splitContainer17.Panel2.Controls.Add(comboView);
+            splitContainer17.Size = new Size(428, 25);
+            splitContainer17.SplitterDistance = 142;
+            splitContainer17.TabIndex = 0;
+            // 
+            // lblView
+            // 
+            lblView.Dock = DockStyle.Fill;
+            lblView.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            lblView.ImageAlign = ContentAlignment.TopCenter;
+            lblView.Location = new Point(0, 0);
+            lblView.Name = "lblView";
+            lblView.Size = new Size(142, 25);
+            lblView.TabIndex = 0;
+            lblView.Text = "View";
+            lblView.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // comboView
+            // 
+            comboView.Dock = DockStyle.Fill;
+            comboView.FormattingEnabled = true;
+            comboView.Location = new Point(0, 0);
+            comboView.Name = "comboView";
+            comboView.Size = new Size(282, 23);
+            comboView.TabIndex = 0;
             // 
             // bugItems
             // 
@@ -430,7 +548,7 @@
             bugItems.Name = "bugItems";
             bugItems.ReadOnly = true;
             bugItems.RowTemplate.Height = 25;
-            bugItems.Size = new Size(978, 315);
+            bugItems.Size = new Size(978, 322);
             bugItems.TabIndex = 0;
             bugItems.SelectionChanged += bugItems_SelectionChanged;
             // 
@@ -773,14 +891,33 @@
             // 
             // splitContainer7.Panel1
             // 
-            splitContainer7.Panel1.Controls.Add(txtOpenItemsEn);
+            splitContainer7.Panel1.Controls.Add(splitContainer18);
+            splitContainer7.Panel1MinSize = 23;
             // 
             // splitContainer7.Panel2
             // 
             splitContainer7.Panel2.Controls.Add(enhancementItems);
+            splitContainer7.Panel2MinSize = 23;
             splitContainer7.Size = new Size(972, 351);
-            splitContainer7.SplitterDistance = 26;
+            splitContainer7.SplitterDistance = 25;
             splitContainer7.TabIndex = 0;
+            // 
+            // splitContainer18
+            // 
+            splitContainer18.Dock = DockStyle.Fill;
+            splitContainer18.Location = new Point(0, 0);
+            splitContainer18.Name = "splitContainer18";
+            // 
+            // splitContainer18.Panel1
+            // 
+            splitContainer18.Panel1.Controls.Add(txtOpenItemsEn);
+            // 
+            // splitContainer18.Panel2
+            // 
+            splitContainer18.Panel2.Controls.Add(splitContainer19);
+            splitContainer18.Size = new Size(972, 25);
+            splitContainer18.SplitterDistance = 324;
+            splitContainer18.TabIndex = 0;
             // 
             // txtOpenItemsEn
             // 
@@ -788,10 +925,73 @@
             txtOpenItemsEn.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             txtOpenItemsEn.Location = new Point(0, 0);
             txtOpenItemsEn.Name = "txtOpenItemsEn";
-            txtOpenItemsEn.Size = new Size(972, 26);
+            txtOpenItemsEn.Size = new Size(324, 25);
             txtOpenItemsEn.TabIndex = 0;
             txtOpenItemsEn.Text = "Open Items: 0";
             txtOpenItemsEn.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // splitContainer19
+            // 
+            splitContainer19.Dock = DockStyle.Fill;
+            splitContainer19.Location = new Point(0, 0);
+            splitContainer19.Name = "splitContainer19";
+            // 
+            // splitContainer19.Panel1
+            // 
+            splitContainer19.Panel1.Controls.Add(txtFilterEn);
+            // 
+            // splitContainer19.Panel2
+            // 
+            splitContainer19.Panel2.Controls.Add(splitContainer20);
+            splitContainer19.Size = new Size(644, 25);
+            splitContainer19.SplitterDistance = 214;
+            splitContainer19.TabIndex = 1;
+            // 
+            // txtFilterEn
+            // 
+            txtFilterEn.Dock = DockStyle.Fill;
+            txtFilterEn.Location = new Point(0, 0);
+            txtFilterEn.Name = "txtFilterEn";
+            txtFilterEn.PlaceholderText = "Filter...";
+            txtFilterEn.Size = new Size(214, 23);
+            txtFilterEn.TabIndex = 0;
+            // 
+            // splitContainer20
+            // 
+            splitContainer20.Dock = DockStyle.Fill;
+            splitContainer20.Location = new Point(0, 0);
+            splitContainer20.Name = "splitContainer20";
+            // 
+            // splitContainer20.Panel1
+            // 
+            splitContainer20.Panel1.Controls.Add(lblViewEn);
+            // 
+            // splitContainer20.Panel2
+            // 
+            splitContainer20.Panel2.Controls.Add(comboViewEn);
+            splitContainer20.Size = new Size(426, 25);
+            splitContainer20.SplitterDistance = 142;
+            splitContainer20.TabIndex = 0;
+            // 
+            // lblViewEn
+            // 
+            lblViewEn.Dock = DockStyle.Fill;
+            lblViewEn.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            lblViewEn.Location = new Point(0, 0);
+            lblViewEn.Name = "lblViewEn";
+            lblViewEn.Size = new Size(142, 25);
+            lblViewEn.TabIndex = 0;
+            lblViewEn.Text = "View";
+            lblViewEn.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // comboViewEn
+            // 
+            comboViewEn.Dock = DockStyle.Fill;
+            comboViewEn.FormattingEnabled = true;
+            comboViewEn.Location = new Point(0, 0);
+            comboViewEn.Name = "comboViewEn";
+            comboViewEn.Size = new Size(280, 23);
+            comboViewEn.TabIndex = 0;
             // 
             // enhancementItems
             // 
@@ -805,7 +1005,7 @@
             enhancementItems.Name = "enhancementItems";
             enhancementItems.ReadOnly = true;
             enhancementItems.RowTemplate.Height = 25;
-            enhancementItems.Size = new Size(972, 321);
+            enhancementItems.Size = new Size(972, 322);
             enhancementItems.TabIndex = 0;
             enhancementItems.SelectionChanged += enhancementItems_SelectionChanged;
             // 
@@ -1296,6 +1496,19 @@
             splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer2).EndInit();
             splitContainer2.ResumeLayout(false);
+            splitContainer9.Panel1.ResumeLayout(false);
+            splitContainer9.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainer9).EndInit();
+            splitContainer9.ResumeLayout(false);
+            splitContainer16.Panel1.ResumeLayout(false);
+            splitContainer16.Panel1.PerformLayout();
+            splitContainer16.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainer16).EndInit();
+            splitContainer16.ResumeLayout(false);
+            splitContainer17.Panel1.ResumeLayout(false);
+            splitContainer17.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainer17).EndInit();
+            splitContainer17.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)bugItems).EndInit();
             splitContainer3.Panel1.ResumeLayout(false);
             splitContainer3.Panel2.ResumeLayout(false);
@@ -1325,6 +1538,19 @@
             splitContainer7.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer7).EndInit();
             splitContainer7.ResumeLayout(false);
+            splitContainer18.Panel1.ResumeLayout(false);
+            splitContainer18.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainer18).EndInit();
+            splitContainer18.ResumeLayout(false);
+            splitContainer19.Panel1.ResumeLayout(false);
+            splitContainer19.Panel1.PerformLayout();
+            splitContainer19.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainer19).EndInit();
+            splitContainer19.ResumeLayout(false);
+            splitContainer20.Panel1.ResumeLayout(false);
+            splitContainer20.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainer20).EndInit();
+            splitContainer20.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)enhancementItems).EndInit();
             contextMenu2.ResumeLayout(false);
             splitContainer8.Panel1.ResumeLayout(false);
@@ -1391,7 +1617,6 @@
         private SplitContainer splitContainer1;
         private SplitContainer splitContainer2;
         private DataGridView bugItems;
-        private Label label1;
         private SplitContainer splitContainer3;
         private SplitContainer splitContainer4;
         private SplitContainer splitContainer5;
@@ -1419,7 +1644,6 @@
         private Button button1;
         private SplitContainer splitContainer6;
         private SplitContainer splitContainer7;
-        private Label txtOpenItemsEn;
         private DataGridView enhancementItems;
         private SplitContainer splitContainer8;
         private SplitContainer splitContainer10;
@@ -1462,6 +1686,20 @@
         private ToolStripMenuItem deleteItemToolStripMenuItem1;
         private ToolStripMenuItem refreshToolStripMenuItem1;
         private ToolStripMenuItem filterToolStripMenuItem;
+        private SplitContainer splitContainer9;
+        private Label label1;
+        private SplitContainer splitContainer16;
+        private SplitContainer splitContainer17;
+        private Label lblView;
+        private ComboBox comboView;
+        private TextBox txtFilter;
+        private SplitContainer splitContainer18;
+        private Label txtOpenItemsEn;
+        private SplitContainer splitContainer19;
+        private TextBox txtFilterEn;
+        private SplitContainer splitContainer20;
+        private Label lblViewEn;
+        private ComboBox comboViewEn;
     }
 
 }
