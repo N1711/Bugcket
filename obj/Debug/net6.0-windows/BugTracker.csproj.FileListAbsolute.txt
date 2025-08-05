@@ -68,3 +68,4 @@ C:\Users\TrendUser\Desktop\Projects\CBugTracker\BugTracker\obj\Debug\net6.0-wind
 C:\Users\TrendUser\Desktop\Projects\CBugTracker\BugTracker\obj\Debug\net6.0-windows\BugTracker.UserManagementForm.resources
 C:\Users\TrendUser\Desktop\Projects\CBugTracker\BugTracker\obj\Debug\net6.0-windows\Interop.Microsoft.Office.Interop.Excel.dll
 C:\Users\TrendUser\Desktop\Projects\CBugTracker\BugTracker\obj\Debug\net6.0-windows\BugTracker.csproj.ResolveComReference.cache
+C:\Users\TrendUser\Desktop\Projects\CBugTracker\BugTracker\obj\Debug\net6.0-windows\BugTracker.AboutForm.resources

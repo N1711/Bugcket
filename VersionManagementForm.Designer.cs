@@ -85,14 +85,19 @@
             // 
             // dataGridVersions
             // 
+            dataGridVersions.AllowUserToAddRows = false;
+            dataGridVersions.AllowUserToDeleteRows = false;
+            dataGridVersions.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridVersions.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridVersions.ContextMenuStrip = contextMenuStrip1;
             dataGridVersions.Dock = DockStyle.Fill;
             dataGridVersions.Location = new Point(5, 5);
             dataGridVersions.Name = "dataGridVersions";
+            dataGridVersions.ReadOnly = true;
             dataGridVersions.RowTemplate.Height = 25;
             dataGridVersions.Size = new Size(302, 141);
             dataGridVersions.TabIndex = 0;
+            dataGridVersions.SelectionChanged += dataGridVersions_SelectionChanged;
             // 
             // contextMenuStrip1
             // 
@@ -105,18 +110,21 @@
             newItemToolStripMenuItem.Name = "newItemToolStripMenuItem";
             newItemToolStripMenuItem.Size = new Size(134, 22);
             newItemToolStripMenuItem.Text = "New Item";
+            newItemToolStripMenuItem.Click += newItemToolStripMenuItem_Click;
             // 
             // deleteItemToolStripMenuItem
             // 
             deleteItemToolStripMenuItem.Name = "deleteItemToolStripMenuItem";
             deleteItemToolStripMenuItem.Size = new Size(134, 22);
             deleteItemToolStripMenuItem.Text = "Delete Item";
+            deleteItemToolStripMenuItem.Click += deleteItemToolStripMenuItem_Click;
             // 
             // refreshToolStripMenuItem
             // 
             refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
             refreshToolStripMenuItem.Size = new Size(134, 22);
             refreshToolStripMenuItem.Text = "Refresh";
+            refreshToolStripMenuItem.Click += refreshToolStripMenuItem_Click;
             // 
             // splitContainer2
             // 
@@ -186,6 +194,7 @@
             // comboVersionProducts
             // 
             comboVersionProducts.Dock = DockStyle.Fill;
+            comboVersionProducts.DropDownStyle = ComboBoxStyle.DropDownList;
             comboVersionProducts.Enabled = false;
             comboVersionProducts.FormattingEnabled = true;
             comboVersionProducts.Location = new Point(0, 0);
@@ -213,6 +222,7 @@
             btnSave.TabIndex = 0;
             btnSave.Text = "Save";
             btnSave.UseVisualStyleBackColor = true;
+            btnSave.Click += btnSave_Click;
             // 
             // VersionManagementForm
             // 

@@ -251,7 +251,7 @@ namespace BugTracker
                 if (result > 0)
                 {
                     MessageBox.Show("Item added succesfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    DataRow r = table.NewRow();
+                    DataRow r = enhancementTable.NewRow();
                     r[0] = result;
                     r[1] = productName;
                     r[2] = versionName;
@@ -395,7 +395,7 @@ namespace BugTracker
                 if (result)
                 {
                     MessageBox.Show("Item updated succesfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    DataRow r = table.Rows[enhancementItems.SelectedCells[0].RowIndex];
+                    DataRow r = enhancementTable.Rows[enhancementItems.SelectedCells[0].RowIndex];
                     r[3] = description;
                     r[4] = status;
                     r[5] = priority;
@@ -780,7 +780,6 @@ namespace BugTracker
             catch (Exception ex)
             {
                 obj = null;
-                MessageBox.Show("Exception Occured while releasing object " + ex.Message, "Error");
             }
             finally
             {
@@ -790,7 +789,9 @@ namespace BugTracker
 
         private void refreshToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            bugItems.Refresh();
+            table.Clear();
+            bugItems.DataSource = null;
+            InitializeDialog();
         }
 
         private void newItemToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -832,7 +833,101 @@ namespace BugTracker
 
         private void refreshToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            enhancementItems.Refresh();
+            enhancementTable.Clear();
+            enhancementItems.DataSource = null;
+            InitializeEnhancementDialog();
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var aboutForm = new AboutForm();
+            aboutForm.ShowDialog();
+        }
+
+        private void btnFilter_Click(object sender, EventArgs e)
+        {
+            var sql = "";
+            if (txtFilter.Text.Length == 0 || txtFilter.Text.ToUpper().Contains("DROP") || txtFilter.Text.ToUpper().Contains("DELETE") || txtFilter.Text.ToUpper().Contains("UPDATE")
+                || txtFilter.Text.ToUpper().Contains("UNION")) return;
+            table.Clear();
+            bugItems.DataSource = null;
+            if (txtFilter.Text.Contains("id="))
+            {
+                try
+                {
+                    int id = Int32.Parse(txtFilter.Text.Split('=')[1]);
+                    sql = @"SELECT b.id as id, b.description as description, p.description as product, a.version as version, status, priority, detectedBy, dateDetected, IssueNotes, FixNotes FROM bugs as b left join products p on b.productId=p.id left join versions as a on a.id = b.versionId where b.id = " + id;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Invalid text", "Error");
+                }
+            }
+            else
+            {
+                sql = @"SELECT b.id as id, b.description as description, p.description as product, a.version as version, status, priority, detectedBy, dateDetected, IssueNotes, FixNotes FROM bugs as b left join products p on b.productId=p.id left join versions as a on a.id = b.versionId where b.description like '" + txtFilter.Text + "' or IssueNotes like '" + txtFilter.Text + "' or FixNotes like '" + txtFilter.Text + "'";
+            }
+            try
+            {
+                SQLiteDataAdapter items = DBOperations.getDbItems(sql);
+                if (items != null)
+                {
+                    items.Fill(table);
+                    //for (int i = 0; i < items.FieldCount; i++)
+                    //    table.Columns.Add(new DataColumn(items.GetName(i)));
+                    bugItems.DataSource = table;
+                    label1.Text = "Items: " + bugItems.Rows.Count.ToString();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error getting data from the database", "Initialization Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Debug.WriteLine(ex.Message);
+            }
+        }
+
+        private void bFilterEn_Click(object sender, EventArgs e)
+        {
+            var sql = "";
+            if (txtFilterEn.Text.Length == 0 || txtFilterEn.Text.ToUpper().Contains("DROP") || txtFilterEn.Text.ToUpper().Contains("DELETE") || txtFilterEn.Text.ToUpper().Contains("UPDATE")
+                || txtFilterEn.Text.ToUpper().Contains("UNION")) return;
+            enhancementTable.Clear();
+            enhancementItems.DataSource = null;
+            if (txtFilter.Text.Contains("id="))
+            {
+                try
+                {
+                    int id = Int32.Parse(txtFilterEn.Text.Split('=')[1]);
+                    sql = @"SELECT b.id as id, b.description as description, p.description as product, a.version as version, status, priority, detectedBy, dateDetected, b.notes FROM enhancements as b left join products p on b.productId=p.id left join versions as a on a.id = b.versionId where b.id = " + id;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Invalid text", "Error");
+                }
+            }
+            else
+            {
+                sql = @"SELECT b.id as id, b.description as description, p.description as product, a.version as version, status, priority, detectedBy, dateDetected, b.notes FROM enhancements as b left join products p on b.productId=p.id left join versions as a on a.id = b.versionId where b.description like '" + txtFilterEn.Text + "' or notes like '" + txtFilterEn.Text + "'";
+            }
+            try
+            {
+                SQLiteDataAdapter items = DBOperations.getDbItems(sql);
+                if (items != null)
+                {
+                    items.Fill(enhancementTable);
+                    //for (int i = 0; i < items.FieldCount; i++)
+                    //    table.Columns.Add(new DataColumn(items.GetName(i)));
+                    enhancementItems.DataSource = enhancementTable;
+                    txtOpenItemsEn.Text = "Items: " + enhancementItems.Rows.Count.ToString();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error getting data from the database", "Initialization Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Debug.WriteLine(ex.Message);
+            }
         }
     }
 }

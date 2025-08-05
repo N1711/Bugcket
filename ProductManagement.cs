@@ -203,5 +203,12 @@ namespace BugTracker
                 Debug.WriteLine(ex.Message);
             }
         }
+
+        private void refreshToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            table.Clear();
+            productItemsList.DataSource = null;
+            InitializeItems();
+        }
     }
 }

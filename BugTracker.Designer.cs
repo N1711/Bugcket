@@ -30,27 +30,19 @@
         {
             components = new System.ComponentModel.Container();
             menuStrip1 = new MenuStrip();
-            newToolStripMenuItem = new ToolStripMenuItem();
+            appToolStripMenuItem = new ToolStripMenuItem();
+            signOutToolStripMenuItem = new ToolStripMenuItem();
             exitToolStripMenuItem = new ToolStripMenuItem();
-            exitToolStripMenuItem1 = new ToolStripMenuItem();
-            deleteToolStripMenuItem = new ToolStripMenuItem();
-            bugsToolStripMenuItem = new ToolStripMenuItem();
-            enhancementsToolStripMenuItem = new ToolStripMenuItem();
-            reportsToolStripMenuItem = new ToolStripMenuItem();
+            viewToolStripMenuItem = new ToolStripMenuItem();
+            manageViewsToolStripMenuItem = new ToolStripMenuItem();
             configToolStripMenuItem = new ToolStripMenuItem();
             settingsToolStripMenuItem = new ToolStripMenuItem();
             userManagementToolStripMenuItem = new ToolStripMenuItem();
             productManagementToolStripMenuItem = new ToolStripMenuItem();
-            versionsToolStripMenuItem = new ToolStripMenuItem();
+            versionManagementToolStripMenuItem = new ToolStripMenuItem();
             helpToolStripMenuItem = new ToolStripMenuItem();
             aboutToolStripMenuItem = new ToolStripMenuItem();
             guideToolStripMenuItem = new ToolStripMenuItem();
-            changesToolStripMenuItem = new ToolStripMenuItem();
-            contextMenu = new ContextMenuStrip(components);
-            newItemToolStripMenuItem = new ToolStripMenuItem();
-            deleteItemToolStripMenuItem = new ToolStripMenuItem();
-            filterToolStripMenuItem1 = new ToolStripMenuItem();
-            refreshToolStripMenuItem = new ToolStripMenuItem();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
             splitContainer1 = new SplitContainer();
@@ -58,11 +50,17 @@
             splitContainer9 = new SplitContainer();
             label1 = new Label();
             splitContainer16 = new SplitContainer();
+            splitContainer21 = new SplitContainer();
             txtFilter = new TextBox();
+            btnFilter = new Button();
             splitContainer17 = new SplitContainer();
             lblView = new Label();
             comboView = new ComboBox();
             bugItems = new DataGridView();
+            contextMenuBugs = new ContextMenuStrip(components);
+            toolStripMenuItem2 = new ToolStripMenuItem();
+            toolStripMenuItem3 = new ToolStripMenuItem();
+            toolStripMenuItem4 = new ToolStripMenuItem();
             splitContainer3 = new SplitContainer();
             splitContainer4 = new SplitContainer();
             tableLayoutPanel1 = new TableLayoutPanel();
@@ -93,16 +91,17 @@
             splitContainer18 = new SplitContainer();
             txtOpenItemsEn = new Label();
             splitContainer19 = new SplitContainer();
+            splitContainer22 = new SplitContainer();
             txtFilterEn = new TextBox();
+            bFilterEn = new Button();
             splitContainer20 = new SplitContainer();
             lblViewEn = new Label();
             comboViewEn = new ComboBox();
             enhancementItems = new DataGridView();
-            contextMenu2 = new ContextMenuStrip(components);
-            newItemToolStripMenuItem1 = new ToolStripMenuItem();
-            deleteItemToolStripMenuItem1 = new ToolStripMenuItem();
-            refreshToolStripMenuItem1 = new ToolStripMenuItem();
-            filterToolStripMenuItem = new ToolStripMenuItem();
+            contextMenuEn = new ContextMenuStrip(components);
+            newItemToolStripMenuItem = new ToolStripMenuItem();
+            deleteItemToolStripMenuItem = new ToolStripMenuItem();
+            refreshToolStripMenuItem = new ToolStripMenuItem();
             splitContainer8 = new SplitContainer();
             splitContainer10 = new SplitContainer();
             tableLayoutPanel3 = new TableLayoutPanel();
@@ -137,7 +136,6 @@
             btnReportSaveQuery = new Button();
             dataGridReport = new DataGridView();
             menuStrip1.SuspendLayout();
-            contextMenu.SuspendLayout();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
@@ -156,11 +154,16 @@
             splitContainer16.Panel1.SuspendLayout();
             splitContainer16.Panel2.SuspendLayout();
             splitContainer16.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer21).BeginInit();
+            splitContainer21.Panel1.SuspendLayout();
+            splitContainer21.Panel2.SuspendLayout();
+            splitContainer21.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer17).BeginInit();
             splitContainer17.Panel1.SuspendLayout();
             splitContainer17.Panel2.SuspendLayout();
             splitContainer17.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)bugItems).BeginInit();
+            contextMenuBugs.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer3).BeginInit();
             splitContainer3.Panel1.SuspendLayout();
             splitContainer3.Panel2.SuspendLayout();
@@ -192,12 +195,16 @@
             splitContainer19.Panel1.SuspendLayout();
             splitContainer19.Panel2.SuspendLayout();
             splitContainer19.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)splitContainer22).BeginInit();
+            splitContainer22.Panel1.SuspendLayout();
+            splitContainer22.Panel2.SuspendLayout();
+            splitContainer22.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer20).BeginInit();
             splitContainer20.Panel1.SuspendLayout();
             splitContainer20.Panel2.SuspendLayout();
             splitContainer20.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)enhancementItems).BeginInit();
-            contextMenu2.SuspendLayout();
+            contextMenuEn.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer8).BeginInit();
             splitContainer8.Panel1.SuspendLayout();
             splitContainer8.Panel2.SuspendLayout();
@@ -234,7 +241,8 @@
             // menuStrip1
             // 
             menuStrip1.AutoSize = false;
-            menuStrip1.Items.AddRange(new ToolStripItem[] { newToolStripMenuItem, deleteToolStripMenuItem, configToolStripMenuItem, helpToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { appToolStripMenuItem, viewToolStripMenuItem, configToolStripMenuItem, helpToolStripMenuItem });
+            menuStrip1.LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow;
             menuStrip1.Location = new Point(5, 5);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.RenderMode = ToolStripRenderMode.Professional;
@@ -242,54 +250,42 @@
             menuStrip1.TabIndex = 2;
             menuStrip1.Text = "menuStrip1";
             // 
-            // newToolStripMenuItem
+            // appToolStripMenuItem
             // 
-            newToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { exitToolStripMenuItem, exitToolStripMenuItem1 });
-            newToolStripMenuItem.Name = "newToolStripMenuItem";
-            newToolStripMenuItem.Size = new Size(41, 57);
-            newToolStripMenuItem.Text = "App";
+            appToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { signOutToolStripMenuItem, exitToolStripMenuItem });
+            appToolStripMenuItem.Name = "appToolStripMenuItem";
+            appToolStripMenuItem.Size = new Size(41, 57);
+            appToolStripMenuItem.Text = "App";
+            // 
+            // signOutToolStripMenuItem
+            // 
+            signOutToolStripMenuItem.Name = "signOutToolStripMenuItem";
+            signOutToolStripMenuItem.Size = new Size(120, 22);
+            signOutToolStripMenuItem.Text = "Sign Out";
             // 
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             exitToolStripMenuItem.Size = new Size(120, 22);
-            exitToolStripMenuItem.Text = "Sign Out";
+            exitToolStripMenuItem.Text = "Exit";
             exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
-            // exitToolStripMenuItem1
+            // viewToolStripMenuItem
             // 
-            exitToolStripMenuItem1.Name = "exitToolStripMenuItem1";
-            exitToolStripMenuItem1.Size = new Size(120, 22);
-            exitToolStripMenuItem1.Text = "Exit";
+            viewToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { manageViewsToolStripMenuItem });
+            viewToolStripMenuItem.Name = "viewToolStripMenuItem";
+            viewToolStripMenuItem.Size = new Size(44, 57);
+            viewToolStripMenuItem.Text = "View";
             // 
-            // deleteToolStripMenuItem
+            // manageViewsToolStripMenuItem
             // 
-            deleteToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { bugsToolStripMenuItem, enhancementsToolStripMenuItem, reportsToolStripMenuItem });
-            deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            deleteToolStripMenuItem.Size = new Size(44, 57);
-            deleteToolStripMenuItem.Text = "View";
-            // 
-            // bugsToolStripMenuItem
-            // 
-            bugsToolStripMenuItem.Name = "bugsToolStripMenuItem";
-            bugsToolStripMenuItem.Size = new Size(152, 22);
-            bugsToolStripMenuItem.Text = "Bugs";
-            // 
-            // enhancementsToolStripMenuItem
-            // 
-            enhancementsToolStripMenuItem.Name = "enhancementsToolStripMenuItem";
-            enhancementsToolStripMenuItem.Size = new Size(152, 22);
-            enhancementsToolStripMenuItem.Text = "Enhancements";
-            // 
-            // reportsToolStripMenuItem
-            // 
-            reportsToolStripMenuItem.Name = "reportsToolStripMenuItem";
-            reportsToolStripMenuItem.Size = new Size(152, 22);
-            reportsToolStripMenuItem.Text = "Reports";
+            manageViewsToolStripMenuItem.Name = "manageViewsToolStripMenuItem";
+            manageViewsToolStripMenuItem.Size = new Size(150, 22);
+            manageViewsToolStripMenuItem.Text = "Manage Views";
             // 
             // configToolStripMenuItem
             // 
-            configToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { settingsToolStripMenuItem, userManagementToolStripMenuItem, productManagementToolStripMenuItem, versionsToolStripMenuItem });
+            configToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { settingsToolStripMenuItem, userManagementToolStripMenuItem, productManagementToolStripMenuItem, versionManagementToolStripMenuItem });
             configToolStripMenuItem.Name = "configToolStripMenuItem";
             configToolStripMenuItem.Size = new Size(55, 57);
             configToolStripMenuItem.Text = "Config";
@@ -315,16 +311,16 @@
             productManagementToolStripMenuItem.Text = "Product Management";
             productManagementToolStripMenuItem.Click += productManagementToolStripMenuItem_Click;
             // 
-            // versionsToolStripMenuItem
+            // versionManagementToolStripMenuItem
             // 
-            versionsToolStripMenuItem.Name = "versionsToolStripMenuItem";
-            versionsToolStripMenuItem.Size = new Size(190, 22);
-            versionsToolStripMenuItem.Text = "Versions";
-            versionsToolStripMenuItem.Click += versionsToolStripMenuItem_Click;
+            versionManagementToolStripMenuItem.Name = "versionManagementToolStripMenuItem";
+            versionManagementToolStripMenuItem.Size = new Size(190, 22);
+            versionManagementToolStripMenuItem.Text = "Version Management";
+            versionManagementToolStripMenuItem.Click += versionsToolStripMenuItem_Click;
             // 
             // helpToolStripMenuItem
             // 
-            helpToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { aboutToolStripMenuItem, guideToolStripMenuItem, changesToolStripMenuItem });
+            helpToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { aboutToolStripMenuItem, guideToolStripMenuItem });
             helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             helpToolStripMenuItem.Size = new Size(44, 57);
             helpToolStripMenuItem.Text = "Help";
@@ -332,53 +328,15 @@
             // aboutToolStripMenuItem
             // 
             aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            aboutToolStripMenuItem.Size = new Size(120, 22);
+            aboutToolStripMenuItem.Size = new Size(107, 22);
             aboutToolStripMenuItem.Text = "About";
+            aboutToolStripMenuItem.Click += aboutToolStripMenuItem_Click;
             // 
             // guideToolStripMenuItem
             // 
             guideToolStripMenuItem.Name = "guideToolStripMenuItem";
-            guideToolStripMenuItem.Size = new Size(120, 22);
+            guideToolStripMenuItem.Size = new Size(107, 22);
             guideToolStripMenuItem.Text = "Guide";
-            // 
-            // changesToolStripMenuItem
-            // 
-            changesToolStripMenuItem.Name = "changesToolStripMenuItem";
-            changesToolStripMenuItem.Size = new Size(120, 22);
-            changesToolStripMenuItem.Text = "Changes";
-            // 
-            // contextMenu
-            // 
-            contextMenu.Items.AddRange(new ToolStripItem[] { newItemToolStripMenuItem, deleteItemToolStripMenuItem, filterToolStripMenuItem1, refreshToolStripMenuItem });
-            contextMenu.Name = "contextMenu";
-            contextMenu.Size = new Size(135, 92);
-            // 
-            // newItemToolStripMenuItem
-            // 
-            newItemToolStripMenuItem.Name = "newItemToolStripMenuItem";
-            newItemToolStripMenuItem.Size = new Size(134, 22);
-            newItemToolStripMenuItem.Text = "New Item";
-            newItemToolStripMenuItem.Click += newItemToolStripMenuItem_Click;
-            // 
-            // deleteItemToolStripMenuItem
-            // 
-            deleteItemToolStripMenuItem.Name = "deleteItemToolStripMenuItem";
-            deleteItemToolStripMenuItem.Size = new Size(134, 22);
-            deleteItemToolStripMenuItem.Text = "Delete Item";
-            deleteItemToolStripMenuItem.Click += deleteItemToolStripMenuItem_Click;
-            // 
-            // filterToolStripMenuItem1
-            // 
-            filterToolStripMenuItem1.Name = "filterToolStripMenuItem1";
-            filterToolStripMenuItem1.Size = new Size(134, 22);
-            filterToolStripMenuItem1.Text = "Filter";
-            // 
-            // refreshToolStripMenuItem
-            // 
-            refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
-            refreshToolStripMenuItem.Size = new Size(134, 22);
-            refreshToolStripMenuItem.Text = "Refresh";
-            refreshToolStripMenuItem.Click += refreshToolStripMenuItem_Click;
             // 
             // tabControl1
             // 
@@ -478,14 +436,31 @@
             // 
             // splitContainer16.Panel1
             // 
-            splitContainer16.Panel1.Controls.Add(txtFilter);
+            splitContainer16.Panel1.Controls.Add(splitContainer21);
             // 
             // splitContainer16.Panel2
             // 
             splitContainer16.Panel2.Controls.Add(splitContainer17);
             splitContainer16.Size = new Size(648, 25);
-            splitContainer16.SplitterDistance = 216;
+            splitContainer16.SplitterDistance = 250;
             splitContainer16.TabIndex = 0;
+            // 
+            // splitContainer21
+            // 
+            splitContainer21.Dock = DockStyle.Fill;
+            splitContainer21.Location = new Point(0, 0);
+            splitContainer21.Name = "splitContainer21";
+            // 
+            // splitContainer21.Panel1
+            // 
+            splitContainer21.Panel1.Controls.Add(txtFilter);
+            // 
+            // splitContainer21.Panel2
+            // 
+            splitContainer21.Panel2.Controls.Add(btnFilter);
+            splitContainer21.Size = new Size(250, 25);
+            splitContainer21.SplitterDistance = 215;
+            splitContainer21.TabIndex = 0;
             // 
             // txtFilter
             // 
@@ -493,8 +468,19 @@
             txtFilter.Location = new Point(0, 0);
             txtFilter.Name = "txtFilter";
             txtFilter.PlaceholderText = "Filter...";
-            txtFilter.Size = new Size(216, 23);
-            txtFilter.TabIndex = 0;
+            txtFilter.Size = new Size(215, 23);
+            txtFilter.TabIndex = 1;
+            // 
+            // btnFilter
+            // 
+            btnFilter.Dock = DockStyle.Fill;
+            btnFilter.Location = new Point(0, 0);
+            btnFilter.Name = "btnFilter";
+            btnFilter.Size = new Size(31, 25);
+            btnFilter.TabIndex = 0;
+            btnFilter.Text = "b";
+            btnFilter.UseVisualStyleBackColor = true;
+            btnFilter.Click += btnFilter_Click;
             // 
             // splitContainer17
             // 
@@ -509,8 +495,8 @@
             // splitContainer17.Panel2
             // 
             splitContainer17.Panel2.Controls.Add(comboView);
-            splitContainer17.Size = new Size(428, 25);
-            splitContainer17.SplitterDistance = 142;
+            splitContainer17.Size = new Size(394, 25);
+            splitContainer17.SplitterDistance = 130;
             splitContainer17.TabIndex = 0;
             // 
             // lblView
@@ -520,7 +506,7 @@
             lblView.ImageAlign = ContentAlignment.TopCenter;
             lblView.Location = new Point(0, 0);
             lblView.Name = "lblView";
-            lblView.Size = new Size(142, 25);
+            lblView.Size = new Size(130, 25);
             lblView.TabIndex = 0;
             lblView.Text = "View";
             lblView.TextAlign = ContentAlignment.MiddleCenter;
@@ -528,10 +514,11 @@
             // comboView
             // 
             comboView.Dock = DockStyle.Fill;
+            comboView.DropDownStyle = ComboBoxStyle.DropDownList;
             comboView.FormattingEnabled = true;
             comboView.Location = new Point(0, 0);
             comboView.Name = "comboView";
-            comboView.Size = new Size(282, 23);
+            comboView.Size = new Size(260, 23);
             comboView.TabIndex = 0;
             // 
             // bugItems
@@ -542,7 +529,7 @@
             bugItems.AllowUserToResizeRows = false;
             bugItems.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             bugItems.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            bugItems.ContextMenuStrip = contextMenu;
+            bugItems.ContextMenuStrip = contextMenuBugs;
             bugItems.Dock = DockStyle.Fill;
             bugItems.Location = new Point(0, 0);
             bugItems.Name = "bugItems";
@@ -551,6 +538,33 @@
             bugItems.Size = new Size(978, 322);
             bugItems.TabIndex = 0;
             bugItems.SelectionChanged += bugItems_SelectionChanged;
+            // 
+            // contextMenuBugs
+            // 
+            contextMenuBugs.Items.AddRange(new ToolStripItem[] { toolStripMenuItem2, toolStripMenuItem3, toolStripMenuItem4 });
+            contextMenuBugs.Name = "contextMenuBugs";
+            contextMenuBugs.Size = new Size(135, 70);
+            // 
+            // toolStripMenuItem2
+            // 
+            toolStripMenuItem2.Name = "toolStripMenuItem2";
+            toolStripMenuItem2.Size = new Size(134, 22);
+            toolStripMenuItem2.Text = "New Item";
+            toolStripMenuItem2.Click += newItemToolStripMenuItem_Click;
+            // 
+            // toolStripMenuItem3
+            // 
+            toolStripMenuItem3.Name = "toolStripMenuItem3";
+            toolStripMenuItem3.Size = new Size(134, 22);
+            toolStripMenuItem3.Text = "Delete Item";
+            toolStripMenuItem3.Click += deleteItemToolStripMenuItem_Click;
+            // 
+            // toolStripMenuItem4
+            // 
+            toolStripMenuItem4.Name = "toolStripMenuItem4";
+            toolStripMenuItem4.Size = new Size(134, 22);
+            toolStripMenuItem4.Text = "Refresh";
+            toolStripMenuItem4.Click += refreshToolStripMenuItem_Click;
             // 
             // splitContainer3
             // 
@@ -735,6 +749,7 @@
             // comboProducts
             // 
             comboProducts.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            comboProducts.DropDownStyle = ComboBoxStyle.DropDownList;
             comboProducts.FormattingEnabled = true;
             comboProducts.Location = new Point(3, 3);
             comboProducts.Name = "comboProducts";
@@ -744,6 +759,7 @@
             // comboVersions
             // 
             comboVersions.Dock = DockStyle.Fill;
+            comboVersions.DropDownStyle = ComboBoxStyle.DropDownList;
             comboVersions.FormattingEnabled = true;
             comboVersions.Location = new Point(3, 32);
             comboVersions.Name = "comboVersions";
@@ -753,6 +769,7 @@
             // comboStatus
             // 
             comboStatus.Dock = DockStyle.Fill;
+            comboStatus.DropDownStyle = ComboBoxStyle.DropDownList;
             comboStatus.FormattingEnabled = true;
             comboStatus.Location = new Point(3, 61);
             comboStatus.Name = "comboStatus";
@@ -762,6 +779,7 @@
             // comboPriority
             // 
             comboPriority.Dock = DockStyle.Fill;
+            comboPriority.DropDownStyle = ComboBoxStyle.DropDownList;
             comboPriority.FormattingEnabled = true;
             comboPriority.Location = new Point(3, 89);
             comboPriority.Name = "comboPriority";
@@ -938,14 +956,31 @@
             // 
             // splitContainer19.Panel1
             // 
-            splitContainer19.Panel1.Controls.Add(txtFilterEn);
+            splitContainer19.Panel1.Controls.Add(splitContainer22);
             // 
             // splitContainer19.Panel2
             // 
             splitContainer19.Panel2.Controls.Add(splitContainer20);
             splitContainer19.Size = new Size(644, 25);
-            splitContainer19.SplitterDistance = 214;
+            splitContainer19.SplitterDistance = 250;
             splitContainer19.TabIndex = 1;
+            // 
+            // splitContainer22
+            // 
+            splitContainer22.Dock = DockStyle.Fill;
+            splitContainer22.Location = new Point(0, 0);
+            splitContainer22.Name = "splitContainer22";
+            // 
+            // splitContainer22.Panel1
+            // 
+            splitContainer22.Panel1.Controls.Add(txtFilterEn);
+            // 
+            // splitContainer22.Panel2
+            // 
+            splitContainer22.Panel2.Controls.Add(bFilterEn);
+            splitContainer22.Size = new Size(250, 25);
+            splitContainer22.SplitterDistance = 215;
+            splitContainer22.TabIndex = 0;
             // 
             // txtFilterEn
             // 
@@ -953,8 +988,19 @@
             txtFilterEn.Location = new Point(0, 0);
             txtFilterEn.Name = "txtFilterEn";
             txtFilterEn.PlaceholderText = "Filter...";
-            txtFilterEn.Size = new Size(214, 23);
-            txtFilterEn.TabIndex = 0;
+            txtFilterEn.Size = new Size(215, 23);
+            txtFilterEn.TabIndex = 1;
+            // 
+            // bFilterEn
+            // 
+            bFilterEn.Dock = DockStyle.Fill;
+            bFilterEn.Location = new Point(0, 0);
+            bFilterEn.Name = "bFilterEn";
+            bFilterEn.Size = new Size(31, 25);
+            bFilterEn.TabIndex = 0;
+            bFilterEn.Text = "b";
+            bFilterEn.UseVisualStyleBackColor = true;
+            bFilterEn.Click += bFilterEn_Click;
             // 
             // splitContainer20
             // 
@@ -969,8 +1015,8 @@
             // splitContainer20.Panel2
             // 
             splitContainer20.Panel2.Controls.Add(comboViewEn);
-            splitContainer20.Size = new Size(426, 25);
-            splitContainer20.SplitterDistance = 142;
+            splitContainer20.Size = new Size(390, 25);
+            splitContainer20.SplitterDistance = 130;
             splitContainer20.TabIndex = 0;
             // 
             // lblViewEn
@@ -979,7 +1025,7 @@
             lblViewEn.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             lblViewEn.Location = new Point(0, 0);
             lblViewEn.Name = "lblViewEn";
-            lblViewEn.Size = new Size(142, 25);
+            lblViewEn.Size = new Size(130, 25);
             lblViewEn.TabIndex = 0;
             lblViewEn.Text = "View";
             lblViewEn.TextAlign = ContentAlignment.TopCenter;
@@ -987,10 +1033,11 @@
             // comboViewEn
             // 
             comboViewEn.Dock = DockStyle.Fill;
+            comboViewEn.DropDownStyle = ComboBoxStyle.DropDownList;
             comboViewEn.FormattingEnabled = true;
             comboViewEn.Location = new Point(0, 0);
             comboViewEn.Name = "comboViewEn";
-            comboViewEn.Size = new Size(280, 23);
+            comboViewEn.Size = new Size(256, 23);
             comboViewEn.TabIndex = 0;
             // 
             // enhancementItems
@@ -999,7 +1046,7 @@
             enhancementItems.AllowUserToDeleteRows = false;
             enhancementItems.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             enhancementItems.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            enhancementItems.ContextMenuStrip = contextMenu2;
+            enhancementItems.ContextMenuStrip = contextMenuEn;
             enhancementItems.Dock = DockStyle.Fill;
             enhancementItems.Location = new Point(0, 0);
             enhancementItems.Name = "enhancementItems";
@@ -1009,38 +1056,32 @@
             enhancementItems.TabIndex = 0;
             enhancementItems.SelectionChanged += enhancementItems_SelectionChanged;
             // 
-            // contextMenu2
+            // contextMenuEn
             // 
-            contextMenu2.Items.AddRange(new ToolStripItem[] { newItemToolStripMenuItem1, deleteItemToolStripMenuItem1, refreshToolStripMenuItem1, filterToolStripMenuItem });
-            contextMenu2.Name = "contextMenu2";
-            contextMenu2.Size = new Size(135, 92);
+            contextMenuEn.Items.AddRange(new ToolStripItem[] { newItemToolStripMenuItem, deleteItemToolStripMenuItem, refreshToolStripMenuItem });
+            contextMenuEn.Name = "contextMenuEn";
+            contextMenuEn.Size = new Size(135, 70);
             // 
-            // newItemToolStripMenuItem1
+            // newItemToolStripMenuItem
             // 
-            newItemToolStripMenuItem1.Name = "newItemToolStripMenuItem1";
-            newItemToolStripMenuItem1.Size = new Size(134, 22);
-            newItemToolStripMenuItem1.Text = "New Item";
-            newItemToolStripMenuItem1.Click += newItemToolStripMenuItem1_Click;
+            newItemToolStripMenuItem.Name = "newItemToolStripMenuItem";
+            newItemToolStripMenuItem.Size = new Size(134, 22);
+            newItemToolStripMenuItem.Text = "New Item";
+            newItemToolStripMenuItem.Click += newItemToolStripMenuItem1_Click;
             // 
-            // deleteItemToolStripMenuItem1
+            // deleteItemToolStripMenuItem
             // 
-            deleteItemToolStripMenuItem1.Name = "deleteItemToolStripMenuItem1";
-            deleteItemToolStripMenuItem1.Size = new Size(134, 22);
-            deleteItemToolStripMenuItem1.Text = "Delete Item";
-            deleteItemToolStripMenuItem1.Click += deleteItemToolStripMenuItem1_Click;
+            deleteItemToolStripMenuItem.Name = "deleteItemToolStripMenuItem";
+            deleteItemToolStripMenuItem.Size = new Size(134, 22);
+            deleteItemToolStripMenuItem.Text = "Delete Item";
+            deleteItemToolStripMenuItem.Click += deleteItemToolStripMenuItem1_Click;
             // 
-            // refreshToolStripMenuItem1
+            // refreshToolStripMenuItem
             // 
-            refreshToolStripMenuItem1.Name = "refreshToolStripMenuItem1";
-            refreshToolStripMenuItem1.Size = new Size(134, 22);
-            refreshToolStripMenuItem1.Text = "Refresh";
-            refreshToolStripMenuItem1.Click += refreshToolStripMenuItem1_Click;
-            // 
-            // filterToolStripMenuItem
-            // 
-            filterToolStripMenuItem.Name = "filterToolStripMenuItem";
-            filterToolStripMenuItem.Size = new Size(134, 22);
-            filterToolStripMenuItem.Text = "Filter";
+            refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
+            refreshToolStripMenuItem.Size = new Size(134, 22);
+            refreshToolStripMenuItem.Text = "Refresh";
+            refreshToolStripMenuItem.Click += refreshToolStripMenuItem1_Click;
             // 
             // splitContainer8
             // 
@@ -1225,6 +1266,7 @@
             // comboEnProduct
             // 
             comboEnProduct.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            comboEnProduct.DropDownStyle = ComboBoxStyle.DropDownList;
             comboEnProduct.FormattingEnabled = true;
             comboEnProduct.Location = new Point(3, 3);
             comboEnProduct.Name = "comboEnProduct";
@@ -1234,6 +1276,7 @@
             // comboEnVersion
             // 
             comboEnVersion.Dock = DockStyle.Fill;
+            comboEnVersion.DropDownStyle = ComboBoxStyle.DropDownList;
             comboEnVersion.FormattingEnabled = true;
             comboEnVersion.Location = new Point(3, 32);
             comboEnVersion.Name = "comboEnVersion";
@@ -1243,6 +1286,7 @@
             // comboEnStatus
             // 
             comboEnStatus.Dock = DockStyle.Fill;
+            comboEnStatus.DropDownStyle = ComboBoxStyle.DropDownList;
             comboEnStatus.FormattingEnabled = true;
             comboEnStatus.Location = new Point(3, 61);
             comboEnStatus.Name = "comboEnStatus";
@@ -1252,6 +1296,7 @@
             // comboEnPriority
             // 
             comboEnPriority.Dock = DockStyle.Fill;
+            comboEnPriority.DropDownStyle = ComboBoxStyle.DropDownList;
             comboEnPriority.FormattingEnabled = true;
             comboEnPriority.Location = new Point(3, 89);
             comboEnPriority.Name = "comboEnPriority";
@@ -1475,7 +1520,7 @@
             ClientSize = new Size(1019, 763);
             Controls.Add(tabControl1);
             Controls.Add(menuStrip1);
-            FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             MainMenuStrip = menuStrip1;
             MaximizeBox = false;
             Name = "BugTracker";
@@ -1485,7 +1530,6 @@
             Load += BugTracker_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
-            contextMenu.ResumeLayout(false);
             tabControl1.ResumeLayout(false);
             tabPage1.ResumeLayout(false);
             splitContainer1.Panel1.ResumeLayout(false);
@@ -1501,15 +1545,20 @@
             ((System.ComponentModel.ISupportInitialize)splitContainer9).EndInit();
             splitContainer9.ResumeLayout(false);
             splitContainer16.Panel1.ResumeLayout(false);
-            splitContainer16.Panel1.PerformLayout();
             splitContainer16.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer16).EndInit();
             splitContainer16.ResumeLayout(false);
+            splitContainer21.Panel1.ResumeLayout(false);
+            splitContainer21.Panel1.PerformLayout();
+            splitContainer21.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainer21).EndInit();
+            splitContainer21.ResumeLayout(false);
             splitContainer17.Panel1.ResumeLayout(false);
             splitContainer17.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer17).EndInit();
             splitContainer17.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)bugItems).EndInit();
+            contextMenuBugs.ResumeLayout(false);
             splitContainer3.Panel1.ResumeLayout(false);
             splitContainer3.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer3).EndInit();
@@ -1543,16 +1592,20 @@
             ((System.ComponentModel.ISupportInitialize)splitContainer18).EndInit();
             splitContainer18.ResumeLayout(false);
             splitContainer19.Panel1.ResumeLayout(false);
-            splitContainer19.Panel1.PerformLayout();
             splitContainer19.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer19).EndInit();
             splitContainer19.ResumeLayout(false);
+            splitContainer22.Panel1.ResumeLayout(false);
+            splitContainer22.Panel1.PerformLayout();
+            splitContainer22.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)splitContainer22).EndInit();
+            splitContainer22.ResumeLayout(false);
             splitContainer20.Panel1.ResumeLayout(false);
             splitContainer20.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer20).EndInit();
             splitContainer20.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)enhancementItems).EndInit();
-            contextMenu2.ResumeLayout(false);
+            contextMenuEn.ResumeLayout(false);
             splitContainer8.Panel1.ResumeLayout(false);
             splitContainer8.Panel2.ResumeLayout(false);
             splitContainer8.Panel2.PerformLayout();
@@ -1608,7 +1661,6 @@
         private ContextMenuStrip contextMenu;
         private ToolStripMenuItem newItemToolStripMenuItem;
         private ToolStripMenuItem deleteItemToolStripMenuItem;
-        private ToolStripMenuItem filterToolStripMenuItem1;
         private ToolStripMenuItem refreshToolStripMenuItem;
         private TabControl tabControl1;
         private TabPage tabPage1;
@@ -1676,8 +1728,6 @@
         private Button btnReportSaveQuery;
         private ToolStripMenuItem exitToolStripMenuItem1;
         private ToolStripMenuItem bugsToolStripMenuItem;
-        private ToolStripMenuItem enhancementsToolStripMenuItem;
-        private ToolStripMenuItem reportsToolStripMenuItem;
         private SplitContainer splitContainer14;
         private SplitContainer splitContainer15;
         private TextBox txtEnNotes;
@@ -1685,21 +1735,34 @@
         private ToolStripMenuItem newItemToolStripMenuItem1;
         private ToolStripMenuItem deleteItemToolStripMenuItem1;
         private ToolStripMenuItem refreshToolStripMenuItem1;
-        private ToolStripMenuItem filterToolStripMenuItem;
         private SplitContainer splitContainer9;
         private Label label1;
         private SplitContainer splitContainer16;
         private SplitContainer splitContainer17;
         private Label lblView;
         private ComboBox comboView;
-        private TextBox txtFilter;
         private SplitContainer splitContainer18;
         private Label txtOpenItemsEn;
         private SplitContainer splitContainer19;
-        private TextBox txtFilterEn;
         private SplitContainer splitContainer20;
         private Label lblViewEn;
         private ComboBox comboViewEn;
+        private SplitContainer splitContainer21;
+        private TextBox txtFilter;
+        private Button btnFilter;
+        private SplitContainer splitContainer22;
+        private TextBox txtFilterEn;
+        private Button bFilterEn;
+        private ToolStripMenuItem appToolStripMenuItem;
+        private ToolStripMenuItem viewToolStripMenuItem;
+        private ToolStripMenuItem signOutToolStripMenuItem;
+        private ToolStripMenuItem manageViewsToolStripMenuItem;
+        private ToolStripMenuItem versionManagementToolStripMenuItem;
+        private ContextMenuStrip contextMenuBugs;
+        private ToolStripMenuItem toolStripMenuItem2;
+        private ToolStripMenuItem toolStripMenuItem3;
+        private ToolStripMenuItem toolStripMenuItem4;
+        private ContextMenuStrip contextMenuEn;
     }
 
 }

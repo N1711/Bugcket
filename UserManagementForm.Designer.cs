@@ -28,25 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-            contextMenuStrip1 = new ContextMenuStrip(components);
-            newItemToolStripMenuItem = new ToolStripMenuItem();
-            deleteItemToolStripMenuItem = new ToolStripMenuItem();
-            refreshToolStripMenuItem = new ToolStripMenuItem();
             splitContainer1 = new SplitContainer();
+            dataGridUsers = new DataGridView();
             splitContainer2 = new SplitContainer();
             splitContainer3 = new SplitContainer();
-            dataGridUsers = new DataGridView();
-            btnSave = new Button();
             splitContainer4 = new SplitContainer();
-            txtUserName = new TextBox();
             txtUserID = new TextBox();
             txtUserAccess = new TextBox();
-            contextMenuStrip1.SuspendLayout();
+            txtUserName = new TextBox();
+            btnSave = new Button();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
             splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridUsers).BeginInit();
             ((System.ComponentModel.ISupportInitialize)splitContainer2).BeginInit();
             splitContainer2.Panel1.SuspendLayout();
             splitContainer2.Panel2.SuspendLayout();
@@ -55,39 +50,11 @@
             splitContainer3.Panel1.SuspendLayout();
             splitContainer3.Panel2.SuspendLayout();
             splitContainer3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridUsers).BeginInit();
             ((System.ComponentModel.ISupportInitialize)splitContainer4).BeginInit();
             splitContainer4.Panel1.SuspendLayout();
             splitContainer4.Panel2.SuspendLayout();
             splitContainer4.SuspendLayout();
             SuspendLayout();
-            // 
-            // contextMenuStrip1
-            // 
-            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { newItemToolStripMenuItem, deleteItemToolStripMenuItem, refreshToolStripMenuItem });
-            contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(134, 70);
-            // 
-            // newItemToolStripMenuItem
-            // 
-            newItemToolStripMenuItem.Name = "newItemToolStripMenuItem";
-            newItemToolStripMenuItem.Size = new Size(133, 22);
-            newItemToolStripMenuItem.Text = "New User";
-            newItemToolStripMenuItem.Click += newItemToolStripMenuItem_Click;
-            // 
-            // deleteItemToolStripMenuItem
-            // 
-            deleteItemToolStripMenuItem.Name = "deleteItemToolStripMenuItem";
-            deleteItemToolStripMenuItem.Size = new Size(133, 22);
-            deleteItemToolStripMenuItem.Text = "Delete User";
-            deleteItemToolStripMenuItem.Click += deleteItemToolStripMenuItem_Click;
-            // 
-            // refreshToolStripMenuItem
-            // 
-            refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
-            refreshToolStripMenuItem.Size = new Size(133, 22);
-            refreshToolStripMenuItem.Text = "Refresh";
-            refreshToolStripMenuItem.Click += refreshToolStripMenuItem_Click;
             // 
             // splitContainer1
             // 
@@ -108,6 +75,18 @@
             splitContainer1.Size = new Size(366, 371);
             splitContainer1.SplitterDistance = 251;
             splitContainer1.TabIndex = 1;
+            // 
+            // dataGridUsers
+            // 
+            dataGridUsers.AllowUserToAddRows = false;
+            dataGridUsers.AllowUserToDeleteRows = false;
+            dataGridUsers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridUsers.Dock = DockStyle.Fill;
+            dataGridUsers.Location = new Point(5, 5);
+            dataGridUsers.Name = "dataGridUsers";
+            dataGridUsers.RowTemplate.Height = 25;
+            dataGridUsers.Size = new Size(356, 241);
+            dataGridUsers.TabIndex = 0;
             // 
             // splitContainer2
             // 
@@ -145,27 +124,6 @@
             splitContainer3.SplitterDistance = 25;
             splitContainer3.TabIndex = 0;
             // 
-            // dataGridUsers
-            // 
-            dataGridUsers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridUsers.ContextMenuStrip = contextMenuStrip1;
-            dataGridUsers.Dock = DockStyle.Fill;
-            dataGridUsers.Location = new Point(5, 5);
-            dataGridUsers.Name = "dataGridUsers";
-            dataGridUsers.RowTemplate.Height = 25;
-            dataGridUsers.Size = new Size(356, 241);
-            dataGridUsers.TabIndex = 0;
-            // 
-            // btnSave
-            // 
-            btnSave.Dock = DockStyle.Fill;
-            btnSave.Location = new Point(0, 0);
-            btnSave.Name = "btnSave";
-            btnSave.Size = new Size(356, 44);
-            btnSave.TabIndex = 0;
-            btnSave.Text = "Save";
-            btnSave.UseVisualStyleBackColor = true;
-            // 
             // splitContainer4
             // 
             splitContainer4.Dock = DockStyle.Fill;
@@ -182,17 +140,6 @@
             splitContainer4.Size = new Size(356, 25);
             splitContainer4.SplitterDistance = 80;
             splitContainer4.TabIndex = 0;
-            // 
-            // txtUserName
-            // 
-            txtUserName.Dock = DockStyle.Fill;
-            txtUserName.Enabled = false;
-            txtUserName.Location = new Point(0, 0);
-            txtUserName.Name = "txtUserName";
-            txtUserName.PlaceholderText = "User Name";
-            txtUserName.ReadOnly = true;
-            txtUserName.Size = new Size(356, 23);
-            txtUserName.TabIndex = 0;
             // 
             // txtUserID
             // 
@@ -216,6 +163,27 @@
             txtUserAccess.Size = new Size(272, 23);
             txtUserAccess.TabIndex = 0;
             // 
+            // txtUserName
+            // 
+            txtUserName.Dock = DockStyle.Fill;
+            txtUserName.Enabled = false;
+            txtUserName.Location = new Point(0, 0);
+            txtUserName.Name = "txtUserName";
+            txtUserName.PlaceholderText = "User Name";
+            txtUserName.ReadOnly = true;
+            txtUserName.Size = new Size(356, 23);
+            txtUserName.TabIndex = 0;
+            // 
+            // btnSave
+            // 
+            btnSave.Dock = DockStyle.Fill;
+            btnSave.Location = new Point(0, 0);
+            btnSave.Name = "btnSave";
+            btnSave.Size = new Size(356, 44);
+            btnSave.TabIndex = 0;
+            btnSave.Text = "Save";
+            btnSave.UseVisualStyleBackColor = true;
+            // 
             // UserManagementForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -225,11 +193,11 @@
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
             Name = "UserManagementForm";
             Text = "User Management";
-            contextMenuStrip1.ResumeLayout(false);
             splitContainer1.Panel1.ResumeLayout(false);
             splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
             splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridUsers).EndInit();
             splitContainer2.Panel1.ResumeLayout(false);
             splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer2).EndInit();
@@ -239,7 +207,6 @@
             splitContainer3.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer3).EndInit();
             splitContainer3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridUsers).EndInit();
             splitContainer4.Panel1.ResumeLayout(false);
             splitContainer4.Panel1.PerformLayout();
             splitContainer4.Panel2.ResumeLayout(false);
@@ -250,10 +217,6 @@
         }
 
         #endregion
-        private ContextMenuStrip contextMenuStrip1;
-        private ToolStripMenuItem newItemToolStripMenuItem;
-        private ToolStripMenuItem deleteItemToolStripMenuItem;
-        private ToolStripMenuItem refreshToolStripMenuItem;
         private SplitContainer splitContainer1;
         private SplitContainer splitContainer2;
         private SplitContainer splitContainer3;

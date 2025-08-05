@@ -106,7 +106,7 @@
             // 
             insertItemToolStripMenuItem.Name = "insertItemToolStripMenuItem";
             insertItemToolStripMenuItem.Size = new Size(134, 22);
-            insertItemToolStripMenuItem.Text = "Insert Item";
+            insertItemToolStripMenuItem.Text = "New Item";
             insertItemToolStripMenuItem.Click += insertItemToolStripMenuItem_Click;
             // 
             // deleteItemToolStripMenuItem
@@ -121,6 +121,7 @@
             refreshToolStripMenuItem.Name = "refreshToolStripMenuItem";
             refreshToolStripMenuItem.Size = new Size(134, 22);
             refreshToolStripMenuItem.Text = "Refresh";
+            refreshToolStripMenuItem.Click += refreshToolStripMenuItem_Click;
             // 
             // splitContainer2
             // 

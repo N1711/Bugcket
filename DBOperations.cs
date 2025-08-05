@@ -214,6 +214,50 @@ namespace BugTracker
                 return 0;
             }
         }
+
+        public static long InsertVersionItem(int productId, string version)
+        {
+            var sql = "INSERT INTO versions (productId, version) VALUES (@productId, @version)";
+            if (version.Length == 0 || productId == 0)
+            {
+                return 0;
+            }
+            try
+            {
+                var connection = new SQLiteConnection("Data Source=BugTracker.db");
+                connection.Open();
+                var command = new SQLiteCommand(sql, connection);
+                command.Parameters.AddWithValue("@productId", productId);
+                command.Parameters.AddWithValue("@version", version);
+                
+                var rowInserted = command.ExecuteNonQuery();
+                if (rowInserted > 0)
+                {
+                    return connection.LastInsertRowId;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            catch (SQLiteException ex)
+            {
+                Debug.WriteLine(ex.Message);
+                return 0;
+            }
+        }
+
+        public static bool DeleteVersionItem(int id)
+        {
+            string sql = "Delete from versions where id = @id";
+            var connection = new SQLiteConnection("Data Source=BugTracker.db");
+            connection.Open();
+            using var command = new SQLiteCommand(sql, connection);
+            command.Parameters.AddWithValue("@id", id);
+            var rowDeleted = command.ExecuteNonQuery();
+            return rowDeleted > 0;
+        }
+
         public static bool DeleteItem(int id)
         {
             string sql = "Delete from bugs where id = @id";
