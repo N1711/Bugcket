@@ -46,7 +46,9 @@ namespace BugTracker
             this.Left = 0;
             this.Top = 0;
             WindowState = FormWindowState.Normal;
+            
         }
+
 
         public void InitializeDialog()
         {

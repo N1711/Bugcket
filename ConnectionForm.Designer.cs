@@ -30,23 +30,24 @@
         {
             splitContainer1 = new SplitContainer();
             listBox1 = new ListBox();
-            groupBox1 = new GroupBox();
-            groupBox2 = new GroupBox();
-            groupBox3 = new GroupBox();
             btnSave = new Button();
-            rbtnEmbed = new RadioButton();
-            rbtnMongo = new RadioButton();
-            checkBox1 = new CheckBox();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
+            groupBox3 = new GroupBox();
             btnBrowse = new Button();
+            textBox2 = new TextBox();
+            groupBox2 = new GroupBox();
+            textBox1 = new TextBox();
+            checkBox1 = new CheckBox();
+            groupBox1 = new GroupBox();
+            rbtnMongo = new RadioButton();
+            rbtnEmbed = new RadioButton();
+            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
             splitContainer1.SuspendLayout();
-            groupBox1.SuspendLayout();
-            groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
+            groupBox2.SuspendLayout();
+            groupBox1.SuspendLayout();
             SuspendLayout();
             // 
             // splitContainer1
@@ -80,16 +81,44 @@
             listBox1.Size = new Size(118, 354);
             listBox1.TabIndex = 0;
             // 
-            // groupBox1
+            // btnSave
             // 
-            groupBox1.Controls.Add(rbtnMongo);
-            groupBox1.Controls.Add(rbtnEmbed);
-            groupBox1.Location = new Point(3, 3);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(227, 60);
-            groupBox1.TabIndex = 0;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "Connection";
+            btnSave.Location = new Point(2, 325);
+            btnSave.Name = "btnSave";
+            btnSave.Size = new Size(231, 23);
+            btnSave.TabIndex = 3;
+            btnSave.Text = "Save";
+            btnSave.UseVisualStyleBackColor = true;
+            // 
+            // groupBox3
+            // 
+            groupBox3.Controls.Add(button1);
+            groupBox3.Controls.Add(btnBrowse);
+            groupBox3.Controls.Add(textBox2);
+            groupBox3.Location = new Point(4, 159);
+            groupBox3.Name = "groupBox3";
+            groupBox3.Size = new Size(226, 161);
+            groupBox3.TabIndex = 2;
+            groupBox3.TabStop = false;
+            groupBox3.Text = "Connection Details";
+            // 
+            // btnBrowse
+            // 
+            btnBrowse.Location = new Point(5, 60);
+            btnBrowse.Name = "btnBrowse";
+            btnBrowse.Size = new Size(212, 23);
+            btnBrowse.TabIndex = 1;
+            btnBrowse.Text = "Browse";
+            btnBrowse.UseVisualStyleBackColor = true;
+            // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(5, 26);
+            textBox2.Name = "textBox2";
+            textBox2.PlaceholderText = "Connection String";
+            textBox2.ReadOnly = true;
+            textBox2.Size = new Size(212, 23);
+            textBox2.TabIndex = 0;
             // 
             // groupBox2
             // 
@@ -102,36 +131,35 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "Security";
             // 
-            // groupBox3
+            // textBox1
             // 
-            groupBox3.Controls.Add(btnBrowse);
-            groupBox3.Controls.Add(textBox2);
-            groupBox3.Location = new Point(4, 159);
-            groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(226, 161);
-            groupBox3.TabIndex = 2;
-            groupBox3.TabStop = false;
-            groupBox3.Text = "Connection Details";
+            textBox1.Location = new Point(6, 47);
+            textBox1.Name = "textBox1";
+            textBox1.PlaceholderText = "Password";
+            textBox1.ReadOnly = true;
+            textBox1.Size = new Size(212, 23);
+            textBox1.TabIndex = 1;
             // 
-            // btnSave
+            // checkBox1
             // 
-            btnSave.Location = new Point(2, 325);
-            btnSave.Name = "btnSave";
-            btnSave.Size = new Size(231, 23);
-            btnSave.TabIndex = 3;
-            btnSave.Text = "Save";
-            btnSave.UseVisualStyleBackColor = true;
+            checkBox1.AutoSize = true;
+            checkBox1.Location = new Point(6, 22);
+            checkBox1.Name = "checkBox1";
+            checkBox1.Size = new Size(117, 19);
+            checkBox1.TabIndex = 0;
+            checkBox1.Text = "Encrypt Database";
+            checkBox1.UseVisualStyleBackColor = true;
             // 
-            // rbtnEmbed
+            // groupBox1
             // 
-            rbtnEmbed.AutoSize = true;
-            rbtnEmbed.Location = new Point(21, 26);
-            rbtnEmbed.Name = "rbtnEmbed";
-            rbtnEmbed.Size = new Size(75, 19);
-            rbtnEmbed.TabIndex = 0;
-            rbtnEmbed.TabStop = true;
-            rbtnEmbed.Text = "Embeded";
-            rbtnEmbed.UseVisualStyleBackColor = true;
+            groupBox1.Controls.Add(rbtnMongo);
+            groupBox1.Controls.Add(rbtnEmbed);
+            groupBox1.Location = new Point(3, 3);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(227, 60);
+            groupBox1.TabIndex = 0;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Connection";
             // 
             // rbtnMongo
             // 
@@ -144,42 +172,25 @@
             rbtnMongo.Text = "MongoDB";
             rbtnMongo.UseVisualStyleBackColor = true;
             // 
-            // checkBox1
+            // rbtnEmbed
             // 
-            checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(6, 22);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(117, 19);
-            checkBox1.TabIndex = 0;
-            checkBox1.Text = "Encrypt Database";
-            checkBox1.UseVisualStyleBackColor = true;
+            rbtnEmbed.AutoSize = true;
+            rbtnEmbed.Location = new Point(21, 26);
+            rbtnEmbed.Name = "rbtnEmbed";
+            rbtnEmbed.Size = new Size(75, 19);
+            rbtnEmbed.TabIndex = 0;
+            rbtnEmbed.TabStop = true;
+            rbtnEmbed.Text = "Embeded";
+            rbtnEmbed.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // button1
             // 
-            textBox1.Location = new Point(6, 47);
-            textBox1.Name = "textBox1";
-            textBox1.PlaceholderText = "Password";
-            textBox1.ReadOnly = true;
-            textBox1.Size = new Size(212, 23);
-            textBox1.TabIndex = 1;
-            // 
-            // textBox2
-            // 
-            textBox2.Location = new Point(5, 26);
-            textBox2.Name = "textBox2";
-            textBox2.PlaceholderText = "Connection String";
-            textBox2.ReadOnly = true;
-            textBox2.Size = new Size(212, 23);
-            textBox2.TabIndex = 0;
-            // 
-            // btnBrowse
-            // 
-            btnBrowse.Location = new Point(5, 60);
-            btnBrowse.Name = "btnBrowse";
-            btnBrowse.Size = new Size(212, 23);
-            btnBrowse.TabIndex = 1;
-            btnBrowse.Text = "Browse";
-            btnBrowse.UseVisualStyleBackColor = true;
+            button1.Location = new Point(5, 89);
+            button1.Name = "button1";
+            button1.Size = new Size(212, 23);
+            button1.TabIndex = 2;
+            button1.Text = "Test DB Connection";
+            button1.UseVisualStyleBackColor = true;
             // 
             // ConnectionForm
             // 
@@ -194,12 +205,12 @@
             splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
             splitContainer1.ResumeLayout(false);
-            groupBox1.ResumeLayout(false);
-            groupBox1.PerformLayout();
-            groupBox2.ResumeLayout(false);
-            groupBox2.PerformLayout();
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
+            groupBox2.ResumeLayout(false);
+            groupBox2.PerformLayout();
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -217,5 +228,6 @@
         private TextBox textBox1;
         private TextBox textBox2;
         private Button btnBrowse;
+        private Button button1;
     }
 }

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BugTracker));
             menuStrip1 = new MenuStrip();
             appToolStripMenuItem = new ToolStripMenuItem();
             signOutToolStripMenuItem = new ToolStripMenuItem();
@@ -135,6 +136,7 @@
             btnReportExport = new Button();
             btnReportSaveQuery = new Button();
             dataGridReport = new DataGridView();
+            imageList1 = new ImageList(components);
             menuStrip1.SuspendLayout();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -241,30 +243,40 @@
             // menuStrip1
             // 
             menuStrip1.AutoSize = false;
+            menuStrip1.BackColor = SystemColors.ButtonHighlight;
+            menuStrip1.ImageScalingSize = new Size(32, 32);
             menuStrip1.Items.AddRange(new ToolStripItem[] { appToolStripMenuItem, viewToolStripMenuItem, configToolStripMenuItem, helpToolStripMenuItem });
-            menuStrip1.LayoutStyle = ToolStripLayoutStyle.HorizontalStackWithOverflow;
             menuStrip1.Location = new Point(5, 5);
+            menuStrip1.Margin = new Padding(0, 0, 5, 0);
             menuStrip1.Name = "menuStrip1";
             menuStrip1.RenderMode = ToolStripRenderMode.Professional;
-            menuStrip1.Size = new Size(1009, 61);
+            menuStrip1.Size = new Size(1009, 55);
             menuStrip1.TabIndex = 2;
             menuStrip1.Text = "menuStrip1";
             // 
             // appToolStripMenuItem
             // 
+            appToolStripMenuItem.AutoSize = false;
             appToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { signOutToolStripMenuItem, exitToolStripMenuItem });
+            appToolStripMenuItem.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            appToolStripMenuItem.Image = (Image)resources.GetObject("appToolStripMenuItem.Image");
+            appToolStripMenuItem.ImageScaling = ToolStripItemImageScaling.None;
+            appToolStripMenuItem.Margin = new Padding(0, 0, 10, 0);
             appToolStripMenuItem.Name = "appToolStripMenuItem";
-            appToolStripMenuItem.Size = new Size(41, 57);
+            appToolStripMenuItem.Size = new Size(44, 51);
             appToolStripMenuItem.Text = "App";
+            appToolStripMenuItem.TextImageRelation = TextImageRelation.ImageAboveText;
             // 
             // signOutToolStripMenuItem
             // 
+            signOutToolStripMenuItem.Image = (Image)resources.GetObject("signOutToolStripMenuItem.Image");
             signOutToolStripMenuItem.Name = "signOutToolStripMenuItem";
             signOutToolStripMenuItem.Size = new Size(120, 22);
             signOutToolStripMenuItem.Text = "Sign Out";
             // 
             // exitToolStripMenuItem
             // 
+            exitToolStripMenuItem.Image = (Image)resources.GetObject("exitToolStripMenuItem.Image");
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             exitToolStripMenuItem.Size = new Size(120, 22);
             exitToolStripMenuItem.Text = "Exit";
@@ -273,12 +285,17 @@
             // viewToolStripMenuItem
             // 
             viewToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { manageViewsToolStripMenuItem });
+            viewToolStripMenuItem.Image = (Image)resources.GetObject("viewToolStripMenuItem.Image");
+            viewToolStripMenuItem.ImageScaling = ToolStripItemImageScaling.None;
+            viewToolStripMenuItem.Margin = new Padding(0, 0, 10, 0);
             viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            viewToolStripMenuItem.Size = new Size(44, 57);
+            viewToolStripMenuItem.Size = new Size(44, 51);
             viewToolStripMenuItem.Text = "View";
+            viewToolStripMenuItem.TextImageRelation = TextImageRelation.ImageAboveText;
             // 
             // manageViewsToolStripMenuItem
             // 
+            manageViewsToolStripMenuItem.Image = (Image)resources.GetObject("manageViewsToolStripMenuItem.Image");
             manageViewsToolStripMenuItem.Name = "manageViewsToolStripMenuItem";
             manageViewsToolStripMenuItem.Size = new Size(150, 22);
             manageViewsToolStripMenuItem.Text = "Manage Views";
@@ -286,12 +303,17 @@
             // configToolStripMenuItem
             // 
             configToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { settingsToolStripMenuItem, userManagementToolStripMenuItem, productManagementToolStripMenuItem, versionManagementToolStripMenuItem });
+            configToolStripMenuItem.Image = (Image)resources.GetObject("configToolStripMenuItem.Image");
+            configToolStripMenuItem.ImageScaling = ToolStripItemImageScaling.None;
+            configToolStripMenuItem.Margin = new Padding(0, 0, 10, 0);
             configToolStripMenuItem.Name = "configToolStripMenuItem";
-            configToolStripMenuItem.Size = new Size(55, 57);
+            configToolStripMenuItem.Size = new Size(55, 51);
             configToolStripMenuItem.Text = "Config";
+            configToolStripMenuItem.TextImageRelation = TextImageRelation.ImageAboveText;
             // 
             // settingsToolStripMenuItem
             // 
+            settingsToolStripMenuItem.Image = (Image)resources.GetObject("settingsToolStripMenuItem.Image");
             settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
             settingsToolStripMenuItem.Size = new Size(190, 22);
             settingsToolStripMenuItem.Text = "Settings";
@@ -299,6 +321,7 @@
             // 
             // userManagementToolStripMenuItem
             // 
+            userManagementToolStripMenuItem.Image = (Image)resources.GetObject("userManagementToolStripMenuItem.Image");
             userManagementToolStripMenuItem.Name = "userManagementToolStripMenuItem";
             userManagementToolStripMenuItem.Size = new Size(190, 22);
             userManagementToolStripMenuItem.Text = "User Management";
@@ -321,9 +344,12 @@
             // helpToolStripMenuItem
             // 
             helpToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { aboutToolStripMenuItem, guideToolStripMenuItem });
+            helpToolStripMenuItem.Image = (Image)resources.GetObject("helpToolStripMenuItem.Image");
+            helpToolStripMenuItem.ImageScaling = ToolStripItemImageScaling.None;
             helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            helpToolStripMenuItem.Size = new Size(44, 57);
+            helpToolStripMenuItem.Size = new Size(44, 51);
             helpToolStripMenuItem.Text = "Help";
+            helpToolStripMenuItem.TextImageRelation = TextImageRelation.ImageAboveText;
             // 
             // aboutToolStripMenuItem
             // 
@@ -340,27 +366,34 @@
             // 
             // tabControl1
             // 
-            tabControl1.Alignment = TabAlignment.Left;
+            tabControl1.Appearance = TabAppearance.FlatButtons;
             tabControl1.Controls.Add(tabPage1);
             tabControl1.Controls.Add(tabPage2);
             tabControl1.Controls.Add(tabPage3);
             tabControl1.Dock = DockStyle.Fill;
-            tabControl1.Location = new Point(5, 66);
-            tabControl1.Multiline = true;
+            tabControl1.ImageList = imageList1;
+            tabControl1.ItemSize = new Size(121, 45);
+            tabControl1.Location = new Point(5, 60);
             tabControl1.Name = "tabControl1";
+            tabControl1.Padding = new Point(6, 6);
+            tabControl1.RightToLeft = RightToLeft.No;
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(1009, 692);
+            tabControl1.Size = new Size(1009, 698);
+            tabControl1.SizeMode = TabSizeMode.Fixed;
             tabControl1.TabIndex = 3;
             // 
             // tabPage1
             // 
+            tabPage1.BackColor = SystemColors.GradientInactiveCaption;
+            tabPage1.BorderStyle = BorderStyle.FixedSingle;
             tabPage1.Controls.Add(splitContainer1);
-            tabPage1.Location = new Point(27, 4);
+            tabPage1.ForeColor = SystemColors.GrayText;
+            tabPage1.ImageIndex = 0;
+            tabPage1.Location = new Point(4, 49);
             tabPage1.Name = "tabPage1";
-            tabPage1.Size = new Size(978, 684);
+            tabPage1.Size = new Size(1001, 645);
             tabPage1.TabIndex = 0;
             tabPage1.Text = "Bugs";
-            tabPage1.UseVisualStyleBackColor = true;
             // 
             // splitContainer1
             // 
@@ -373,12 +406,14 @@
             // splitContainer1.Panel1
             // 
             splitContainer1.Panel1.Controls.Add(splitContainer2);
+            splitContainer1.Panel1.RightToLeft = RightToLeft.No;
             // 
             // splitContainer1.Panel2
             // 
             splitContainer1.Panel2.Controls.Add(splitContainer3);
-            splitContainer1.Size = new Size(978, 684);
-            splitContainer1.SplitterDistance = 351;
+            splitContainer1.Panel2.RightToLeft = RightToLeft.No;
+            splitContainer1.Size = new Size(999, 643);
+            splitContainer1.SplitterDistance = 326;
             splitContainer1.TabIndex = 0;
             // 
             // splitContainer2
@@ -391,12 +426,14 @@
             // splitContainer2.Panel1
             // 
             splitContainer2.Panel1.Controls.Add(splitContainer9);
+            splitContainer2.Panel1.RightToLeft = RightToLeft.No;
             splitContainer2.Panel1MinSize = 23;
             // 
             // splitContainer2.Panel2
             // 
             splitContainer2.Panel2.Controls.Add(bugItems);
-            splitContainer2.Size = new Size(978, 351);
+            splitContainer2.Panel2.RightToLeft = RightToLeft.No;
+            splitContainer2.Size = new Size(999, 326);
             splitContainer2.SplitterDistance = 25;
             splitContainer2.TabIndex = 0;
             // 
@@ -409,12 +446,14 @@
             // splitContainer9.Panel1
             // 
             splitContainer9.Panel1.Controls.Add(label1);
+            splitContainer9.Panel1.RightToLeft = RightToLeft.No;
             // 
             // splitContainer9.Panel2
             // 
             splitContainer9.Panel2.Controls.Add(splitContainer16);
-            splitContainer9.Size = new Size(978, 25);
-            splitContainer9.SplitterDistance = 326;
+            splitContainer9.Panel2.RightToLeft = RightToLeft.No;
+            splitContainer9.Size = new Size(999, 25);
+            splitContainer9.SplitterDistance = 331;
             splitContainer9.TabIndex = 0;
             // 
             // label1
@@ -423,7 +462,7 @@
             label1.Font = new Font("Segoe UI", 14F, FontStyle.Bold, GraphicsUnit.Point);
             label1.Location = new Point(0, 0);
             label1.Name = "label1";
-            label1.Size = new Size(326, 25);
+            label1.Size = new Size(331, 25);
             label1.TabIndex = 1;
             label1.Text = "Open Items: 0";
             label1.TextAlign = ContentAlignment.MiddleLeft;
@@ -437,12 +476,14 @@
             // splitContainer16.Panel1
             // 
             splitContainer16.Panel1.Controls.Add(splitContainer21);
+            splitContainer16.Panel1.RightToLeft = RightToLeft.No;
             // 
             // splitContainer16.Panel2
             // 
             splitContainer16.Panel2.Controls.Add(splitContainer17);
-            splitContainer16.Size = new Size(648, 25);
-            splitContainer16.SplitterDistance = 250;
+            splitContainer16.Panel2.RightToLeft = RightToLeft.No;
+            splitContainer16.Size = new Size(664, 25);
+            splitContainer16.SplitterDistance = 254;
             splitContainer16.TabIndex = 0;
             // 
             // splitContainer21
@@ -454,12 +495,14 @@
             // splitContainer21.Panel1
             // 
             splitContainer21.Panel1.Controls.Add(txtFilter);
+            splitContainer21.Panel1.RightToLeft = RightToLeft.No;
             // 
             // splitContainer21.Panel2
             // 
             splitContainer21.Panel2.Controls.Add(btnFilter);
-            splitContainer21.Size = new Size(250, 25);
-            splitContainer21.SplitterDistance = 215;
+            splitContainer21.Panel2.RightToLeft = RightToLeft.No;
+            splitContainer21.Size = new Size(254, 25);
+            splitContainer21.SplitterDistance = 216;
             splitContainer21.TabIndex = 0;
             // 
             // txtFilter
@@ -468,17 +511,17 @@
             txtFilter.Location = new Point(0, 0);
             txtFilter.Name = "txtFilter";
             txtFilter.PlaceholderText = "Filter...";
-            txtFilter.Size = new Size(215, 23);
+            txtFilter.Size = new Size(216, 23);
             txtFilter.TabIndex = 1;
             // 
             // btnFilter
             // 
             btnFilter.Dock = DockStyle.Fill;
+            btnFilter.Image = (Image)resources.GetObject("btnFilter.Image");
             btnFilter.Location = new Point(0, 0);
             btnFilter.Name = "btnFilter";
-            btnFilter.Size = new Size(31, 25);
+            btnFilter.Size = new Size(34, 25);
             btnFilter.TabIndex = 0;
-            btnFilter.Text = "b";
             btnFilter.UseVisualStyleBackColor = true;
             btnFilter.Click += btnFilter_Click;
             // 
@@ -491,12 +534,14 @@
             // splitContainer17.Panel1
             // 
             splitContainer17.Panel1.Controls.Add(lblView);
+            splitContainer17.Panel1.RightToLeft = RightToLeft.No;
             // 
             // splitContainer17.Panel2
             // 
             splitContainer17.Panel2.Controls.Add(comboView);
-            splitContainer17.Size = new Size(394, 25);
-            splitContainer17.SplitterDistance = 130;
+            splitContainer17.Panel2.RightToLeft = RightToLeft.No;
+            splitContainer17.Size = new Size(406, 25);
+            splitContainer17.SplitterDistance = 132;
             splitContainer17.TabIndex = 0;
             // 
             // lblView
@@ -506,7 +551,7 @@
             lblView.ImageAlign = ContentAlignment.TopCenter;
             lblView.Location = new Point(0, 0);
             lblView.Name = "lblView";
-            lblView.Size = new Size(130, 25);
+            lblView.Size = new Size(132, 25);
             lblView.TabIndex = 0;
             lblView.Text = "View";
             lblView.TextAlign = ContentAlignment.MiddleCenter;
@@ -518,7 +563,7 @@
             comboView.FormattingEnabled = true;
             comboView.Location = new Point(0, 0);
             comboView.Name = "comboView";
-            comboView.Size = new Size(260, 23);
+            comboView.Size = new Size(270, 23);
             comboView.TabIndex = 0;
             // 
             // bugItems
@@ -528,6 +573,7 @@
             bugItems.AllowUserToResizeColumns = false;
             bugItems.AllowUserToResizeRows = false;
             bugItems.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            bugItems.BackgroundColor = SystemColors.InactiveBorder;
             bugItems.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             bugItems.ContextMenuStrip = contextMenuBugs;
             bugItems.Dock = DockStyle.Fill;
@@ -535,7 +581,7 @@
             bugItems.Name = "bugItems";
             bugItems.ReadOnly = true;
             bugItems.RowTemplate.Height = 25;
-            bugItems.Size = new Size(978, 322);
+            bugItems.Size = new Size(999, 297);
             bugItems.TabIndex = 0;
             bugItems.SelectionChanged += bugItems_SelectionChanged;
             // 
@@ -575,12 +621,14 @@
             // splitContainer3.Panel1
             // 
             splitContainer3.Panel1.Controls.Add(splitContainer4);
+            splitContainer3.Panel1.RightToLeft = RightToLeft.No;
             // 
             // splitContainer3.Panel2
             // 
             splitContainer3.Panel2.Controls.Add(splitContainer5);
-            splitContainer3.Size = new Size(978, 329);
-            splitContainer3.SplitterDistance = 326;
+            splitContainer3.Panel2.RightToLeft = RightToLeft.No;
+            splitContainer3.Size = new Size(999, 313);
+            splitContainer3.SplitterDistance = 331;
             splitContainer3.TabIndex = 0;
             // 
             // splitContainer4
@@ -592,11 +640,13 @@
             // splitContainer4.Panel1
             // 
             splitContainer4.Panel1.Controls.Add(tableLayoutPanel1);
+            splitContainer4.Panel1.RightToLeft = RightToLeft.No;
             // 
             // splitContainer4.Panel2
             // 
             splitContainer4.Panel2.Controls.Add(tableLayoutPanel2);
-            splitContainer4.Size = new Size(326, 329);
+            splitContainer4.Panel2.RightToLeft = RightToLeft.No;
+            splitContainer4.Size = new Size(331, 313);
             splitContainer4.SplitterDistance = 108;
             splitContainer4.TabIndex = 0;
             // 
@@ -631,6 +681,8 @@
             // 
             label9.AutoSize = true;
             label9.Dock = DockStyle.Fill;
+            label9.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label9.ForeColor = Color.FromArgb(64, 64, 64);
             label9.Location = new Point(3, 238);
             label9.Name = "label9";
             label9.Size = new Size(102, 23);
@@ -642,6 +694,8 @@
             // 
             label8.AutoSize = true;
             label8.Dock = DockStyle.Fill;
+            label8.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label8.ForeColor = Color.FromArgb(64, 64, 64);
             label8.Location = new Point(3, 212);
             label8.Name = "label8";
             label8.Size = new Size(102, 26);
@@ -653,6 +707,8 @@
             // 
             label7.AutoSize = true;
             label7.Dock = DockStyle.Fill;
+            label7.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label7.ForeColor = Color.FromArgb(64, 64, 64);
             label7.Location = new Point(3, 182);
             label7.Name = "label7";
             label7.Size = new Size(102, 30);
@@ -664,6 +720,8 @@
             // 
             label6.AutoSize = true;
             label6.Dock = DockStyle.Fill;
+            label6.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label6.ForeColor = Color.FromArgb(64, 64, 64);
             label6.Location = new Point(3, 111);
             label6.Name = "label6";
             label6.Size = new Size(102, 71);
@@ -675,6 +733,8 @@
             // 
             label5.AutoSize = true;
             label5.Dock = DockStyle.Fill;
+            label5.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label5.ForeColor = Color.FromArgb(64, 64, 64);
             label5.Location = new Point(3, 83);
             label5.Name = "label5";
             label5.Size = new Size(102, 28);
@@ -686,6 +746,8 @@
             // 
             label4.AutoSize = true;
             label4.Dock = DockStyle.Fill;
+            label4.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label4.ForeColor = Color.FromArgb(64, 64, 64);
             label4.Location = new Point(3, 56);
             label4.Name = "label4";
             label4.Size = new Size(102, 27);
@@ -697,6 +759,8 @@
             // 
             label3.AutoSize = true;
             label3.Dock = DockStyle.Fill;
+            label3.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.ForeColor = Color.FromArgb(64, 64, 64);
             label3.Location = new Point(3, 30);
             label3.Name = "label3";
             label3.Size = new Size(102, 26);
@@ -708,6 +772,8 @@
             // 
             label2.AutoSize = true;
             label2.Dock = DockStyle.Fill;
+            label2.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.ForeColor = Color.FromArgb(64, 64, 64);
             label2.Location = new Point(3, 0);
             label2.Name = "label2";
             label2.Size = new Size(102, 30);
@@ -743,7 +809,7 @@
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 26F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 47F));
-            tableLayoutPanel2.Size = new Size(214, 315);
+            tableLayoutPanel2.Size = new Size(219, 315);
             tableLayoutPanel2.TabIndex = 0;
             // 
             // comboProducts
@@ -753,7 +819,7 @@
             comboProducts.FormattingEnabled = true;
             comboProducts.Location = new Point(3, 3);
             comboProducts.Name = "comboProducts";
-            comboProducts.Size = new Size(208, 23);
+            comboProducts.Size = new Size(213, 23);
             comboProducts.TabIndex = 0;
             // 
             // comboVersions
@@ -763,7 +829,7 @@
             comboVersions.FormattingEnabled = true;
             comboVersions.Location = new Point(3, 32);
             comboVersions.Name = "comboVersions";
-            comboVersions.Size = new Size(208, 23);
+            comboVersions.Size = new Size(213, 23);
             comboVersions.TabIndex = 1;
             // 
             // comboStatus
@@ -773,7 +839,7 @@
             comboStatus.FormattingEnabled = true;
             comboStatus.Location = new Point(3, 61);
             comboStatus.Name = "comboStatus";
-            comboStatus.Size = new Size(208, 23);
+            comboStatus.Size = new Size(213, 23);
             comboStatus.TabIndex = 2;
             // 
             // comboPriority
@@ -783,16 +849,17 @@
             comboPriority.FormattingEnabled = true;
             comboPriority.Location = new Point(3, 89);
             comboPriority.Name = "comboPriority";
-            comboPriority.Size = new Size(208, 23);
+            comboPriority.Size = new Size(213, 23);
             comboPriority.TabIndex = 3;
             // 
             // txtDescription
             // 
+            txtDescription.BackColor = SystemColors.ControlLightLight;
             txtDescription.Dock = DockStyle.Fill;
             txtDescription.Location = new Point(3, 117);
             txtDescription.Multiline = true;
             txtDescription.Name = "txtDescription";
-            txtDescription.Size = new Size(208, 61);
+            txtDescription.Size = new Size(213, 61);
             txtDescription.TabIndex = 4;
             // 
             // txtDetectedName
@@ -800,7 +867,7 @@
             txtDetectedName.Dock = DockStyle.Fill;
             txtDetectedName.Location = new Point(3, 184);
             txtDetectedName.Name = "txtDetectedName";
-            txtDetectedName.Size = new Size(208, 23);
+            txtDetectedName.Size = new Size(213, 23);
             txtDetectedName.TabIndex = 5;
             // 
             // dtPicker
@@ -808,7 +875,7 @@
             dtPicker.Dock = DockStyle.Fill;
             dtPicker.Location = new Point(3, 215);
             dtPicker.Name = "dtPicker";
-            dtPicker.Size = new Size(208, 23);
+            dtPicker.Size = new Size(213, 23);
             dtPicker.TabIndex = 6;
             // 
             // txtID
@@ -817,17 +884,22 @@
             txtID.Location = new Point(3, 241);
             txtID.Name = "txtID";
             txtID.ReadOnly = true;
-            txtID.Size = new Size(208, 23);
+            txtID.Size = new Size(213, 23);
             txtID.TabIndex = 7;
             // 
             // button1
             // 
             button1.Dock = DockStyle.Fill;
+            button1.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            button1.ForeColor = Color.FromArgb(64, 64, 64);
+            button1.Image = (Image)resources.GetObject("button1.Image");
             button1.Location = new Point(3, 271);
             button1.Name = "button1";
-            button1.Size = new Size(208, 41);
+            button1.Size = new Size(213, 41);
             button1.TabIndex = 8;
             button1.Text = "Save";
+            button1.TextAlign = ContentAlignment.MiddleRight;
+            button1.TextImageRelation = TextImageRelation.ImageBeforeText;
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
@@ -842,44 +914,51 @@
             // splitContainer5.Panel1
             // 
             splitContainer5.Panel1.Controls.Add(txtNotesIssue);
+            splitContainer5.Panel1.RightToLeft = RightToLeft.No;
             // 
             // splitContainer5.Panel2
             // 
             splitContainer5.Panel2.Controls.Add(txtNotesFix);
-            splitContainer5.Size = new Size(648, 329);
-            splitContainer5.SplitterDistance = 162;
+            splitContainer5.Panel2.RightToLeft = RightToLeft.No;
+            splitContainer5.Size = new Size(664, 313);
+            splitContainer5.SplitterDistance = 153;
             splitContainer5.TabIndex = 0;
             // 
             // txtNotesIssue
             // 
+            txtNotesIssue.BackColor = SystemColors.ControlLightLight;
             txtNotesIssue.Dock = DockStyle.Fill;
             txtNotesIssue.Location = new Point(0, 0);
             txtNotesIssue.Multiline = true;
             txtNotesIssue.Name = "txtNotesIssue";
             txtNotesIssue.PlaceholderText = "Notes about the issue...";
-            txtNotesIssue.Size = new Size(648, 162);
+            txtNotesIssue.Size = new Size(664, 153);
             txtNotesIssue.TabIndex = 0;
             // 
             // txtNotesFix
             // 
+            txtNotesFix.BackColor = SystemColors.ControlLightLight;
             txtNotesFix.Dock = DockStyle.Fill;
             txtNotesFix.Location = new Point(0, 0);
             txtNotesFix.Multiline = true;
             txtNotesFix.Name = "txtNotesFix";
             txtNotesFix.PlaceholderText = "Notes about the fix...";
-            txtNotesFix.Size = new Size(648, 163);
+            txtNotesFix.Size = new Size(664, 156);
             txtNotesFix.TabIndex = 0;
             // 
             // tabPage2
             // 
+            tabPage2.BackColor = SystemColors.GradientInactiveCaption;
+            tabPage2.BorderStyle = BorderStyle.FixedSingle;
             tabPage2.Controls.Add(splitContainer6);
-            tabPage2.Location = new Point(27, 4);
+            tabPage2.ForeColor = SystemColors.GrayText;
+            tabPage2.ImageIndex = 1;
+            tabPage2.Location = new Point(4, 49);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(978, 684);
+            tabPage2.Size = new Size(1001, 645);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "Enhancements";
-            tabPage2.UseVisualStyleBackColor = true;
             // 
             // splitContainer6
             // 
@@ -892,12 +971,14 @@
             // splitContainer6.Panel1
             // 
             splitContainer6.Panel1.Controls.Add(splitContainer7);
+            splitContainer6.Panel1.RightToLeft = RightToLeft.No;
             // 
             // splitContainer6.Panel2
             // 
             splitContainer6.Panel2.Controls.Add(splitContainer8);
-            splitContainer6.Size = new Size(972, 678);
-            splitContainer6.SplitterDistance = 351;
+            splitContainer6.Panel2.RightToLeft = RightToLeft.No;
+            splitContainer6.Size = new Size(993, 637);
+            splitContainer6.SplitterDistance = 327;
             splitContainer6.TabIndex = 0;
             // 
             // splitContainer7
@@ -910,13 +991,15 @@
             // splitContainer7.Panel1
             // 
             splitContainer7.Panel1.Controls.Add(splitContainer18);
+            splitContainer7.Panel1.RightToLeft = RightToLeft.No;
             splitContainer7.Panel1MinSize = 23;
             // 
             // splitContainer7.Panel2
             // 
             splitContainer7.Panel2.Controls.Add(enhancementItems);
+            splitContainer7.Panel2.RightToLeft = RightToLeft.No;
             splitContainer7.Panel2MinSize = 23;
-            splitContainer7.Size = new Size(972, 351);
+            splitContainer7.Size = new Size(993, 327);
             splitContainer7.SplitterDistance = 25;
             splitContainer7.TabIndex = 0;
             // 
@@ -929,12 +1012,14 @@
             // splitContainer18.Panel1
             // 
             splitContainer18.Panel1.Controls.Add(txtOpenItemsEn);
+            splitContainer18.Panel1.RightToLeft = RightToLeft.No;
             // 
             // splitContainer18.Panel2
             // 
             splitContainer18.Panel2.Controls.Add(splitContainer19);
-            splitContainer18.Size = new Size(972, 25);
-            splitContainer18.SplitterDistance = 324;
+            splitContainer18.Panel2.RightToLeft = RightToLeft.No;
+            splitContainer18.Size = new Size(993, 25);
+            splitContainer18.SplitterDistance = 329;
             splitContainer18.TabIndex = 0;
             // 
             // txtOpenItemsEn
@@ -943,7 +1028,7 @@
             txtOpenItemsEn.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             txtOpenItemsEn.Location = new Point(0, 0);
             txtOpenItemsEn.Name = "txtOpenItemsEn";
-            txtOpenItemsEn.Size = new Size(324, 25);
+            txtOpenItemsEn.Size = new Size(329, 25);
             txtOpenItemsEn.TabIndex = 0;
             txtOpenItemsEn.Text = "Open Items: 0";
             txtOpenItemsEn.TextAlign = ContentAlignment.MiddleLeft;
@@ -957,12 +1042,14 @@
             // splitContainer19.Panel1
             // 
             splitContainer19.Panel1.Controls.Add(splitContainer22);
+            splitContainer19.Panel1.RightToLeft = RightToLeft.No;
             // 
             // splitContainer19.Panel2
             // 
             splitContainer19.Panel2.Controls.Add(splitContainer20);
-            splitContainer19.Size = new Size(644, 25);
-            splitContainer19.SplitterDistance = 250;
+            splitContainer19.Panel2.RightToLeft = RightToLeft.No;
+            splitContainer19.Size = new Size(660, 25);
+            splitContainer19.SplitterDistance = 255;
             splitContainer19.TabIndex = 1;
             // 
             // splitContainer22
@@ -974,12 +1061,14 @@
             // splitContainer22.Panel1
             // 
             splitContainer22.Panel1.Controls.Add(txtFilterEn);
+            splitContainer22.Panel1.RightToLeft = RightToLeft.No;
             // 
             // splitContainer22.Panel2
             // 
             splitContainer22.Panel2.Controls.Add(bFilterEn);
-            splitContainer22.Size = new Size(250, 25);
-            splitContainer22.SplitterDistance = 215;
+            splitContainer22.Panel2.RightToLeft = RightToLeft.No;
+            splitContainer22.Size = new Size(255, 25);
+            splitContainer22.SplitterDistance = 218;
             splitContainer22.TabIndex = 0;
             // 
             // txtFilterEn
@@ -988,17 +1077,17 @@
             txtFilterEn.Location = new Point(0, 0);
             txtFilterEn.Name = "txtFilterEn";
             txtFilterEn.PlaceholderText = "Filter...";
-            txtFilterEn.Size = new Size(215, 23);
+            txtFilterEn.Size = new Size(218, 23);
             txtFilterEn.TabIndex = 1;
             // 
             // bFilterEn
             // 
             bFilterEn.Dock = DockStyle.Fill;
+            bFilterEn.Image = (Image)resources.GetObject("bFilterEn.Image");
             bFilterEn.Location = new Point(0, 0);
             bFilterEn.Name = "bFilterEn";
-            bFilterEn.Size = new Size(31, 25);
+            bFilterEn.Size = new Size(33, 25);
             bFilterEn.TabIndex = 0;
-            bFilterEn.Text = "b";
             bFilterEn.UseVisualStyleBackColor = true;
             bFilterEn.Click += bFilterEn_Click;
             // 
@@ -1011,12 +1100,14 @@
             // splitContainer20.Panel1
             // 
             splitContainer20.Panel1.Controls.Add(lblViewEn);
+            splitContainer20.Panel1.RightToLeft = RightToLeft.No;
             // 
             // splitContainer20.Panel2
             // 
             splitContainer20.Panel2.Controls.Add(comboViewEn);
-            splitContainer20.Size = new Size(390, 25);
-            splitContainer20.SplitterDistance = 130;
+            splitContainer20.Panel2.RightToLeft = RightToLeft.No;
+            splitContainer20.Size = new Size(401, 25);
+            splitContainer20.SplitterDistance = 133;
             splitContainer20.TabIndex = 0;
             // 
             // lblViewEn
@@ -1025,7 +1116,7 @@
             lblViewEn.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             lblViewEn.Location = new Point(0, 0);
             lblViewEn.Name = "lblViewEn";
-            lblViewEn.Size = new Size(130, 25);
+            lblViewEn.Size = new Size(133, 25);
             lblViewEn.TabIndex = 0;
             lblViewEn.Text = "View";
             lblViewEn.TextAlign = ContentAlignment.TopCenter;
@@ -1037,7 +1128,7 @@
             comboViewEn.FormattingEnabled = true;
             comboViewEn.Location = new Point(0, 0);
             comboViewEn.Name = "comboViewEn";
-            comboViewEn.Size = new Size(256, 23);
+            comboViewEn.Size = new Size(264, 23);
             comboViewEn.TabIndex = 0;
             // 
             // enhancementItems
@@ -1045,6 +1136,7 @@
             enhancementItems.AllowUserToAddRows = false;
             enhancementItems.AllowUserToDeleteRows = false;
             enhancementItems.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            enhancementItems.BackgroundColor = SystemColors.InactiveBorder;
             enhancementItems.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             enhancementItems.ContextMenuStrip = contextMenuEn;
             enhancementItems.Dock = DockStyle.Fill;
@@ -1052,7 +1144,7 @@
             enhancementItems.Name = "enhancementItems";
             enhancementItems.ReadOnly = true;
             enhancementItems.RowTemplate.Height = 25;
-            enhancementItems.Size = new Size(972, 322);
+            enhancementItems.Size = new Size(993, 298);
             enhancementItems.TabIndex = 0;
             enhancementItems.SelectionChanged += enhancementItems_SelectionChanged;
             // 
@@ -1092,12 +1184,14 @@
             // splitContainer8.Panel1
             // 
             splitContainer8.Panel1.Controls.Add(splitContainer10);
+            splitContainer8.Panel1.RightToLeft = RightToLeft.No;
             // 
             // splitContainer8.Panel2
             // 
             splitContainer8.Panel2.Controls.Add(txtEnNotes);
-            splitContainer8.Size = new Size(972, 323);
-            splitContainer8.SplitterDistance = 324;
+            splitContainer8.Panel2.RightToLeft = RightToLeft.No;
+            splitContainer8.Size = new Size(993, 306);
+            splitContainer8.SplitterDistance = 329;
             splitContainer8.TabIndex = 0;
             // 
             // splitContainer10
@@ -1109,12 +1203,14 @@
             // splitContainer10.Panel1
             // 
             splitContainer10.Panel1.Controls.Add(tableLayoutPanel3);
+            splitContainer10.Panel1.RightToLeft = RightToLeft.No;
             // 
             // splitContainer10.Panel2
             // 
             splitContainer10.Panel2.Controls.Add(tableLayoutPanel4);
-            splitContainer10.Size = new Size(324, 323);
-            splitContainer10.SplitterDistance = 123;
+            splitContainer10.Panel2.RightToLeft = RightToLeft.No;
+            splitContainer10.Size = new Size(329, 306);
+            splitContainer10.SplitterDistance = 124;
             splitContainer10.TabIndex = 0;
             // 
             // tableLayoutPanel3
@@ -1141,16 +1237,18 @@
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 26F));
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 22F));
-            tableLayoutPanel3.Size = new Size(123, 261);
+            tableLayoutPanel3.Size = new Size(124, 261);
             tableLayoutPanel3.TabIndex = 1;
             // 
             // label11
             // 
             label11.AutoSize = true;
             label11.Dock = DockStyle.Fill;
+            label11.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label11.ForeColor = Color.FromArgb(64, 64, 64);
             label11.Location = new Point(3, 238);
             label11.Name = "label11";
-            label11.Size = new Size(117, 23);
+            label11.Size = new Size(118, 23);
             label11.TabIndex = 7;
             label11.Text = "ID";
             label11.TextAlign = ContentAlignment.MiddleLeft;
@@ -1159,9 +1257,11 @@
             // 
             label12.AutoSize = true;
             label12.Dock = DockStyle.Fill;
+            label12.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label12.ForeColor = Color.FromArgb(64, 64, 64);
             label12.Location = new Point(3, 212);
             label12.Name = "label12";
-            label12.Size = new Size(117, 26);
+            label12.Size = new Size(118, 26);
             label12.TabIndex = 6;
             label12.Text = "Detected On";
             label12.TextAlign = ContentAlignment.MiddleLeft;
@@ -1170,9 +1270,11 @@
             // 
             label13.AutoSize = true;
             label13.Dock = DockStyle.Fill;
+            label13.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label13.ForeColor = Color.FromArgb(64, 64, 64);
             label13.Location = new Point(3, 182);
             label13.Name = "label13";
-            label13.Size = new Size(117, 30);
+            label13.Size = new Size(118, 30);
             label13.TabIndex = 5;
             label13.Text = "Detected By";
             label13.TextAlign = ContentAlignment.MiddleLeft;
@@ -1181,9 +1283,11 @@
             // 
             label14.AutoSize = true;
             label14.Dock = DockStyle.Fill;
+            label14.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label14.ForeColor = Color.FromArgb(64, 64, 64);
             label14.Location = new Point(3, 111);
             label14.Name = "label14";
-            label14.Size = new Size(117, 71);
+            label14.Size = new Size(118, 71);
             label14.TabIndex = 4;
             label14.Text = "Description";
             label14.TextAlign = ContentAlignment.MiddleLeft;
@@ -1192,9 +1296,11 @@
             // 
             label15.AutoSize = true;
             label15.Dock = DockStyle.Fill;
+            label15.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label15.ForeColor = Color.FromArgb(64, 64, 64);
             label15.Location = new Point(3, 83);
             label15.Name = "label15";
-            label15.Size = new Size(117, 28);
+            label15.Size = new Size(118, 28);
             label15.TabIndex = 3;
             label15.Text = "Priority";
             label15.TextAlign = ContentAlignment.MiddleLeft;
@@ -1203,9 +1309,11 @@
             // 
             label16.AutoSize = true;
             label16.Dock = DockStyle.Fill;
+            label16.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label16.ForeColor = Color.FromArgb(64, 64, 64);
             label16.Location = new Point(3, 56);
             label16.Name = "label16";
-            label16.Size = new Size(117, 27);
+            label16.Size = new Size(118, 27);
             label16.TabIndex = 2;
             label16.Text = "Status";
             label16.TextAlign = ContentAlignment.MiddleLeft;
@@ -1214,9 +1322,11 @@
             // 
             label17.AutoSize = true;
             label17.Dock = DockStyle.Fill;
+            label17.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label17.ForeColor = Color.FromArgb(64, 64, 64);
             label17.Location = new Point(3, 30);
             label17.Name = "label17";
-            label17.Size = new Size(117, 26);
+            label17.Size = new Size(118, 26);
             label17.TabIndex = 1;
             label17.Text = "Version";
             label17.TextAlign = ContentAlignment.MiddleLeft;
@@ -1225,9 +1335,11 @@
             // 
             label18.AutoSize = true;
             label18.Dock = DockStyle.Fill;
+            label18.Font = new Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label18.ForeColor = Color.FromArgb(64, 64, 64);
             label18.Location = new Point(3, 0);
             label18.Name = "label18";
-            label18.Size = new Size(117, 30);
+            label18.Size = new Size(118, 30);
             label18.TabIndex = 0;
             label18.Text = "Product";
             label18.TextAlign = ContentAlignment.MiddleLeft;
@@ -1260,7 +1372,7 @@
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 26F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 47F));
-            tableLayoutPanel4.Size = new Size(197, 315);
+            tableLayoutPanel4.Size = new Size(201, 315);
             tableLayoutPanel4.TabIndex = 1;
             // 
             // comboEnProduct
@@ -1270,7 +1382,7 @@
             comboEnProduct.FormattingEnabled = true;
             comboEnProduct.Location = new Point(3, 3);
             comboEnProduct.Name = "comboEnProduct";
-            comboEnProduct.Size = new Size(191, 23);
+            comboEnProduct.Size = new Size(195, 23);
             comboEnProduct.TabIndex = 0;
             // 
             // comboEnVersion
@@ -1280,7 +1392,7 @@
             comboEnVersion.FormattingEnabled = true;
             comboEnVersion.Location = new Point(3, 32);
             comboEnVersion.Name = "comboEnVersion";
-            comboEnVersion.Size = new Size(191, 23);
+            comboEnVersion.Size = new Size(195, 23);
             comboEnVersion.TabIndex = 1;
             // 
             // comboEnStatus
@@ -1290,7 +1402,7 @@
             comboEnStatus.FormattingEnabled = true;
             comboEnStatus.Location = new Point(3, 61);
             comboEnStatus.Name = "comboEnStatus";
-            comboEnStatus.Size = new Size(191, 23);
+            comboEnStatus.Size = new Size(195, 23);
             comboEnStatus.TabIndex = 2;
             // 
             // comboEnPriority
@@ -1300,24 +1412,26 @@
             comboEnPriority.FormattingEnabled = true;
             comboEnPriority.Location = new Point(3, 89);
             comboEnPriority.Name = "comboEnPriority";
-            comboEnPriority.Size = new Size(191, 23);
+            comboEnPriority.Size = new Size(195, 23);
             comboEnPriority.TabIndex = 3;
             // 
             // txtEnDescription
             // 
+            txtEnDescription.BackColor = SystemColors.ControlLightLight;
             txtEnDescription.Dock = DockStyle.Fill;
             txtEnDescription.Location = new Point(3, 117);
             txtEnDescription.Multiline = true;
             txtEnDescription.Name = "txtEnDescription";
-            txtEnDescription.Size = new Size(191, 61);
+            txtEnDescription.Size = new Size(195, 61);
             txtEnDescription.TabIndex = 4;
             // 
             // txtEnDetected
             // 
+            txtEnDetected.BackColor = SystemColors.ControlLightLight;
             txtEnDetected.Dock = DockStyle.Fill;
             txtEnDetected.Location = new Point(3, 184);
             txtEnDetected.Name = "txtEnDetected";
-            txtEnDetected.Size = new Size(191, 23);
+            txtEnDetected.Size = new Size(195, 23);
             txtEnDetected.TabIndex = 5;
             // 
             // dtDetected
@@ -1325,7 +1439,7 @@
             dtDetected.Dock = DockStyle.Fill;
             dtDetected.Location = new Point(3, 215);
             dtDetected.Name = "dtDetected";
-            dtDetected.Size = new Size(191, 23);
+            dtDetected.Size = new Size(195, 23);
             dtDetected.TabIndex = 6;
             // 
             // txtEnID
@@ -1334,40 +1448,49 @@
             txtEnID.Location = new Point(3, 241);
             txtEnID.Name = "txtEnID";
             txtEnID.ReadOnly = true;
-            txtEnID.Size = new Size(191, 23);
+            txtEnID.Size = new Size(195, 23);
             txtEnID.TabIndex = 7;
             // 
             // btnSaveEn
             // 
             btnSaveEn.Dock = DockStyle.Fill;
+            btnSaveEn.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            btnSaveEn.ForeColor = Color.FromArgb(64, 64, 64);
+            btnSaveEn.Image = (Image)resources.GetObject("btnSaveEn.Image");
             btnSaveEn.Location = new Point(3, 271);
             btnSaveEn.Name = "btnSaveEn";
-            btnSaveEn.Size = new Size(191, 41);
+            btnSaveEn.Size = new Size(195, 41);
             btnSaveEn.TabIndex = 8;
             btnSaveEn.Text = "Save";
+            btnSaveEn.TextAlign = ContentAlignment.MiddleRight;
+            btnSaveEn.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnSaveEn.UseVisualStyleBackColor = true;
             btnSaveEn.Click += btnSaveEn_Click;
             // 
             // txtEnNotes
             // 
+            txtEnNotes.BackColor = SystemColors.ControlLightLight;
             txtEnNotes.Dock = DockStyle.Fill;
             txtEnNotes.Location = new Point(0, 0);
             txtEnNotes.Multiline = true;
             txtEnNotes.Name = "txtEnNotes";
             txtEnNotes.PlaceholderText = "Notes about the enhancement...";
-            txtEnNotes.Size = new Size(644, 323);
+            txtEnNotes.Size = new Size(660, 306);
             txtEnNotes.TabIndex = 2;
             // 
             // tabPage3
             // 
+            tabPage3.BackColor = SystemColors.GradientInactiveCaption;
+            tabPage3.BorderStyle = BorderStyle.FixedSingle;
             tabPage3.Controls.Add(splitContainer11);
-            tabPage3.Location = new Point(27, 4);
+            tabPage3.ForeColor = SystemColors.GrayText;
+            tabPage3.ImageIndex = 2;
+            tabPage3.Location = new Point(4, 49);
             tabPage3.Name = "tabPage3";
             tabPage3.Padding = new Padding(3);
-            tabPage3.Size = new Size(978, 684);
+            tabPage3.Size = new Size(1001, 645);
             tabPage3.TabIndex = 2;
             tabPage3.Text = "Reports";
-            tabPage3.UseVisualStyleBackColor = true;
             // 
             // splitContainer11
             // 
@@ -1378,12 +1501,14 @@
             // splitContainer11.Panel1
             // 
             splitContainer11.Panel1.Controls.Add(splitContainer12);
+            splitContainer11.Panel1.RightToLeft = RightToLeft.No;
             // 
             // splitContainer11.Panel2
             // 
             splitContainer11.Panel2.Controls.Add(dataGridReport);
-            splitContainer11.Size = new Size(972, 678);
-            splitContainer11.SplitterDistance = 195;
+            splitContainer11.Panel2.RightToLeft = RightToLeft.No;
+            splitContainer11.Size = new Size(993, 637);
+            splitContainer11.SplitterDistance = 197;
             splitContainer11.TabIndex = 0;
             // 
             // splitContainer12
@@ -1396,12 +1521,14 @@
             // splitContainer12.Panel1
             // 
             splitContainer12.Panel1.Controls.Add(splitContainer13);
+            splitContainer12.Panel1.RightToLeft = RightToLeft.No;
             // 
             // splitContainer12.Panel2
             // 
             splitContainer12.Panel2.Controls.Add(splitContainer14);
-            splitContainer12.Size = new Size(195, 678);
-            splitContainer12.SplitterDistance = 228;
+            splitContainer12.Panel2.RightToLeft = RightToLeft.No;
+            splitContainer12.Size = new Size(197, 637);
+            splitContainer12.SplitterDistance = 212;
             splitContainer12.TabIndex = 0;
             // 
             // splitContainer13
@@ -1414,12 +1541,14 @@
             // splitContainer13.Panel1
             // 
             splitContainer13.Panel1.Controls.Add(txtReportQuery);
+            splitContainer13.Panel1.RightToLeft = RightToLeft.No;
             // 
             // splitContainer13.Panel2
             // 
             splitContainer13.Panel2.Controls.Add(btnReportRun);
-            splitContainer13.Size = new Size(195, 228);
-            splitContainer13.SplitterDistance = 181;
+            splitContainer13.Panel2.RightToLeft = RightToLeft.No;
+            splitContainer13.Size = new Size(197, 212);
+            splitContainer13.SplitterDistance = 167;
             splitContainer13.TabIndex = 0;
             // 
             // txtReportQuery
@@ -1429,17 +1558,20 @@
             txtReportQuery.Multiline = true;
             txtReportQuery.Name = "txtReportQuery";
             txtReportQuery.PlaceholderText = "Type your query...";
-            txtReportQuery.Size = new Size(195, 181);
+            txtReportQuery.Size = new Size(197, 167);
             txtReportQuery.TabIndex = 0;
             // 
             // btnReportRun
             // 
             btnReportRun.Dock = DockStyle.Fill;
+            btnReportRun.Image = (Image)resources.GetObject("btnReportRun.Image");
             btnReportRun.Location = new Point(0, 0);
             btnReportRun.Name = "btnReportRun";
-            btnReportRun.Size = new Size(195, 43);
+            btnReportRun.Size = new Size(197, 41);
             btnReportRun.TabIndex = 0;
             btnReportRun.Text = "Run";
+            btnReportRun.TextAlign = ContentAlignment.MiddleRight;
+            btnReportRun.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnReportRun.UseVisualStyleBackColor = true;
             btnReportRun.Click += btnReportRun_Click;
             // 
@@ -1453,8 +1585,13 @@
             // splitContainer14.Panel1
             // 
             splitContainer14.Panel1.Controls.Add(splitContainer15);
-            splitContainer14.Size = new Size(195, 446);
-            splitContainer14.SplitterDistance = 84;
+            splitContainer14.Panel1.RightToLeft = RightToLeft.No;
+            // 
+            // splitContainer14.Panel2
+            // 
+            splitContainer14.Panel2.RightToLeft = RightToLeft.No;
+            splitContainer14.Size = new Size(197, 421);
+            splitContainer14.SplitterDistance = 81;
             splitContainer14.TabIndex = 0;
             // 
             // splitContainer15
@@ -1467,33 +1604,41 @@
             // splitContainer15.Panel1
             // 
             splitContainer15.Panel1.Controls.Add(btnReportExport);
+            splitContainer15.Panel1.RightToLeft = RightToLeft.No;
             // 
             // splitContainer15.Panel2
             // 
             splitContainer15.Panel2.Controls.Add(btnReportSaveQuery);
-            splitContainer15.Size = new Size(195, 84);
-            splitContainer15.SplitterDistance = 40;
+            splitContainer15.Panel2.RightToLeft = RightToLeft.No;
+            splitContainer15.Size = new Size(197, 81);
+            splitContainer15.SplitterDistance = 41;
             splitContainer15.TabIndex = 0;
             // 
             // btnReportExport
             // 
             btnReportExport.Dock = DockStyle.Fill;
+            btnReportExport.Image = (Image)resources.GetObject("btnReportExport.Image");
             btnReportExport.Location = new Point(0, 0);
             btnReportExport.Name = "btnReportExport";
-            btnReportExport.Size = new Size(195, 40);
+            btnReportExport.Size = new Size(197, 41);
             btnReportExport.TabIndex = 0;
             btnReportExport.Text = "Export";
+            btnReportExport.TextAlign = ContentAlignment.MiddleRight;
+            btnReportExport.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnReportExport.UseVisualStyleBackColor = true;
             btnReportExport.Click += btnExport_Click;
             // 
             // btnReportSaveQuery
             // 
             btnReportSaveQuery.Dock = DockStyle.Fill;
+            btnReportSaveQuery.Image = (Image)resources.GetObject("btnReportSaveQuery.Image");
             btnReportSaveQuery.Location = new Point(0, 0);
             btnReportSaveQuery.Name = "btnReportSaveQuery";
-            btnReportSaveQuery.Size = new Size(195, 40);
+            btnReportSaveQuery.Size = new Size(197, 36);
             btnReportSaveQuery.TabIndex = 1;
-            btnReportSaveQuery.Text = "Save Query";
+            btnReportSaveQuery.Text = "Save";
+            btnReportSaveQuery.TextAlign = ContentAlignment.MiddleRight;
+            btnReportSaveQuery.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnReportSaveQuery.UseVisualStyleBackColor = true;
             btnReportSaveQuery.Click += btnSaveQuery_Click;
             // 
@@ -1503,20 +1648,31 @@
             dataGridReport.AllowUserToDeleteRows = false;
             dataGridReport.AllowUserToResizeColumns = false;
             dataGridReport.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridReport.BackgroundColor = SystemColors.InactiveBorder;
             dataGridReport.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridReport.Dock = DockStyle.Fill;
             dataGridReport.Location = new Point(0, 0);
             dataGridReport.Name = "dataGridReport";
             dataGridReport.ReadOnly = true;
             dataGridReport.RowTemplate.Height = 25;
-            dataGridReport.Size = new Size(773, 678);
+            dataGridReport.Size = new Size(792, 637);
             dataGridReport.TabIndex = 0;
+            // 
+            // imageList1
+            // 
+            imageList1.ColorDepth = ColorDepth.Depth8Bit;
+            imageList1.ImageStream = (ImageListStreamer)resources.GetObject("imageList1.ImageStream");
+            imageList1.TransparentColor = Color.Transparent;
+            imageList1.Images.SetKeyName(0, "bug.png");
+            imageList1.Images.SetKeyName(1, "layers.png");
+            imageList1.Images.SetKeyName(2, "document.png");
             // 
             // BugTracker
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            BackColor = Color.PowderBlue;
             ClientSize = new Size(1019, 763);
             Controls.Add(tabControl1);
             Controls.Add(menuStrip1);
@@ -1763,6 +1919,7 @@
         private ToolStripMenuItem toolStripMenuItem3;
         private ToolStripMenuItem toolStripMenuItem4;
         private ContextMenuStrip contextMenuEn;
+        private ImageList imageList1;
     }
 
 }
