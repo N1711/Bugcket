@@ -33,9 +33,9 @@ namespace BugTracker
         public string lastQuery = "";
         public BugTracker()
         {
-            InitializeComponent();
-            InitializeDialog();
-            InitializeEnhancementDialog();
+                InitializeComponent();
+                InitializeDialog();
+                InitializeEnhancementDialog();
 
         }
 
@@ -46,7 +46,7 @@ namespace BugTracker
             this.Left = 0;
             this.Top = 0;
             WindowState = FormWindowState.Normal;
-            
+
         }
 
 
@@ -930,6 +930,11 @@ namespace BugTracker
                 MessageBox.Show("Error getting data from the database", "Initialization Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Debug.WriteLine(ex.Message);
             }
+        }
+
+        private void BugTracker_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

@@ -6,20 +6,29 @@ namespace BugTracker
 {
     public static class Program
     {
+        static ApplicationContext MainContext = new ApplicationContext();
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
         [STAThread]
         static void Main(string[] args)
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(true);
             ApplicationConfiguration.Initialize();
-            var form2 = new Form2();
-            if (form2 != null)
-            {
-                Application.Run(new BugTracker());
-            }
+
+            MainContext.MainForm = new Login();
+            Application.Run(MainContext);
+        }
+
+        public static void SetMainForm(Form MainForm)
+        {
+            MainContext.MainForm = MainForm;
+        }
+
+        public static void ShowMainForm()
+        {
+            MainContext.MainForm.Show();
         }
 
     }

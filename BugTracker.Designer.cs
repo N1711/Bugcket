@@ -135,6 +135,7 @@
             splitContainer15 = new SplitContainer();
             btnReportExport = new Button();
             btnReportSaveQuery = new Button();
+            label10 = new Label();
             dataGridReport = new DataGridView();
             imageList1 = new ImageList(components);
             menuStrip1.SuspendLayout();
@@ -232,6 +233,7 @@
             splitContainer13.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer14).BeginInit();
             splitContainer14.Panel1.SuspendLayout();
+            splitContainer14.Panel2.SuspendLayout();
             splitContainer14.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer15).BeginInit();
             splitContainer15.Panel1.SuspendLayout();
@@ -353,6 +355,7 @@
             // 
             // aboutToolStripMenuItem
             // 
+            aboutToolStripMenuItem.Image = (Image)resources.GetObject("aboutToolStripMenuItem.Image");
             aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             aboutToolStripMenuItem.Size = new Size(107, 22);
             aboutToolStripMenuItem.Text = "About";
@@ -419,6 +422,7 @@
             // splitContainer2
             // 
             splitContainer2.Dock = DockStyle.Fill;
+            splitContainer2.IsSplitterFixed = true;
             splitContainer2.Location = new Point(0, 0);
             splitContainer2.Name = "splitContainer2";
             splitContainer2.Orientation = Orientation.Horizontal;
@@ -507,7 +511,7 @@
             // 
             // txtFilter
             // 
-            txtFilter.Dock = DockStyle.Fill;
+            txtFilter.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             txtFilter.Location = new Point(0, 0);
             txtFilter.Name = "txtFilter";
             txtFilter.PlaceholderText = "Filter...";
@@ -516,7 +520,7 @@
             // 
             // btnFilter
             // 
-            btnFilter.Dock = DockStyle.Fill;
+            btnFilter.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             btnFilter.Image = (Image)resources.GetObject("btnFilter.Image");
             btnFilter.Location = new Point(0, 0);
             btnFilter.Name = "btnFilter";
@@ -558,7 +562,7 @@
             // 
             // comboView
             // 
-            comboView.Dock = DockStyle.Fill;
+            comboView.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             comboView.DropDownStyle = ComboBoxStyle.DropDownList;
             comboView.FormattingEnabled = true;
             comboView.Location = new Point(0, 0);
@@ -889,7 +893,10 @@
             // 
             // button1
             // 
+            button1.BackColor = SystemColors.ButtonFace;
             button1.Dock = DockStyle.Fill;
+            button1.FlatAppearance.BorderColor = Color.White;
+            button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             button1.ForeColor = Color.FromArgb(64, 64, 64);
             button1.Image = (Image)resources.GetObject("button1.Image");
@@ -900,7 +907,7 @@
             button1.Text = "Save";
             button1.TextAlign = ContentAlignment.MiddleRight;
             button1.TextImageRelation = TextImageRelation.ImageBeforeText;
-            button1.UseVisualStyleBackColor = true;
+            button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
             // splitContainer5
@@ -1073,7 +1080,7 @@
             // 
             // txtFilterEn
             // 
-            txtFilterEn.Dock = DockStyle.Fill;
+            txtFilterEn.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             txtFilterEn.Location = new Point(0, 0);
             txtFilterEn.Name = "txtFilterEn";
             txtFilterEn.PlaceholderText = "Filter...";
@@ -1082,7 +1089,7 @@
             // 
             // bFilterEn
             // 
-            bFilterEn.Dock = DockStyle.Fill;
+            bFilterEn.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             bFilterEn.Image = (Image)resources.GetObject("bFilterEn.Image");
             bFilterEn.Location = new Point(0, 0);
             bFilterEn.Name = "bFilterEn";
@@ -1123,7 +1130,7 @@
             // 
             // comboViewEn
             // 
-            comboViewEn.Dock = DockStyle.Fill;
+            comboViewEn.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             comboViewEn.DropDownStyle = ComboBoxStyle.DropDownList;
             comboViewEn.FormattingEnabled = true;
             comboViewEn.Location = new Point(0, 0);
@@ -1453,7 +1460,9 @@
             // 
             // btnSaveEn
             // 
+            btnSaveEn.BackColor = SystemColors.ButtonFace;
             btnSaveEn.Dock = DockStyle.Fill;
+            btnSaveEn.FlatStyle = FlatStyle.Flat;
             btnSaveEn.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             btnSaveEn.ForeColor = Color.FromArgb(64, 64, 64);
             btnSaveEn.Image = (Image)resources.GetObject("btnSaveEn.Image");
@@ -1464,7 +1473,7 @@
             btnSaveEn.Text = "Save";
             btnSaveEn.TextAlign = ContentAlignment.MiddleRight;
             btnSaveEn.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnSaveEn.UseVisualStyleBackColor = true;
+            btnSaveEn.UseVisualStyleBackColor = false;
             btnSaveEn.Click += btnSaveEn_Click;
             // 
             // txtEnNotes
@@ -1563,7 +1572,9 @@
             // 
             // btnReportRun
             // 
+            btnReportRun.BackColor = SystemColors.ButtonFace;
             btnReportRun.Dock = DockStyle.Fill;
+            btnReportRun.FlatStyle = FlatStyle.Flat;
             btnReportRun.Image = (Image)resources.GetObject("btnReportRun.Image");
             btnReportRun.Location = new Point(0, 0);
             btnReportRun.Name = "btnReportRun";
@@ -1572,7 +1583,7 @@
             btnReportRun.Text = "Run";
             btnReportRun.TextAlign = ContentAlignment.MiddleRight;
             btnReportRun.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnReportRun.UseVisualStyleBackColor = true;
+            btnReportRun.UseVisualStyleBackColor = false;
             btnReportRun.Click += btnReportRun_Click;
             // 
             // splitContainer14
@@ -1589,6 +1600,7 @@
             // 
             // splitContainer14.Panel2
             // 
+            splitContainer14.Panel2.Controls.Add(label10);
             splitContainer14.Panel2.RightToLeft = RightToLeft.No;
             splitContainer14.Size = new Size(197, 421);
             splitContainer14.SplitterDistance = 81;
@@ -1616,7 +1628,9 @@
             // 
             // btnReportExport
             // 
+            btnReportExport.BackColor = SystemColors.ButtonFace;
             btnReportExport.Dock = DockStyle.Fill;
+            btnReportExport.FlatStyle = FlatStyle.Flat;
             btnReportExport.Image = (Image)resources.GetObject("btnReportExport.Image");
             btnReportExport.Location = new Point(0, 0);
             btnReportExport.Name = "btnReportExport";
@@ -1625,12 +1639,14 @@
             btnReportExport.Text = "Export";
             btnReportExport.TextAlign = ContentAlignment.MiddleRight;
             btnReportExport.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnReportExport.UseVisualStyleBackColor = true;
+            btnReportExport.UseVisualStyleBackColor = false;
             btnReportExport.Click += btnExport_Click;
             // 
             // btnReportSaveQuery
             // 
+            btnReportSaveQuery.BackColor = SystemColors.ButtonFace;
             btnReportSaveQuery.Dock = DockStyle.Fill;
+            btnReportSaveQuery.FlatStyle = FlatStyle.Flat;
             btnReportSaveQuery.Image = (Image)resources.GetObject("btnReportSaveQuery.Image");
             btnReportSaveQuery.Location = new Point(0, 0);
             btnReportSaveQuery.Name = "btnReportSaveQuery";
@@ -1639,8 +1655,16 @@
             btnReportSaveQuery.Text = "Save";
             btnReportSaveQuery.TextAlign = ContentAlignment.MiddleRight;
             btnReportSaveQuery.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnReportSaveQuery.UseVisualStyleBackColor = true;
+            btnReportSaveQuery.UseVisualStyleBackColor = false;
             btnReportSaveQuery.Click += btnSaveQuery_Click;
+            // 
+            // label10
+            // 
+            label10.Dock = DockStyle.Fill;
+            label10.Location = new Point(0, 0);
+            label10.Name = "label10";
+            label10.Size = new Size(197, 336);
+            label10.TabIndex = 0;
             // 
             // dataGridReport
             // 
@@ -1683,6 +1707,7 @@
             Padding = new Padding(5);
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Bug Tracker";
+            FormClosed += BugTracker_FormClosed;
             Load += BugTracker_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
@@ -1791,6 +1816,7 @@
             ((System.ComponentModel.ISupportInitialize)splitContainer13).EndInit();
             splitContainer13.ResumeLayout(false);
             splitContainer14.Panel1.ResumeLayout(false);
+            splitContainer14.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer14).EndInit();
             splitContainer14.ResumeLayout(false);
             splitContainer15.Panel1.ResumeLayout(false);
@@ -1920,6 +1946,7 @@
         private ToolStripMenuItem toolStripMenuItem4;
         private ContextMenuStrip contextMenuEn;
         private ImageList imageList1;
+        private Label label10;
     }
 
 }
