@@ -33,9 +33,16 @@ namespace BugTracker
         public string lastQuery = "";
         public BugTracker()
         {
-                InitializeComponent();
-                InitializeDialog();
-                InitializeEnhancementDialog();
+            if(!User.loggedIn)
+            {
+                Login l = new Login();
+                l.ShowDialog();
+                this.Close();
+                return;
+            }
+            InitializeComponent();
+            InitializeDialog();
+            InitializeEnhancementDialog();
 
         }
 

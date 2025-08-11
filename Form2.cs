@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -17,22 +18,25 @@ namespace BugTracker
         public static bool failed = false;
         public Form2()
         {
+            this.Show();
             InitializeComponent();
             InitializeConnection();
         }
 
         private void InitializeConnection()
         {
+            Thread.Sleep(1000);
             if (DBOperations.ConnectToDB())
             {
-                //Thread.Sleep(5000);
                 connected = true;
                 label1.Text = "Connected!";
                 loading = false;
                 System.Diagnostics.Debug.WriteLine("Connected");
-                Program.SetMainForm(new Login());
-                Program.ShowMainForm();
-                this.Close();
+                Thread.Sleep(1000);
+                this.Hide();
+                Login login = new Login();
+                login.ShowDialog();
+                
             }
             else
             {
@@ -41,9 +45,9 @@ namespace BugTracker
                 label1.Text = "DB Connection failed!";
                 loading = false;
                 failed = true;
-                Program.SetMainForm(new ConnectionForm());
-                Program.ShowMainForm();
-                this.Close();
+                this.Hide();
+                ConnectionForm c = new ConnectionForm();
+                c.ShowDialog();
             }
         }
     }

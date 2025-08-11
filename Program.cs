@@ -17,18 +17,8 @@ namespace BugTracker
             Application.SetCompatibleTextRenderingDefault(true);
             ApplicationConfiguration.Initialize();
 
-            MainContext.MainForm = new Login();
-            Application.Run(MainContext);
-        }
-
-        public static void SetMainForm(Form MainForm)
-        {
-            MainContext.MainForm = MainForm;
-        }
-
-        public static void ShowMainForm()
-        {
-            MainContext.MainForm.Show();
+            Form2 f = new Form2();
+            Application.Run(f);
         }
 
     }

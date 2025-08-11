@@ -26,10 +26,10 @@ namespace BugTracker
             User.Role = "Admin";
             User.loggedIn = true;
             loggedIn = true;
-            btnLogin.Cursor = Cursors.WaitCursor;  
-            Program.SetMainForm(new BugTracker());
-            Program.ShowMainForm();
-            this.Close();
+            btnLogin.Cursor = Cursors.WaitCursor;
+            BugTracker b = new BugTracker();
+            b.ShowDialog();
+            this.Hide();
         }
     }
 }

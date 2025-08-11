@@ -38,6 +38,9 @@ namespace BugTracker
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
             splitContainer1 = new SplitContainer();
             pictureBox1 = new PictureBox();
+            label3 = new Label();
+            label2 = new Label();
+            progressBar1 = new ProgressBar();
             label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
@@ -59,9 +62,13 @@ namespace BugTracker
             // 
             // splitContainer1.Panel2
             // 
+            splitContainer1.Panel2.BackColor = Color.White;
+            splitContainer1.Panel2.Controls.Add(label3);
+            splitContainer1.Panel2.Controls.Add(label2);
+            splitContainer1.Panel2.Controls.Add(progressBar1);
             splitContainer1.Panel2.Controls.Add(label1);
-            splitContainer1.Size = new Size(450, 430);
-            splitContainer1.SplitterDistance = 397;
+            splitContainer1.Size = new Size(459, 487);
+            splitContainer1.SplitterDistance = 348;
             splitContainer1.TabIndex = 0;
             // 
             // pictureBox1
@@ -71,18 +78,42 @@ namespace BugTracker
             pictureBox1.Dock = DockStyle.Fill;
             pictureBox1.Location = new Point(0, 0);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(450, 397);
+            pictureBox1.Size = new Size(459, 348);
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(14, 105);
+            label3.Name = "label3";
+            label3.Size = new Size(101, 15);
+            label3.TabIndex = 3;
+            label3.Text = "All rights reserved";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(14, 90);
+            label2.Name = "label2";
+            label2.Size = new Size(94, 15);
+            label2.TabIndex = 2;
+            label2.Text = "2025 Dexinis inc.";
+            // 
+            // progressBar1
+            // 
+            progressBar1.Location = new Point(38, 35);
+            progressBar1.Name = "progressBar1";
+            progressBar1.Size = new Size(393, 23);
+            progressBar1.TabIndex = 1;
             // 
             // label1
             // 
             label1.BackColor = Color.White;
-            label1.Dock = DockStyle.Fill;
             label1.Font = new Font("Century", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(0, 0);
+            label1.Location = new Point(38, 61);
             label1.Name = "label1";
-            label1.Size = new Size(450, 29);
+            label1.Size = new Size(393, 29);
             label1.TabIndex = 0;
             label1.Text = "Please wait..loading...";
             label1.TextAlign = ContentAlignment.MiddleCenter;
@@ -90,20 +121,19 @@ namespace BugTracker
             // Form2
             // 
             AutoScaleMode = AutoScaleMode.None;
-            ClientSize = new Size(450, 430);
+            ClientSize = new Size(459, 487);
             ControlBox = false;
             Controls.Add(splitContainer1);
-            FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            FormBorderStyle = FormBorderStyle.None;
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "Form2";
-            ShowIcon = false;
             ShowInTaskbar = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Splash";
-            TopMost = true;
             splitContainer1.Panel1.ResumeLayout(false);
             splitContainer1.Panel2.ResumeLayout(false);
+            splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).EndInit();
             splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -115,6 +145,9 @@ namespace BugTracker
         private SplitContainer splitContainer1;
         private PictureBox pictureBox1;
         private Label label1;
+        private Label label2;
+        private ProgressBar progressBar1;
+        private Label label3;
     }
 
 

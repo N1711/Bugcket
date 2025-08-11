@@ -47,7 +47,7 @@
             panel1.Dock = DockStyle.Fill;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(321, 336);
+            panel1.Size = new Size(317, 332);
             panel1.TabIndex = 0;
             // 
             // pictureBox1
@@ -94,9 +94,12 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(321, 336);
+            ClientSize = new Size(317, 332);
+            ControlBox = false;
             Controls.Add(panel1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "Login";
+            ShowInTaskbar = false;
             Text = "Login";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
