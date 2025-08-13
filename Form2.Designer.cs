@@ -59,6 +59,7 @@ namespace BugTracker
             // splitContainer1.Panel1
             // 
             splitContainer1.Panel1.Controls.Add(pictureBox1);
+            splitContainer1.Panel1.UseWaitCursor = true;
             // 
             // splitContainer1.Panel2
             // 
@@ -67,9 +68,11 @@ namespace BugTracker
             splitContainer1.Panel2.Controls.Add(label2);
             splitContainer1.Panel2.Controls.Add(progressBar1);
             splitContainer1.Panel2.Controls.Add(label1);
+            splitContainer1.Panel2.UseWaitCursor = true;
             splitContainer1.Size = new Size(459, 487);
             splitContainer1.SplitterDistance = 348;
             splitContainer1.TabIndex = 0;
+            splitContainer1.UseWaitCursor = true;
             // 
             // pictureBox1
             // 
@@ -81,6 +84,7 @@ namespace BugTracker
             pictureBox1.Size = new Size(459, 348);
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
+            pictureBox1.UseWaitCursor = true;
             // 
             // label3
             // 
@@ -90,6 +94,7 @@ namespace BugTracker
             label3.Size = new Size(101, 15);
             label3.TabIndex = 3;
             label3.Text = "All rights reserved";
+            label3.UseWaitCursor = true;
             // 
             // label2
             // 
@@ -99,6 +104,7 @@ namespace BugTracker
             label2.Size = new Size(94, 15);
             label2.TabIndex = 2;
             label2.Text = "2025 Dexinis inc.";
+            label2.UseWaitCursor = true;
             // 
             // progressBar1
             // 
@@ -106,6 +112,7 @@ namespace BugTracker
             progressBar1.Name = "progressBar1";
             progressBar1.Size = new Size(393, 23);
             progressBar1.TabIndex = 1;
+            progressBar1.UseWaitCursor = true;
             // 
             // label1
             // 
@@ -117,6 +124,7 @@ namespace BugTracker
             label1.TabIndex = 0;
             label1.Text = "Please wait..loading...";
             label1.TextAlign = ContentAlignment.MiddleCenter;
+            label1.UseWaitCursor = true;
             // 
             // Form2
             // 
@@ -125,12 +133,15 @@ namespace BugTracker
             ControlBox = false;
             Controls.Add(splitContainer1);
             FormBorderStyle = FormBorderStyle.None;
+            KeyPreview = true;
             MaximizeBox = false;
+            MdiChildrenMinimizedAnchorBottom = false;
             MinimizeBox = false;
             Name = "Form2";
             ShowInTaskbar = false;
+            SizeGripStyle = SizeGripStyle.Show;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Splash";
+            UseWaitCursor = true;
             splitContainer1.Panel1.ResumeLayout(false);
             splitContainer1.Panel2.ResumeLayout(false);
             splitContainer1.Panel2.PerformLayout();

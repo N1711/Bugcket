@@ -34,12 +34,14 @@
             btnLogin = new Button();
             txtPass = new TextBox();
             txtUser = new TextBox();
+            button1 = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
+            panel1.Controls.Add(button1);
             panel1.Controls.Add(pictureBox1);
             panel1.Controls.Add(btnLogin);
             panel1.Controls.Add(txtPass);
@@ -90,6 +92,17 @@
             txtUser.Size = new Size(190, 23);
             txtUser.TabIndex = 0;
             // 
+            // button1
+            // 
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Location = new Point(69, 272);
+            button1.Name = "button1";
+            button1.Size = new Size(190, 28);
+            button1.TabIndex = 4;
+            button1.Text = "Exit";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
             // Login
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -114,5 +127,6 @@
         private TextBox txtPass;
         private TextBox txtUser;
         private PictureBox pictureBox1;
+        private Button button1;
     }
 }

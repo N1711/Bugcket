@@ -14,12 +14,24 @@ namespace BugTracker
         static void Main(string[] args)
         {
             Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(true);
+            Application.SetCompatibleTextRenderingDefault(false);
             ApplicationConfiguration.Initialize();
+            Application.Run(new Login());
+            //MainContext.MainForm = new Form2();
+            //Application.Run(MainContext.MainForm);
+        }
 
-            Form2 f = new Form2();
-            Application.Run(f);
+        public static void SetMainForm(Form MainForm)
+        {
+            MainContext.MainForm = MainForm;
+        }
+
+        public static void ShowMainForm()
+        {
+            MainContext.MainForm.Show();
         }
 
     }
+
+
 }

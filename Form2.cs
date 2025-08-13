@@ -8,47 +8,64 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Timers;
+using System.Runtime.CompilerServices;
+using DnsClient;
 
 namespace BugTracker
 {
     public partial class Form2 : Form
     {
-        public static bool connected = false;
-        public static bool loading = true;
-        public static bool failed = false;
+        int waitSeconds = 3;
         public Form2()
         {
-            this.Show();
             InitializeComponent();
+            //show the form, it will be closed once the connection has been initiated. It will close after waitSeconds has expired
+            this.Show();
             InitializeConnection();
         }
 
         private void InitializeConnection()
         {
-            Thread.Sleep(1000);
-            if (DBOperations.ConnectToDB())
+            //a bit of an ugly hack - allows form loading whilst running the background task of connecting to db.
+            Application.DoEvents();
+            try
             {
-                connected = true;
-                label1.Text = "Connected!";
-                loading = false;
-                System.Diagnostics.Debug.WriteLine("Connected");
-                Thread.Sleep(1000);
-                this.Hide();
-                Login login = new Login();
-                login.ShowDialog();
-                
+                if (DBOperations.ConnectToDB())
+                {
+                    //show the form for a minimum time, allows the user to see the product image and developer
+                    CloseMe();
+                }
+                else
+                {
+                    CloseMe();
+                    ConnectionForm c = new ConnectionForm();
+                    c.ShowDialog();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                connected = false;
-                System.Diagnostics.Debug.WriteLine("Not connected");
-                label1.Text = "DB Connection failed!";
-                loading = false;
-                failed = true;
-                this.Hide();
-                ConnectionForm c = new ConnectionForm();
-                c.ShowDialog();
+                CloseMe();
+                MessageBox.Show("Error connecting to the database", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void CloseMe()
+        {
+            WaitNSeconds(waitSeconds);
+        }
+
+        private void WaitNSeconds(int segundos)
+        {
+            if (segundos < 1) return;
+            DateTime _desired = DateTime.Now.AddSeconds(segundos);
+            //do not pause form loading meanwhile
+            while (DateTime.Now < _desired)
+            {
+                Application.DoEvents();
+            }
+            //close after the time has elapsed
+            this.Close();
         }
     }
 }
