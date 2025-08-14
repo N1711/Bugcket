@@ -28,45 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
             listBoxCredits = new ListBox();
             txtCredits = new TextBox();
             lblAgreement = new Label();
             SuspendLayout();
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(171, 35);
-            label1.Name = "label1";
-            label1.Size = new Size(58, 25);
-            label1.TabIndex = 0;
-            label1.Text = "Logo";
             // 
             // listBoxCredits
             // 
             listBoxCredits.FormattingEnabled = true;
             listBoxCredits.ItemHeight = 15;
             listBoxCredits.Items.AddRange(new object[] { "About", "Technologies", "Programming", "UI" });
-            listBoxCredits.Location = new Point(12, 71);
+            listBoxCredits.Location = new Point(12, 26);
             listBoxCredits.Name = "listBoxCredits";
-            listBoxCredits.Size = new Size(120, 334);
+            listBoxCredits.Size = new Size(120, 379);
             listBoxCredits.TabIndex = 1;
             listBoxCredits.SelectedIndexChanged += listBoxCredits_SelectedIndexChanged;
             // 
             // txtCredits
             // 
-            txtCredits.Location = new Point(146, 72);
+            txtCredits.Location = new Point(146, 26);
             txtCredits.Multiline = true;
             txtCredits.Name = "txtCredits";
             txtCredits.ReadOnly = true;
-            txtCredits.Size = new Size(248, 333);
+            txtCredits.Size = new Size(248, 379);
             txtCredits.TabIndex = 2;
             // 
             // lblAgreement
             // 
             lblAgreement.Dock = DockStyle.Bottom;
+            lblAgreement.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            lblAgreement.ForeColor = Color.IndianRed;
             lblAgreement.Location = new Point(0, 408);
             lblAgreement.Name = "lblAgreement";
             lblAgreement.Size = new Size(406, 32);
@@ -82,7 +73,6 @@
             Controls.Add(lblAgreement);
             Controls.Add(txtCredits);
             Controls.Add(listBoxCredits);
-            Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "AboutForm";
             Text = "About Bugcket";
@@ -91,8 +81,6 @@
         }
 
         #endregion
-
-        private Label label1;
         private ListBox listBoxCredits;
         private TextBox txtCredits;
         private Label lblAgreement;

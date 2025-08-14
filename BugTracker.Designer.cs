@@ -44,6 +44,7 @@
             helpToolStripMenuItem = new ToolStripMenuItem();
             aboutToolStripMenuItem = new ToolStripMenuItem();
             guideToolStripMenuItem = new ToolStripMenuItem();
+            tToolStripMenuItem = new ToolStripMenuItem();
             tabControl1 = new TabControl();
             tabPage1 = new TabPage();
             splitContainer1 = new SplitContainer();
@@ -135,7 +136,7 @@
             splitContainer15 = new SplitContainer();
             btnReportExport = new Button();
             btnReportSaveQuery = new Button();
-            label10 = new Label();
+            pictureBox1 = new PictureBox();
             dataGridReport = new DataGridView();
             imageList1 = new ImageList(components);
             menuStrip1.SuspendLayout();
@@ -239,6 +240,7 @@
             splitContainer15.Panel1.SuspendLayout();
             splitContainer15.Panel2.SuspendLayout();
             splitContainer15.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridReport).BeginInit();
             SuspendLayout();
             // 
@@ -247,7 +249,7 @@
             menuStrip1.AutoSize = false;
             menuStrip1.BackColor = SystemColors.ButtonHighlight;
             menuStrip1.ImageScalingSize = new Size(32, 32);
-            menuStrip1.Items.AddRange(new ToolStripItem[] { appToolStripMenuItem, viewToolStripMenuItem, configToolStripMenuItem, helpToolStripMenuItem });
+            menuStrip1.Items.AddRange(new ToolStripItem[] { appToolStripMenuItem, viewToolStripMenuItem, configToolStripMenuItem, helpToolStripMenuItem, tToolStripMenuItem });
             menuStrip1.Location = new Point(5, 5);
             menuStrip1.Margin = new Padding(0, 0, 5, 0);
             menuStrip1.Name = "menuStrip1";
@@ -366,6 +368,14 @@
             guideToolStripMenuItem.Name = "guideToolStripMenuItem";
             guideToolStripMenuItem.Size = new Size(107, 22);
             guideToolStripMenuItem.Text = "Guide";
+            // 
+            // tToolStripMenuItem
+            // 
+            tToolStripMenuItem.Alignment = ToolStripItemAlignment.Right;
+            tToolStripMenuItem.Image = (Image)resources.GetObject("tToolStripMenuItem.Image");
+            tToolStripMenuItem.Margin = new Padding(0, 0, 25, 0);
+            tToolStripMenuItem.Name = "tToolStripMenuItem";
+            tToolStripMenuItem.Size = new Size(44, 51);
             // 
             // tabControl1
             // 
@@ -1600,7 +1610,7 @@
             // 
             // splitContainer14.Panel2
             // 
-            splitContainer14.Panel2.Controls.Add(label10);
+            splitContainer14.Panel2.Controls.Add(pictureBox1);
             splitContainer14.Panel2.RightToLeft = RightToLeft.No;
             splitContainer14.Size = new Size(197, 421);
             splitContainer14.SplitterDistance = 81;
@@ -1658,13 +1668,16 @@
             btnReportSaveQuery.UseVisualStyleBackColor = false;
             btnReportSaveQuery.Click += btnSaveQuery_Click;
             // 
-            // label10
+            // pictureBox1
             // 
-            label10.Dock = DockStyle.Fill;
-            label10.Location = new Point(0, 0);
-            label10.Name = "label10";
-            label10.Size = new Size(197, 336);
-            label10.TabIndex = 0;
+            pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
+            pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox1.Dock = DockStyle.Bottom;
+            pictureBox1.Location = new Point(0, 166);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(197, 170);
+            pictureBox1.TabIndex = 0;
+            pictureBox1.TabStop = false;
             // 
             // dataGridReport
             // 
@@ -1823,6 +1836,7 @@
             splitContainer15.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer15).EndInit();
             splitContainer15.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridReport).EndInit();
             ResumeLayout(false);
         }
@@ -1946,7 +1960,8 @@
         private ToolStripMenuItem toolStripMenuItem4;
         private ContextMenuStrip contextMenuEn;
         private ImageList imageList1;
-        private Label label10;
+        private PictureBox pictureBox1;
+        private ToolStripMenuItem tToolStripMenuItem;
     }
 
 }

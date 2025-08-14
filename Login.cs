@@ -37,7 +37,7 @@ namespace BugTracker
             btnLogin.Cursor = Cursors.WaitCursor;
             BugTracker b = new BugTracker();
             b.ShowDialog();
-            this.Hide();
+            this.Close();
         }
 
         private void button1_Click(object sender, EventArgs e)

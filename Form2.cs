@@ -22,6 +22,7 @@ namespace BugTracker
             InitializeComponent();
             //show the form, it will be closed once the connection has been initiated. It will close after waitSeconds has expired
             this.Show();
+            progressBar1.Value = 10;
             InitializeConnection();
         }
 
@@ -33,18 +34,25 @@ namespace BugTracker
             {
                 if (DBOperations.ConnectToDB())
                 {
+                    progressBar1.Value = 100;
+                    label1.Text = "Application loaded";
                     //show the form for a minimum time, allows the user to see the product image and developer
                     CloseMe();
+                    progressBar1.Value = 0;
                 }
                 else
                 {
+                    progressBar1.Value = 50;
+                    label1.Text = "Application failed";
                     CloseMe();
+                    progressBar1.Value = 0;
                     ConnectionForm c = new ConnectionForm();
                     c.ShowDialog();
                 }
             }
             catch (Exception ex)
             {
+                progressBar1.Value = 0;
                 CloseMe();
                 MessageBox.Show("Error connecting to the database", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
