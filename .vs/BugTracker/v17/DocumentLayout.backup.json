@@ -3,16 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\TrendUser\\Desktop\\Projects\\CBugTracker\\BugTracker\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8EC6B998-7792-4FA8-BE38-2E3A6FF662F5}|BugTracker.csproj|c:\\users\\trenduser\\desktop\\projects\\cbugtracker\\bugtracker\\bugtracker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{8EC6B998-7792-4FA8-BE38-2E3A6FF662F5}|BugTracker.csproj|solutionrelative:bugtracker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8EC6B998-7792-4FA8-BE38-2E3A6FF662F5}|BugTracker.csproj|c:\\users\\trenduser\\desktop\\projects\\cbugtracker\\bugtracker\\aboutform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{8EC6B998-7792-4FA8-BE38-2E3A6FF662F5}|BugTracker.csproj|solutionrelative:aboutform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{8EC6B998-7792-4FA8-BE38-2E3A6FF662F5}|BugTracker.csproj|c:\\users\\trenduser\\desktop\\projects\\cbugtracker\\bugtracker\\dboperations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8EC6B998-7792-4FA8-BE38-2E3A6FF662F5}|BugTracker.csproj|solutionrelative:dboperations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8EC6B998-7792-4FA8-BE38-2E3A6FF662F5}|BugTracker.csproj|c:\\users\\trenduser\\desktop\\projects\\cbugtracker\\bugtracker\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8EC6B998-7792-4FA8-BE38-2E3A6FF662F5}|BugTracker.csproj|solutionrelative:login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8EC6B998-7792-4FA8-BE38-2E3A6FF662F5}|BugTracker.csproj|c:\\users\\trenduser\\desktop\\projects\\cbugtracker\\bugtracker\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{8EC6B998-7792-4FA8-BE38-2E3A6FF662F5}|BugTracker.csproj|solutionrelative:login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8EC6B998-7792-4FA8-BE38-2E3A6FF662F5}|BugTracker.csproj|c:\\users\\trenduser\\desktop\\projects\\cbugtracker\\bugtracker\\form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8EC6B998-7792-4FA8-BE38-2E3A6FF662F5}|BugTracker.csproj|solutionrelative:form2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -27,39 +31,53 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "AboutForm.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\TrendUser\\Desktop\\Projects\\CBugTracker\\BugTracker\\AboutForm.cs",
-              "RelativeDocumentMoniker": "AboutForm.cs",
-              "ToolTip": "C:\\Users\\TrendUser\\Desktop\\Projects\\CBugTracker\\BugTracker\\AboutForm.cs [Design]",
-              "RelativeToolTip": "AboutForm.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-14T13:17:41.008Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
               "Title": "Login.cs",
               "DocumentMoniker": "C:\\Users\\TrendUser\\Desktop\\Projects\\CBugTracker\\BugTracker\\Login.cs",
               "RelativeDocumentMoniker": "Login.cs",
               "ToolTip": "C:\\Users\\TrendUser\\Desktop\\Projects\\CBugTracker\\BugTracker\\Login.cs",
               "RelativeToolTip": "Login.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAQwCYAAAAbAAAAAAAAAA==",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAxwCAAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-14T13:15:39.283Z",
+              "WhenOpened": "2025-08-15T10:44:21.118Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "BugTracker.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\TrendUser\\Desktop\\Projects\\CBugTracker\\BugTracker\\BugTracker.cs",
-              "RelativeDocumentMoniker": "BugTracker.cs",
-              "ToolTip": "C:\\Users\\TrendUser\\Desktop\\Projects\\CBugTracker\\BugTracker\\BugTracker.cs [Design]",
-              "RelativeToolTip": "BugTracker.cs [Design]",
+              "DocumentIndex": 2,
+              "Title": "Login.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\TrendUser\\Desktop\\Projects\\CBugTracker\\BugTracker\\Login.cs",
+              "RelativeDocumentMoniker": "Login.cs",
+              "ToolTip": "C:\\Users\\TrendUser\\Desktop\\Projects\\CBugTracker\\BugTracker\\Login.cs [Design]",
+              "RelativeToolTip": "Login.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-14T12:38:56.948Z",
+              "WhenOpened": "2025-08-15T10:44:16.927Z",
               "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DBOperations.cs",
+              "DocumentMoniker": "C:\\Users\\TrendUser\\Desktop\\Projects\\CBugTracker\\BugTracker\\DBOperations.cs",
+              "RelativeDocumentMoniker": "DBOperations.cs",
+              "ToolTip": "C:\\Users\\TrendUser\\Desktop\\Projects\\CBugTracker\\BugTracker\\DBOperations.cs",
+              "RelativeToolTip": "DBOperations.cs",
+              "ViewState": "AgIAAB0CAAAAAAAAAAAAACkCAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-15T09:34:26.801Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Form2.cs",
+              "DocumentMoniker": "C:\\Users\\TrendUser\\Desktop\\Projects\\CBugTracker\\BugTracker\\Form2.cs",
+              "RelativeDocumentMoniker": "Form2.cs",
+              "ToolTip": "C:\\Users\\TrendUser\\Desktop\\Projects\\CBugTracker\\BugTracker\\Form2.cs",
+              "RelativeToolTip": "Form2.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAABuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-15T09:33:13.143Z",
+              "EditorCaption": ""
             }
           ]
         }

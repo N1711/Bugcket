@@ -70,3 +70,4 @@ C:\Users\TrendUser\Desktop\Projects\CBugTracker\BugTracker\obj\Debug\net6.0-wind
 C:\Users\TrendUser\Desktop\Projects\CBugTracker\BugTracker\obj\Debug\net6.0-windows\BugTracker.pdb
 C:\Users\TrendUser\Desktop\Projects\CBugTracker\BugTracker\obj\Debug\net6.0-windows\BugTracker.genruntimeconfig.cache
 C:\Users\TrendUser\Desktop\Projects\CBugTracker\BugTracker\obj\Debug\net6.0-windows\ref\BugTracker.dll
+C:\Users\TrendUser\Desktop\Projects\CBugTracker\BugTracker\bin\Debug\net6.0-windows\BCrypt.Net-Next.dll

@@ -16,7 +16,15 @@ namespace BugTracker
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             ApplicationConfiguration.Initialize();
-            Application.Run(new Login());
+            try
+            {
+                Application.Run(new BugTracker());
+            }
+            catch (Exception ex)
+            {
+                Application.Exit();
+            }
+            
             //MainContext.MainForm = new Form2();
             //Application.Run(MainContext.MainForm);
         }

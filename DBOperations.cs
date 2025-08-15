@@ -4,6 +4,7 @@ using MongoDB.Bson;
 using MongoDB.Driver;
 using System.Data.SQLite;
 using System;
+using BCrypt;
 using System.Diagnostics;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Data.Sqlite;
 using System.Security.Cryptography.X509Certificates;
+using System.Windows.Forms;
+using System.Configuration;
 
 namespace BugTracker
 {
@@ -29,11 +32,11 @@ namespace BugTracker
             try
             {
                 connection.Open();
-                //bool result = CreateDefaultTables(connection);
-                //if(!result)
-                //{
-                //    return false;
-                //}
+                bool result = CreateDefaultTables(connection);
+                if (!result)
+                {
+                    return false;
+                }
                 return true;
             }
             catch (Exception ex)
@@ -95,7 +98,8 @@ namespace BugTracker
 
             var sql5 = @"CREATE TABLE IF NOT EXISTS users(
                 id INTEGER PRIMARY KEY,
-                name TEXT NOT NULL,
+                name TEXT NOT NULL UNIQUE,
+                password TEXT NOT NULL,
                 accessLevel INTEGER NOT NULL
             )";
 
@@ -436,9 +440,18 @@ namespace BugTracker
                 return false;
             }
 
-            var client = new MongoClient(connectionString);
-            var collection = client.GetDatabase("BugTracker").GetCollection<BsonDocument>("Bugs");
-            return true;
+            try
+            {
+                var client = new MongoClient(connectionString);
+                var collection = client.GetDatabase("BugTracker").GetCollection<BsonDocument>("Bugs");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
+            
 
         }
 
@@ -493,15 +506,122 @@ namespace BugTracker
                     string name = reader.GetString(key);
                     versions.Add(new PriorityModel(id, name));
                 }
+                connection.Close();
             }
             catch (Exception ex)
             {
+                connection.Close();
                 Debug.WriteLine($"{ex.Message}");
             }
             
             return versions;
         }
 
+        public static bool DefaultUserExists()
+        {
+            var connection = new SQLiteConnection("Data Source=BugTracker.db");
+            var sql = "Select Count(*) as users from users";
+            int userTotal = 0;
+            try
+            {
+                connection.Open();
+                SQLiteCommand command = new SQLiteCommand(sql, connection);
+                using (SQLiteDataReader dataReader = command.ExecuteReader())
+                {
+                    if (dataReader.Read())
+                    {
+                        userTotal = dataReader.GetInt32(0);
+                    }
+                }
+                connection.Close();
+                return userTotal > 0;
+            } catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                connection.Close();
+                return false;
+            }
+        }
+
+        public static bool CreateDefaultUser()
+        {
+            bool result = false;
+            string unencryptedPassword = "adminDexinis";
+            string encryptedPassword = BCrypt.Net.BCrypt.HashPassword(unencryptedPassword);
+            var connection = new SQLiteConnection("Data Source=BugTracker.db");
+            var sql = "INSERT INTO users (name, accessLevel, password) VALUES (@User, @Level, @Password)";
+            try
+            {
+                connection.Open();
+                SQLiteCommand command = new SQLiteCommand(sql, connection);
+                command.Parameters.AddWithValue("@User", "admin");
+                command.Parameters.AddWithValue("@Level", 1);
+                command.Parameters.AddWithValue("@Password", encryptedPassword);
+                command.ExecuteNonQuery();
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                result = false;
+            }
+            connection.Close();
+            return result;
+        }
+
+        public static bool LoginUser(string name, string plainTextPassword)
+        {
+            bool result = false;
+            string hashedPassword = "";
+            var connection = new SQLiteConnection("Data Source=BugTracker.db");
+            var sql = "SELECT * from users where Name = " + name;
+            try
+            {
+                connection.Open();
+                SQLiteCommand command = new SQLiteCommand(sql, connection);
+                using SQLiteDataReader reader = command.ExecuteReader();
+                if(reader.Read())
+                {
+                    User.Id = reader.GetInt32(0);
+                    User.Name = reader.GetString(1);
+                    User.accessLevel = reader.GetInt32(2);
+                    hashedPassword = reader.GetString(3);
+                } else
+                {
+                    connection.Close();
+                    return false;
+                }
+                if(hashedPassword.Length > 0)
+                {
+                    return BCrypt.Net.BCrypt.Verify(plainTextPassword, hashedPassword);
+                } else
+                {
+                    connection.Close();
+                    return false;
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                result = false;
+                connection.Close();
+            }
+            return result;
+        }
+
+        private static string GetSetting(string key)
+        {
+            return ConfigurationManager.AppSettings[key];
+        }
+
+        private static void SetSetting(string key, string value)
+        {
+            Configuration configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            configuration.AppSettings.Settings[key].Value = value;
+            configuration.Save(ConfigurationSaveMode.Full, true);
+            ConfigurationManager.RefreshSection("appSettings");
+        }
 
     }
 }

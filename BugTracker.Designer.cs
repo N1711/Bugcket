@@ -277,6 +277,7 @@
             signOutToolStripMenuItem.Name = "signOutToolStripMenuItem";
             signOutToolStripMenuItem.Size = new Size(120, 22);
             signOutToolStripMenuItem.Text = "Sign Out";
+            signOutToolStripMenuItem.Click += signOutToolStripMenuItem_Click;
             // 
             // exitToolStripMenuItem
             // 

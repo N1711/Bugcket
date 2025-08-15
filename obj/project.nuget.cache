@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "DCC6ZMJGXvQ=",
+  "dgSpecHash": "k+d2CM4K7e4=",
   "success": true,
   "projectFilePath": "C:\\Users\\TrendUser\\Desktop\\Projects\\CBugTracker\\BugTracker\\BugTracker.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\TrendUser\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\TrendUser\\.nuget\\packages\\dnsclient\\1.6.1\\dnsclient.1.6.1.nupkg.sha512",
     "C:\\Users\\TrendUser\\.nuget\\packages\\microsoft.data.sqlite\\9.0.4\\microsoft.data.sqlite.9.0.4.nupkg.sha512",
     "C:\\Users\\TrendUser\\.nuget\\packages\\microsoft.data.sqlite.core\\9.0.4\\microsoft.data.sqlite.core.9.0.4.nupkg.sha512",

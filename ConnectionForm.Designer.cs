@@ -32,6 +32,7 @@
             listBox1 = new ListBox();
             btnSave = new Button();
             groupBox3 = new GroupBox();
+            button1 = new Button();
             btnBrowse = new Button();
             textBox2 = new TextBox();
             groupBox2 = new GroupBox();
@@ -40,7 +41,6 @@
             groupBox1 = new GroupBox();
             rbtnMongo = new RadioButton();
             rbtnEmbed = new RadioButton();
-            button1 = new Button();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
             splitContainer1.Panel2.SuspendLayout();
@@ -101,6 +101,15 @@
             groupBox3.TabIndex = 2;
             groupBox3.TabStop = false;
             groupBox3.Text = "Connection Details";
+            // 
+            // button1
+            // 
+            button1.Location = new Point(5, 89);
+            button1.Name = "button1";
+            button1.Size = new Size(212, 23);
+            button1.TabIndex = 2;
+            button1.Text = "Test DB Connection";
+            button1.UseVisualStyleBackColor = true;
             // 
             // btnBrowse
             // 
@@ -182,15 +191,6 @@
             rbtnEmbed.TabStop = true;
             rbtnEmbed.Text = "Embeded";
             rbtnEmbed.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            button1.Location = new Point(5, 89);
-            button1.Name = "button1";
-            button1.Size = new Size(212, 23);
-            button1.TabIndex = 2;
-            button1.Text = "Test DB Connection";
-            button1.UseVisualStyleBackColor = true;
             // 
             // ConnectionForm
             // 

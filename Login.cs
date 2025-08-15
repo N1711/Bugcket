@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -24,20 +25,31 @@ namespace BugTracker
 
         private void InitializeConnection()
         {
+            if(!DBOperations.DefaultUserExists())
+            {
+                if(!DBOperations.CreateDefaultUser())
+                {
+                    MessageBox.Show("Failed to initialize database", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
             Form2 f = new Form2();
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            User.Id = 1;
-            User.Name = "Admin";
-            User.Role = "Admin";
-            User.loggedIn = true;
-            loggedIn = true;
-            btnLogin.Cursor = Cursors.WaitCursor;
-            BugTracker b = new BugTracker();
-            b.ShowDialog();
-            this.Close();
+            if(DBOperations.LoginUser(txtUser.Text, txtPass.Text))
+            {
+                loggedIn = true;
+                btnLogin.Cursor = Cursors.WaitCursor;
+                BugTracker b = new BugTracker();
+                b.ShowDialog();
+                this.Close();
+            } else
+            {
+                MessageBox.Show("Invalid Login Credentials", "Login Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
 
         private void button1_Click(object sender, EventArgs e)

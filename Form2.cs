@@ -63,11 +63,11 @@ namespace BugTracker
             WaitNSeconds(waitSeconds);
         }
 
-        private void WaitNSeconds(int segundos)
+        private void WaitNSeconds(int seconds)
         {
-            if (segundos < 1) return;
-            DateTime _desired = DateTime.Now.AddSeconds(segundos);
-            //do not pause form loading meanwhile
+            if (seconds < 1 || seconds > 60) return;
+            DateTime _desired = DateTime.Now.AddSeconds(seconds);
+            //do not pause form loading meanwhile. forms freeze and no pictures show
             while (DateTime.Now < _desired)
             {
                 Application.DoEvents();

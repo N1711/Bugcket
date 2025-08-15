@@ -10,7 +10,7 @@ namespace BugTracker
     {
         public static int Id { get; set; }
         public static string Name { get; set; }
-        public static string Role { get; set; }
+        public static int accessLevel { get; set; }
         public static bool loggedIn { get; set; }
         public static bool bypass { get; set; }
     }

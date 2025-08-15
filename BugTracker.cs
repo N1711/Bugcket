@@ -33,7 +33,7 @@ namespace BugTracker
         public string lastQuery = "";
         public BugTracker()
         {
-            if(!User.loggedIn)
+            if (!User.loggedIn)
             {
                 Login l = new Login();
                 l.ShowDialog();
@@ -942,6 +942,17 @@ namespace BugTracker
         private void BugTracker_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void signOutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            User.loggedIn = false;
+            User.Name = null;
+            User.accessLevel = 0;
+            User.bypass = false;
+            Login l = new Login();
+            this.Close();
+            l.ShowDialog();
         }
     }
 }
