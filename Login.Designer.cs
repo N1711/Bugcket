@@ -30,22 +30,23 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             panel1 = new Panel();
+            logo = new PictureBox();
+            label2 = new Label();
+            lblCopyright = new Label();
             button1 = new Button();
             pictureBox1 = new PictureBox();
             btnLogin = new Button();
             txtPass = new TextBox();
             txtUser = new TextBox();
-            lblCopyright = new Label();
-            label1 = new Label();
-            label2 = new Label();
             panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)logo).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
+            panel1.Controls.Add(logo);
             panel1.Controls.Add(label2);
-            panel1.Controls.Add(label1);
             panel1.Controls.Add(lblCopyright);
             panel1.Controls.Add(button1);
             panel1.Controls.Add(pictureBox1);
@@ -57,6 +58,36 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(317, 332);
             panel1.TabIndex = 0;
+            // 
+            // logo
+            // 
+            logo.BackgroundImage = (Image)resources.GetObject("logo.BackgroundImage");
+            logo.BackgroundImageLayout = ImageLayout.Zoom;
+            logo.Location = new Point(217, 257);
+            logo.Name = "logo";
+            logo.Size = new Size(100, 66);
+            logo.TabIndex = 8;
+            logo.TabStop = false;
+            // 
+            // label2
+            // 
+            label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.ForeColor = Color.IndianRed;
+            label2.Location = new Point(12, 300);
+            label2.Name = "label2";
+            label2.Size = new Size(206, 23);
+            label2.TabIndex = 7;
+            label2.Text = "Demo. For demonstration purposes";
+            label2.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // lblCopyright
+            // 
+            lblCopyright.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            lblCopyright.Location = new Point(12, 284);
+            lblCopyright.Name = "lblCopyright";
+            lblCopyright.Size = new Size(116, 23);
+            lblCopyright.TabIndex = 5;
+            lblCopyright.Text = "2025 Dexinis inc. ";
             // 
             // button1
             // 
@@ -109,36 +140,6 @@
             txtUser.Size = new Size(190, 23);
             txtUser.TabIndex = 0;
             // 
-            // lblCopyright
-            // 
-            lblCopyright.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            lblCopyright.Location = new Point(12, 284);
-            lblCopyright.Name = "lblCopyright";
-            lblCopyright.Size = new Size(116, 23);
-            lblCopyright.TabIndex = 5;
-            lblCopyright.Text = "2025 Dexinis inc. ";
-            // 
-            // label1
-            // 
-            label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.ForeColor = Color.IndianRed;
-            label1.Location = new Point(224, 304);
-            label1.Name = "label1";
-            label1.Size = new Size(81, 23);
-            label1.TabIndex = 6;
-            label1.Text = "Open Source";
-            // 
-            // label2
-            // 
-            label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.ForeColor = Color.IndianRed;
-            label2.Location = new Point(12, 300);
-            label2.Name = "label2";
-            label2.Size = new Size(206, 23);
-            label2.TabIndex = 7;
-            label2.Text = "Demo. For demonstration purposes";
-            label2.TextAlign = ContentAlignment.MiddleLeft;
-            // 
             // Login
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -147,11 +148,14 @@
             ControlBox = false;
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Login";
             ShowInTaskbar = false;
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Login";
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)logo).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
@@ -166,6 +170,6 @@
         private Button button1;
         private Label lblCopyright;
         private Label label2;
-        private Label label1;
+        private PictureBox logo;
     }
 }

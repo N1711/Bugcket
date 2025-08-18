@@ -25,6 +25,10 @@ namespace BugTracker
 
         private void InitializeConnection()
         {
+            if(!DBOperations.ConnectToDB())
+            {
+                MessageBox.Show("Error loading database", "Database error", MessageBoxButtons.OK, MessageBoxIcon.Error); return;
+            }
             if(!DBOperations.DefaultUserExists())
             {
                 if(!DBOperations.CreateDefaultUser())

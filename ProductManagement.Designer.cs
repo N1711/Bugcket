@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProductManagement));
             splitContainer1 = new SplitContainer();
             productItemsList = new DataGridView();
             contextMenuStrip1 = new ContextMenuStrip(components);
@@ -243,6 +244,7 @@
             ClientSize = new Size(480, 464);
             Controls.Add(splitContainer1);
             FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "ProductManagement";
             Text = "Product Management";
             splitContainer1.Panel1.ResumeLayout(false);

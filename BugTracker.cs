@@ -946,13 +946,13 @@ namespace BugTracker
 
         private void signOutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            User.loggedIn = false;
-            User.Name = null;
-            User.accessLevel = 0;
-            User.bypass = false;
-            Login l = new Login();
-            this.Close();
-            l.ShowDialog();
+            Application.Restart();
+        }
+
+        private void guideToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Guide g = new Guide();
+            g.ShowDialog();
         }
     }
 }

@@ -264,7 +264,6 @@
             appToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { signOutToolStripMenuItem, exitToolStripMenuItem });
             appToolStripMenuItem.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
             appToolStripMenuItem.Image = (Image)resources.GetObject("appToolStripMenuItem.Image");
-            appToolStripMenuItem.ImageScaling = ToolStripItemImageScaling.None;
             appToolStripMenuItem.Margin = new Padding(0, 0, 10, 0);
             appToolStripMenuItem.Name = "appToolStripMenuItem";
             appToolStripMenuItem.Size = new Size(44, 51);
@@ -334,6 +333,7 @@
             // 
             // productManagementToolStripMenuItem
             // 
+            productManagementToolStripMenuItem.Image = (Image)resources.GetObject("productManagementToolStripMenuItem.Image");
             productManagementToolStripMenuItem.Name = "productManagementToolStripMenuItem";
             productManagementToolStripMenuItem.Size = new Size(190, 22);
             productManagementToolStripMenuItem.Text = "Product Management";
@@ -341,6 +341,7 @@
             // 
             // versionManagementToolStripMenuItem
             // 
+            versionManagementToolStripMenuItem.Image = (Image)resources.GetObject("versionManagementToolStripMenuItem.Image");
             versionManagementToolStripMenuItem.Name = "versionManagementToolStripMenuItem";
             versionManagementToolStripMenuItem.Size = new Size(190, 22);
             versionManagementToolStripMenuItem.Text = "Version Management";
@@ -360,19 +361,22 @@
             // 
             aboutToolStripMenuItem.Image = (Image)resources.GetObject("aboutToolStripMenuItem.Image");
             aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            aboutToolStripMenuItem.Size = new Size(107, 22);
+            aboutToolStripMenuItem.Size = new Size(196, 38);
             aboutToolStripMenuItem.Text = "About";
             aboutToolStripMenuItem.Click += aboutToolStripMenuItem_Click;
             // 
             // guideToolStripMenuItem
             // 
+            guideToolStripMenuItem.Image = (Image)resources.GetObject("guideToolStripMenuItem.Image");
             guideToolStripMenuItem.Name = "guideToolStripMenuItem";
-            guideToolStripMenuItem.Size = new Size(107, 22);
+            guideToolStripMenuItem.Size = new Size(196, 38);
             guideToolStripMenuItem.Text = "Guide";
+            guideToolStripMenuItem.Click += guideToolStripMenuItem_Click;
             // 
             // tToolStripMenuItem
             // 
             tToolStripMenuItem.Alignment = ToolStripItemAlignment.Right;
+            tToolStripMenuItem.Enabled = false;
             tToolStripMenuItem.Image = (Image)resources.GetObject("tToolStripMenuItem.Image");
             tToolStripMenuItem.Margin = new Padding(0, 0, 25, 0);
             tToolStripMenuItem.Name = "tToolStripMenuItem";
@@ -1715,6 +1719,7 @@
             Controls.Add(tabControl1);
             Controls.Add(menuStrip1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menuStrip1;
             MaximizeBox = false;
             Name = "BugTracker";

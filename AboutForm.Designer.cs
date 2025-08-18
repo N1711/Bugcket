@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AboutForm));
             listBoxCredits = new ListBox();
             txtCredits = new TextBox();
             lblAgreement = new Label();
@@ -58,7 +59,7 @@
             lblAgreement.Dock = DockStyle.Bottom;
             lblAgreement.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             lblAgreement.ForeColor = Color.IndianRed;
-            lblAgreement.Location = new Point(0, 408);
+            lblAgreement.Location = new Point(0, 407);
             lblAgreement.Name = "lblAgreement";
             lblAgreement.Size = new Size(406, 32);
             lblAgreement.TabIndex = 3;
@@ -69,11 +70,12 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(406, 440);
+            ClientSize = new Size(406, 439);
             Controls.Add(lblAgreement);
             Controls.Add(txtCredits);
             Controls.Add(listBoxCredits);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "AboutForm";
             Text = "About Bugcket";
             ResumeLayout(false);

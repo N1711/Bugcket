@@ -27,8 +27,14 @@ namespace BugTracker
 
         public static bool ConnectToDB()
         {
+            Debug.WriteLine(GetSetting("database"));
+            if(GetSetting("database") == null || GetSetting("database") == "")
+            {
+                SetSetting("database", "Data Source=BugTracker.db");
+                SetSetting("type", "sql");
+            }
             //replace with db location from settings file
-            var connection = new SQLiteConnection("Data Source=BugTracker.db");
+            var connection = new SQLiteConnection(GetSetting("database"));
             try
             {
                 connection.Open();
@@ -130,7 +136,7 @@ namespace BugTracker
         public static SQLiteDataAdapter getDbItems(string sql) { 
             try
             {
-                var connection = new SQLiteConnection("Data Source=BugTracker.db");
+                var connection = new SQLiteConnection(GetSetting("database"));
                 connection.Open();
 
                 SQLiteDataAdapter dataAdapter = new SQLiteDataAdapter(sql, connection);
@@ -154,7 +160,7 @@ namespace BugTracker
             }
             try
             {
-                var connection = new SQLiteConnection("Data Source=BugTracker.db");
+                var connection = new SQLiteConnection(GetSetting("database"));
                 connection.Open();
                 var command = new SQLiteCommand(sql, connection);
                 command.Parameters.AddWithValue("@description", description);
@@ -191,7 +197,7 @@ namespace BugTracker
             }
             try
             {
-                var connection = new SQLiteConnection("Data Source=BugTracker.db");
+                var connection = new SQLiteConnection(GetSetting("database"));
                 connection.Open();
                 var command = new SQLiteCommand(sql, connection);
                 command.Parameters.AddWithValue("@description", description);
@@ -228,7 +234,7 @@ namespace BugTracker
             }
             try
             {
-                var connection = new SQLiteConnection("Data Source=BugTracker.db");
+                var connection = new SQLiteConnection(GetSetting("database"));
                 connection.Open();
                 var command = new SQLiteCommand(sql, connection);
                 command.Parameters.AddWithValue("@productId", productId);
@@ -254,7 +260,7 @@ namespace BugTracker
         public static bool DeleteVersionItem(int id)
         {
             string sql = "Delete from versions where id = @id";
-            var connection = new SQLiteConnection("Data Source=BugTracker.db");
+            var connection = new SQLiteConnection(GetSetting("database"));
             connection.Open();
             using var command = new SQLiteCommand(sql, connection);
             command.Parameters.AddWithValue("@id", id);
@@ -265,7 +271,7 @@ namespace BugTracker
         public static bool DeleteItem(int id)
         {
             string sql = "Delete from bugs where id = @id";
-            var connection = new SQLiteConnection("Data Source=BugTracker.db");
+            var connection = new SQLiteConnection(GetSetting("database"));
             connection.Open();
             using var command = new SQLiteCommand(sql, connection);
             command.Parameters.AddWithValue("@id", id);
@@ -276,7 +282,7 @@ namespace BugTracker
         public static bool DeleteEnhancementItem(int id)
         {
             string sql = "Delete from enhancements where id = @id";
-            var connection = new SQLiteConnection("Data Source=BugTracker.db");
+            var connection = new SQLiteConnection(GetSetting("database"));
             connection.Open();
             using var command = new SQLiteCommand(sql, connection);
             command.Parameters.AddWithValue("@id", id);
@@ -293,7 +299,7 @@ namespace BugTracker
             }
             try
             {
-                var connection = new SQLiteConnection("Data Source=BugTracker.db");
+                var connection = new SQLiteConnection(GetSetting("database"));
                 connection.Open();
                 var command = new SQLiteCommand(sql, connection);
                 command.Parameters.AddWithValue("@description", description);
@@ -321,7 +327,7 @@ namespace BugTracker
             }
             try
             {
-                var connection = new SQLiteConnection("Data Source=BugTracker.db");
+                var connection = new SQLiteConnection(GetSetting("database"));
                 connection.Open();
                 var command = new SQLiteCommand(sql, connection);
                 command.Parameters.AddWithValue("@description", description);
@@ -348,7 +354,7 @@ namespace BugTracker
             }
             try
             {
-                var connection = new SQLiteConnection("Data Source=BugTracker.db");
+                var connection = new SQLiteConnection(GetSetting("database"));
                 connection.Open();
                 var command = new SQLiteCommand(sql, connection);
                 command.Parameters.AddWithValue("@description", description);
@@ -373,7 +379,7 @@ namespace BugTracker
         public static bool DeleteProductItem(int id)
         {
             string sql = "Delete from products where id = @id";
-            var connection = new SQLiteConnection("Data Source=BugTracker.db");
+            var connection = new SQLiteConnection(GetSetting("database"));
             connection.Open();
             using var command = new SQLiteCommand(sql, connection);
             command.Parameters.AddWithValue("@id", id);
@@ -390,7 +396,7 @@ namespace BugTracker
             }
             try
             {
-                var connection = new SQLiteConnection("Data Source=BugTracker.db");
+                var connection = new SQLiteConnection(GetSetting("database"));
                 connection.Open();
                 var command = new SQLiteCommand(sql, connection);
                 command.Parameters.AddWithValue("@description", description);
@@ -411,7 +417,7 @@ namespace BugTracker
         {
             string versions = "";
             string sql = "Select * from versions where productId = @id order by version desc LIMIT 1";
-            var connection = new SQLiteConnection("Data Source=BugTracker.db");
+            var connection = new SQLiteConnection(GetSetting("database"));
             try
             {
                 connection.Open();
@@ -433,8 +439,8 @@ namespace BugTracker
 
         public static bool ConnectToMongoDB()
         {
-            var connectionString = Environment.GetEnvironmentVariable("MONGODB_URI");
-            if (connectionString == null)
+            var connectionString = GetSetting("database");
+            if (connectionString == null || connectionString == "")
             {
                 Console.WriteLine("You must set your 'MONGODB_URI' environment variable. To learn how to set it, see https://www.mongodb.com/docs/drivers/csharp/current/quick-start/#set-your-connection-string");
                 return false;
@@ -458,8 +464,8 @@ namespace BugTracker
         public static List<string> getBugItemsMongo ()
         {
             List<string> bugItems = new List<string> ();
-            var connectionString = Environment.GetEnvironmentVariable("MONGODB_URI");
-            if (connectionString == null)
+            var connectionString = GetSetting("database");
+            if (connectionString == null || connectionString == "")
             {
                 Console.WriteLine("You must set your 'MONGODB_URI' environment variable. To learn how to set it, see https://www.mongodb.com/docs/drivers/csharp/current/quick-start/#set-your-connection-string");
             }
@@ -493,7 +499,7 @@ namespace BugTracker
         public static List<PriorityModel> GetDropDown(string sql, int key)
         {
             List<PriorityModel> versions = new List<PriorityModel>();
-            var connection = new SQLiteConnection("Data Source=BugTracker.db");
+            var connection = new SQLiteConnection(GetSetting("database"));
             try
             {
                 connection.Open();
@@ -519,7 +525,7 @@ namespace BugTracker
 
         public static bool DefaultUserExists()
         {
-            var connection = new SQLiteConnection("Data Source=BugTracker.db");
+            var connection = new SQLiteConnection(GetSetting("database"));
             var sql = "Select Count(*) as users from users";
             int userTotal = 0;
             try
@@ -548,7 +554,7 @@ namespace BugTracker
             bool result = false;
             string unencryptedPassword = "adminDexinis";
             string encryptedPassword = BCrypt.Net.BCrypt.HashPassword(unencryptedPassword);
-            var connection = new SQLiteConnection("Data Source=BugTracker.db");
+            var connection = new SQLiteConnection(GetSetting("database"));
             var sql = "INSERT INTO users (name, accessLevel, password) VALUES (@User, @Level, @Password)";
             try
             {
@@ -573,25 +579,29 @@ namespace BugTracker
         {
             bool result = false;
             string hashedPassword = "";
-            var connection = new SQLiteConnection("Data Source=BugTracker.db");
-            var sql = "SELECT * from users where Name = " + name;
+            var connection = new SQLiteConnection(GetSetting("database"));
+            var sql = "SELECT * from users where Name = @name";
+            if (name.ToLower().Contains("drop") || name.ToLower().Contains("delete") || name.ToLower().Contains("update") || name.ToLower().Contains("union")
+                || name.Length == 0) return false;
             try
             {
                 connection.Open();
                 SQLiteCommand command = new SQLiteCommand(sql, connection);
+                command.Parameters.AddWithValue("@name", name);
                 using SQLiteDataReader reader = command.ExecuteReader();
                 if(reader.Read())
                 {
                     User.Id = reader.GetInt32(0);
                     User.Name = reader.GetString(1);
                     User.accessLevel = reader.GetInt32(2);
+                    User.loggedIn = true;
                     hashedPassword = reader.GetString(3);
                 } else
                 {
                     connection.Close();
                     return false;
                 }
-                if(hashedPassword.Length > 0)
+                if(plainTextPassword.Length > 0)
                 {
                     return BCrypt.Net.BCrypt.Verify(plainTextPassword, hashedPassword);
                 } else
@@ -610,12 +620,12 @@ namespace BugTracker
             return result;
         }
 
-        private static string GetSetting(string key)
+        public static string GetSetting(string key)
         {
             return ConfigurationManager.AppSettings[key];
         }
 
-        private static void SetSetting(string key, string value)
+        public static void SetSetting(string key, string value)
         {
             Configuration configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             configuration.AppSettings.Settings[key].Value = value;

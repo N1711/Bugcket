@@ -80,13 +80,16 @@
             // 
             dataGridUsers.AllowUserToAddRows = false;
             dataGridUsers.AllowUserToDeleteRows = false;
+            dataGridUsers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridUsers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridUsers.Dock = DockStyle.Fill;
             dataGridUsers.Location = new Point(5, 5);
             dataGridUsers.Name = "dataGridUsers";
+            dataGridUsers.ReadOnly = true;
             dataGridUsers.RowTemplate.Height = 25;
             dataGridUsers.Size = new Size(356, 241);
             dataGridUsers.TabIndex = 0;
+            dataGridUsers.SelectionChanged += dataGridUsers_SelectionChanged;
             // 
             // splitContainer2
             // 
@@ -177,6 +180,7 @@
             // btnSave
             // 
             btnSave.Dock = DockStyle.Fill;
+            btnSave.Enabled = false;
             btnSave.Location = new Point(0, 0);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(356, 44);
