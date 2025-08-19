@@ -38,6 +38,7 @@ namespace BugTracker
                     label1.Text = "Application loaded";
                     //show the form for a minimum time, allows the user to see the product image and developer
                     CloseMe();
+                    
                     progressBar1.Value = 0;
                 }
                 else

@@ -361,7 +361,7 @@
             // 
             aboutToolStripMenuItem.Image = (Image)resources.GetObject("aboutToolStripMenuItem.Image");
             aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            aboutToolStripMenuItem.Size = new Size(196, 38);
+            aboutToolStripMenuItem.Size = new Size(107, 22);
             aboutToolStripMenuItem.Text = "About";
             aboutToolStripMenuItem.Click += aboutToolStripMenuItem_Click;
             // 
@@ -369,7 +369,7 @@
             // 
             guideToolStripMenuItem.Image = (Image)resources.GetObject("guideToolStripMenuItem.Image");
             guideToolStripMenuItem.Name = "guideToolStripMenuItem";
-            guideToolStripMenuItem.Size = new Size(196, 38);
+            guideToolStripMenuItem.Size = new Size(107, 22);
             guideToolStripMenuItem.Text = "Guide";
             guideToolStripMenuItem.Click += guideToolStripMenuItem_Click;
             // 

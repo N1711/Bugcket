@@ -25,7 +25,8 @@ namespace BugTracker
 
         private void InitializeConnection()
         {
-            if(!DBOperations.ConnectToDB())
+            Form2 f = new Form2();
+            if (!DBOperations.ConnectToDB())
             {
                 MessageBox.Show("Error loading database", "Database error", MessageBoxButtons.OK, MessageBoxIcon.Error); return;
             }
@@ -37,7 +38,6 @@ namespace BugTracker
                     return;
                 }
             }
-            Form2 f = new Form2();
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -46,9 +46,9 @@ namespace BugTracker
             {
                 loggedIn = true;
                 btnLogin.Cursor = Cursors.WaitCursor;
+                this.Hide();
                 BugTracker b = new BugTracker();
                 b.ShowDialog();
-                this.Close();
             } else
             {
                 MessageBox.Show("Invalid Login Credentials", "Login Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

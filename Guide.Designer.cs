@@ -31,10 +31,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Guide));
             panel1 = new Panel();
             splitContainer1 = new SplitContainer();
-            listBox1 = new ListBox();
+            listBoxMenu = new ListBox();
             splitContainer2 = new SplitContainer();
-            textBox1 = new TextBox();
-            pictureBox1 = new PictureBox();
+            txtDescription = new TextBox();
+            pbGuide = new PictureBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)splitContainer1).BeginInit();
             splitContainer1.Panel1.SuspendLayout();
@@ -44,7 +44,7 @@
             splitContainer2.Panel1.SuspendLayout();
             splitContainer2.Panel2.SuspendLayout();
             splitContainer2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbGuide).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -65,7 +65,7 @@
             // 
             // splitContainer1.Panel1
             // 
-            splitContainer1.Panel1.Controls.Add(listBox1);
+            splitContainer1.Panel1.Controls.Add(listBoxMenu);
             splitContainer1.Panel1.Padding = new Padding(5);
             // 
             // splitContainer1.Panel2
@@ -76,16 +76,17 @@
             splitContainer1.SplitterDistance = 159;
             splitContainer1.TabIndex = 0;
             // 
-            // listBox1
+            // listBoxMenu
             // 
-            listBox1.Dock = DockStyle.Fill;
-            listBox1.FormattingEnabled = true;
-            listBox1.ItemHeight = 15;
-            listBox1.Items.AddRange(new object[] { "Navigation", "Bugs", "Enhancements", "Reports", "Settings" });
-            listBox1.Location = new Point(5, 5);
-            listBox1.Name = "listBox1";
-            listBox1.Size = new Size(149, 487);
-            listBox1.TabIndex = 0;
+            listBoxMenu.Dock = DockStyle.Fill;
+            listBoxMenu.FormattingEnabled = true;
+            listBoxMenu.ItemHeight = 15;
+            listBoxMenu.Items.AddRange(new object[] { "Navigation", "Bugs / Enhancements", "Reports", "Settings" });
+            listBoxMenu.Location = new Point(5, 5);
+            listBoxMenu.Name = "listBoxMenu";
+            listBoxMenu.Size = new Size(149, 487);
+            listBoxMenu.TabIndex = 0;
+            listBoxMenu.SelectedIndexChanged += listBoxMenu_SelectedIndexChanged;
             // 
             // splitContainer2
             // 
@@ -97,35 +98,38 @@
             // 
             // splitContainer2.Panel1
             // 
-            splitContainer2.Panel1.Controls.Add(textBox1);
+            splitContainer2.Panel1.Controls.Add(txtDescription);
             // 
             // splitContainer2.Panel2
             // 
-            splitContainer2.Panel2.Controls.Add(pictureBox1);
+            splitContainer2.Panel2.Controls.Add(pbGuide);
             splitContainer2.Size = new Size(512, 487);
             splitContainer2.SplitterDistance = 288;
             splitContainer2.TabIndex = 0;
             // 
-            // textBox1
+            // txtDescription
             // 
-            textBox1.Dock = DockStyle.Fill;
-            textBox1.Location = new Point(0, 0);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.PlaceholderText = "Description";
-            textBox1.ReadOnly = true;
-            textBox1.ScrollBars = ScrollBars.Vertical;
-            textBox1.Size = new Size(512, 288);
-            textBox1.TabIndex = 0;
+            txtDescription.Dock = DockStyle.Fill;
+            txtDescription.Location = new Point(0, 0);
+            txtDescription.Multiline = true;
+            txtDescription.Name = "txtDescription";
+            txtDescription.ReadOnly = true;
+            txtDescription.ScrollBars = ScrollBars.Vertical;
+            txtDescription.Size = new Size(512, 288);
+            txtDescription.TabIndex = 0;
+            txtDescription.Text = "Welcome to Bugcket's Guide. Hope you are having a great day. If not, remember - after the plague came the Rennaisance...";
             // 
-            // pictureBox1
+            // pbGuide
             // 
-            pictureBox1.Dock = DockStyle.Fill;
-            pictureBox1.Location = new Point(0, 0);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(512, 195);
-            pictureBox1.TabIndex = 0;
-            pictureBox1.TabStop = false;
+            pbGuide.BackgroundImageLayout = ImageLayout.None;
+            pbGuide.Dock = DockStyle.Fill;
+            pbGuide.InitialImage = (Image)resources.GetObject("pbGuide.InitialImage");
+            pbGuide.Location = new Point(0, 0);
+            pbGuide.Name = "pbGuide";
+            pbGuide.Size = new Size(512, 195);
+            pbGuide.SizeMode = PictureBoxSizeMode.Zoom;
+            pbGuide.TabIndex = 0;
+            pbGuide.TabStop = false;
             // 
             // Guide
             // 
@@ -134,6 +138,8 @@
             ClientSize = new Size(685, 497);
             Controls.Add(panel1);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
+            MinimizeBox = false;
             Name = "Guide";
             Text = "App Guide";
             panel1.ResumeLayout(false);
@@ -146,7 +152,7 @@
             splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)splitContainer2).EndInit();
             splitContainer2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbGuide).EndInit();
             ResumeLayout(false);
         }
 
@@ -155,8 +161,8 @@
         private Panel panel1;
         private SplitContainer splitContainer1;
         private SplitContainer splitContainer2;
-        private ListBox listBox1;
-        private TextBox textBox1;
-        private PictureBox pictureBox1;
+        private ListBox listBoxMenu;
+        private TextBox txtDescription;
+        private PictureBox pbGuide;
     }
 }

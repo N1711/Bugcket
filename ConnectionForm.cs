@@ -22,6 +22,7 @@ namespace BugTracker
                 rbtnEmbed.Checked = true;
                 btnBrowse.Enabled = true;
             }
+            txtString.Text = DBOperations.GetSetting("database") != null ? DBOperations.GetSetting("database") : "Connection string";
         }
 
         private void btnBrowse_Click(object sender, EventArgs e)

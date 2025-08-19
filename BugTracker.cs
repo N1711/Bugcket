@@ -38,8 +38,9 @@ namespace BugTracker
                 Login l = new Login();
                 l.ShowDialog();
                 this.Close();
+                l.ShowDialog();
                 return;
-            }
+            } 
             InitializeComponent();
             InitializeDialog();
             InitializeEnhancementDialog();
@@ -80,6 +81,13 @@ namespace BugTracker
             comboVersions.DataSource = vDropDown;
             comboVersions.DisplayMember = "Name";
             comboVersions.ValueMember = "id";
+
+            if (User.accessLevel != 1)
+            {
+                btnReportRun.Enabled = false;
+                btnReportExport.Enabled = false;
+                btnReportSaveQuery.Enabled = false;
+            }
 
             try
             {
@@ -218,9 +226,9 @@ namespace BugTracker
                     MessageBox.Show("Item added succesfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     DataRow r = table.NewRow();
                     r[0] = result;
-                    r[1] = productName;
-                    r[2] = versionName;
-                    r[3] = description;
+                    r[1] = description;
+                    r[2] = productName;
+                    r[3] = versionName; 
                     r[4] = status;
                     r[5] = priority;
                     r[6] = detectedBy;
@@ -262,9 +270,9 @@ namespace BugTracker
                     MessageBox.Show("Item added succesfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     DataRow r = enhancementTable.NewRow();
                     r[0] = result;
-                    r[1] = productName;
-                    r[2] = versionName;
-                    r[3] = description;
+                    r[1] = description;
+                    r[2] = productName;
+                    r[3] = versionName;
                     r[4] = status;
                     r[5] = priority;
                     r[6] = detectedBy;
@@ -946,6 +954,7 @@ namespace BugTracker
 
         private void signOutToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            this.Hide();
             Application.Restart();
         }
 
