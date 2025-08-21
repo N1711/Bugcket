@@ -1,21 +1,10 @@
 ﻿using BugTracker.models;
 using System.Data.SQLite;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System.Security.Cryptography;
-using System.Data.Common;
-using System.Globalization;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using static System.Windows.Forms.AxHost;
 using Excel = Microsoft.Office.Interop.Excel;
+using System.Windows.Forms;
 
 namespace BugTracker
 {
@@ -40,7 +29,7 @@ namespace BugTracker
                 this.Close();
                 l.ShowDialog();
                 return;
-            } 
+            }
             InitializeComponent();
             InitializeDialog();
             InitializeEnhancementDialog();
@@ -163,10 +152,9 @@ namespace BugTracker
 
         private void button1_Click(object sender, EventArgs e)
         {
-            int id;
             try
             {
-                if (int.TryParse(txtID.Text, out id))
+                if (int.TryParse(txtID.Text, out int id))
                 {
                     UpdateItem();
                 }
@@ -178,6 +166,8 @@ namespace BugTracker
             }
             catch (Exception ex)
             {
+                Debug.WriteLine(ex.Message);
+                //log ex in a log file for future use
                 InsertItem();
             }
 
@@ -185,10 +175,10 @@ namespace BugTracker
 
         private void btnSaveEn_Click(object sender, EventArgs e)
         {
-            int id;
+
             try
             {
-                if (int.TryParse(txtEnID.Text, out id))
+                if (int.TryParse(txtEnID.Text, out int id))
                 {
                     UpdateEnhancementItem();
                 }
@@ -200,6 +190,8 @@ namespace BugTracker
             }
             catch (Exception ex)
             {
+                Debug.WriteLine(ex.Message);
+                //log ex in a log file for future use
                 InsertEnhancementItem();
             }
 
@@ -209,17 +201,22 @@ namespace BugTracker
         {
             try
             {
-                string description = txtDescription.Text;
-                int product = Int32.Parse(comboProducts.SelectedValue.ToString());
+                string description = txtDescription.Text;              
+                long? product = ExtractIntFromDropDown(comboProducts.SelectedValue.ToString());
                 string productName = comboProducts.GetItemText(comboProducts.SelectedItem);
-                int version = Int32.Parse(comboVersions.SelectedValue.ToString());
+                long? version = ExtractIntFromDropDown(comboVersions.SelectedValue.ToString());
                 string versionName = comboVersions.GetItemText(comboVersions.SelectedItem);
-                string status = comboStatus.SelectedItem.ToString();
-                string priority = comboPriority.SelectedItem.ToString();
+                string? status = comboStatus.SelectedItem.ToString();
+                string? priority = comboPriority.SelectedItem.ToString();
                 string detectedBy = txtDetectedName.Text;
                 string dateDetected = dtPicker.Value.ToString();
                 string notesIssue = txtNotesIssue.Text;
                 string notesFix = txtNotesFix.Text;
+                if(!product.HasValue || product == 0 || !version.HasValue || version == 0)
+                {
+                    MessageBox.Show("Invalid Selection", "Error Inserting product", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 long result = DBOperations.InsertBugItem(description, product, version, status, priority, detectedBy, dateDetected, notesIssue, notesFix);
                 if (result > 0)
                 {
@@ -228,7 +225,7 @@ namespace BugTracker
                     r[0] = result;
                     r[1] = description;
                     r[2] = productName;
-                    r[3] = versionName; 
+                    r[3] = versionName;
                     r[4] = status;
                     r[5] = priority;
                     r[6] = detectedBy;
@@ -255,15 +252,20 @@ namespace BugTracker
             try
             {
                 string description = txtEnDescription.Text;
-                int product = Int32.Parse(comboEnProduct.SelectedValue.ToString());
+                long? product = ExtractIntFromDropDown(comboEnProduct.SelectedValue.ToString());
                 string productName = comboEnProduct.GetItemText(comboEnProduct.SelectedItem);
-                int version = Int32.Parse(comboEnVersion.SelectedValue.ToString());
+                long? version = ExtractIntFromDropDown(comboEnVersion.SelectedValue.ToString());
                 string versionName = comboEnVersion.GetItemText(comboEnVersion.SelectedItem);
-                string status = comboEnStatus.SelectedItem.ToString();
-                string priority = comboEnPriority.SelectedItem.ToString();
+                string? status = comboEnStatus.SelectedItem.ToString();
+                string? priority = comboEnPriority.SelectedItem.ToString();
                 string detectedBy = txtEnDetected.Text;
                 string dateDetected = dtDetected.Value.ToString();
                 string notes = txtEnNotes.Text;
+                if (!product.HasValue || product == 0 || !version.HasValue || version == 0)
+                {
+                    MessageBox.Show("Invalid Selection", "Error Inserting product", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 long result = DBOperations.InsertEnhancementItem(description, product, version, status, priority, detectedBy, dateDetected, notes);
                 if (result > 0)
                 {
@@ -302,7 +304,7 @@ namespace BugTracker
                 DataGridViewRow r = bugItems.Rows[row];
                 try
                 {
-                    int id = Int32.Parse(r.Cells[0].Value.ToString());
+                    long id = ExtractIntFromDropDown(r.Cells[0].Value.ToString());
                     bool result = DBOperations.DeleteItem(id);
                     if (result)
                     {
@@ -338,7 +340,7 @@ namespace BugTracker
                 DataGridViewRow r = enhancementItems.Rows[row];
                 try
                 {
-                    int id = Int32.Parse(r.Cells[0].Value.ToString());
+                    long id = ExtractIntFromDropDown(r.Cells[0].Value.ToString());
                     bool result = DBOperations.DeleteEnhancementItem(id);
                     if (result)
                     {
@@ -374,7 +376,7 @@ namespace BugTracker
                 string priority = comboPriority.SelectedItem.ToString();
                 string notesIssue = txtNotesIssue.Text;
                 string notesFix = txtNotesFix.Text;
-                int id = Int32.Parse(txtID.Text);
+                long id = ExtractIntFromDropDown(txtID.Text);
                 bool result = DBOperations.UpdateBugItem(id, description, status, priority, notesIssue, notesFix);
                 if (result)
                 {
@@ -407,7 +409,7 @@ namespace BugTracker
                 string status = comboEnStatus.SelectedItem.ToString();
                 string priority = comboEnPriority.SelectedItem.ToString();
                 string notes = txtEnNotes.Text;
-                int id = Int32.Parse(txtEnID.Text);
+                long id = ExtractIntFromDropDown(txtEnID.Text);
                 bool result = DBOperations.UpdateEnhancementItem(id, description, status, priority, notes);
                 if (result)
                 {
@@ -460,9 +462,10 @@ namespace BugTracker
                 DataGridViewRow r = bugItems.Rows[row];
                 txtID.Text = r.Cells[0].Value.ToString();
                 txtDescription.Text = r.Cells[1].Value.ToString();
-                List<PriorityModel> productItems = DBOperations.GetDropDown(@"Select * from products where description = " + "\"" + r.Cells[2].Value.ToString() + "\"", 1);
-                List<PriorityModel> versionItems = DBOperations.GetDropDown(@"Select * from versions where version = " + "\"" + r.Cells[3].Value.ToString() + "\"", 2);
+                List<PriorityModel> productItems = DBOperations.GetDropDown(@"Select * from products where description = " + "\'" + r.Cells[2].Value.ToString() + "\'", 1);
+                List<PriorityModel> versionItems = DBOperations.GetDropDown(@"Select * from versions where version = " + "\'" + r.Cells[3].Value.ToString() + "\'", 2);
                 pDropDown.Clear();
+                vDropDown.Clear();
                 pDropDown.Add(productItems.Count() > 0 ? productItems[0] : new PriorityModel(0, "Error"));
                 comboProducts.SelectedIndex = 0;
                 vDropDown.Add(versionItems.Count() > 0 ? versionItems[0] : new PriorityModel(0, "Error"));
@@ -512,11 +515,12 @@ namespace BugTracker
                 DataGridViewRow r = enhancementItems.Rows[row];
                 txtEnID.Text = r.Cells[0].Value.ToString();
                 txtEnDescription.Text = r.Cells[1].Value.ToString();
-                List<PriorityModel> productItems = DBOperations.GetDropDown(@"Select * from products where description = " + "\"" + r.Cells[2].Value.ToString() + "\"", 1);
-                List<PriorityModel> versionItems = DBOperations.GetDropDown(@"Select * from versions where version = " + "\"" + r.Cells[3].Value.ToString() + "\"", 2);
+                List<PriorityModel> productItems = DBOperations.GetDropDown(@"Select * from products where description = " + "\'" + r.Cells[2].Value.ToString() + "\'", 1);
+                List<PriorityModel> versionItems = DBOperations.GetDropDown(@"Select * from versions where version = " + "\'" + r.Cells[3].Value.ToString() + "\'", 2);
                 pEnDropDown.Clear();
                 pEnDropDown.Add(productItems.Count() > 0 ? productItems[0] : new PriorityModel(0, "Error"));
                 comboEnProduct.SelectedIndex = 0;
+                vEnDropDown.Clear();
                 vEnDropDown.Add(versionItems.Count() > 0 ? versionItems[0] : new PriorityModel(0, "Error"));
                 comboEnVersion.SelectedIndex = 0;
                 comboEnStatus.SelectedIndex = r.Cells[4].Value.ToString() == "Open" ? 0 : r.Cells[4].Value.ToString() == "In Progress" ? 1 : 2;
@@ -580,16 +584,11 @@ namespace BugTracker
         private void newItemToolStripMenuItem_Click(object sender, EventArgs e)
         {
             List<PriorityModel> productItems = DBOperations.GetDropDown(@"Select * from products", 1);
-            List<PriorityModel> versionItems = DBOperations.GetDropDown(@"Select * from versions", 2);
             pDropDown.Clear();
             vDropDown.Clear();
             foreach (PriorityModel item in productItems)
             {
                 pDropDown.Add(item);
-            }
-            foreach (PriorityModel item in versionItems)
-            {
-                vDropDown.Add(item);
             }
             comboProducts.DataSource = pDropDown;
             comboProducts.DisplayMember = "Name";
@@ -604,7 +603,6 @@ namespace BugTracker
             comboStatus.SelectedIndex = 0;
             comboPriority.SelectedIndex = 0;
             txtDetectedName.Text = "";
-            //dtPicker.Text = "";
             txtNotesIssue.Text = "";
             txtNotesFix.Text = "";
             SetReadOnlyStatus(false, true);
@@ -643,9 +641,9 @@ namespace BugTracker
             if (txtReportQuery.Text.Length < 10 || txtReportQuery.Text.ToUpper().Contains("UPDATE") || txtReportQuery.Text.ToUpper().Contains("DELETE")
                 || txtReportQuery.Text.ToUpper().Contains("DROP") || !txtReportQuery.Text.ToUpper().Contains("SELECT") || lastQuery == txtReportQuery.Text) return;
             lastQuery = txtReportQuery.Text;
-            reportTable.Clear();
             dataGridReport.DataSource = null;
-
+            reportTable.Columns.Clear();
+            reportTable.Clear();
             try
             {
                 SQLiteDataAdapter items = DBOperations.getDbItems(txtReportQuery.Text);
@@ -814,21 +812,16 @@ namespace BugTracker
         private void newItemToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             List<PriorityModel> productItems = DBOperations.GetDropDown(@"Select * from products", 1);
-            List<PriorityModel> versionItems = DBOperations.GetDropDown(@"Select * from versions", 2);
             pEnDropDown.Clear();
             vEnDropDown.Clear();
             foreach (PriorityModel item in productItems)
             {
                 pEnDropDown.Add(item);
             }
-            foreach (PriorityModel item in versionItems)
-            {
-                vEnDropDown.Add(item);
-            }
             comboEnProduct.DataSource = pEnDropDown;
             comboEnProduct.DisplayMember = "Name";
             comboEnProduct.ValueMember = "id";
-            comboEnVersion.DataSource = vDropDown;
+            comboEnVersion.DataSource = vEnDropDown;
             comboEnVersion.DisplayMember = "Name";
             comboEnVersion.ValueMember = "id";
             txtEnID.Text = "";
@@ -962,6 +955,48 @@ namespace BugTracker
         {
             Guide g = new Guide();
             g.ShowDialog();
+        }
+
+        private void comboProducts_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboProducts.SelectedIndex < 0) return;
+            long id = ExtractIntFromDropDown(comboProducts.SelectedValue.ToString());
+            if (id == 0) return;
+            SetVersionCombo(id);  
+        }
+
+        private void comboEnProducts_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboEnProduct.SelectedIndex < 0) return;
+            long id = ExtractIntFromDropDown(comboEnProduct.SelectedValue.ToString()); ;
+            if (id == 0) return;
+            SetVersionEnCombo(id);
+        }
+
+        private void SetVersionCombo(long id)
+        {
+            vDropDown.Clear();
+            List<PriorityModel> versions = DBOperations.GetDropDown(@"Select * from versions where productId = " + id, 2);
+            foreach (PriorityModel item in versions)
+            {
+                vDropDown.Add(item);
+            }
+        }
+
+        private void SetVersionEnCombo(long id)
+        {
+            vEnDropDown.Clear();
+            List<PriorityModel> versions = DBOperations.GetDropDown(@"Select * from versions where productId = " + id, 2);
+            foreach (PriorityModel item in versions)
+            {
+                vEnDropDown.Add(item);
+            }
+        }
+
+        private static long ExtractIntFromDropDown (string? s)
+        {
+            if (s == null || s.Length == 0) return 0;
+            return Int64.TryParse(s, out long res) ? Int64.Parse(s) : 0;
         }
     }
 }

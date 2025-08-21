@@ -3,17 +3,7 @@
 using MongoDB.Bson;
 using MongoDB.Driver;
 using System.Data.SQLite;
-using System;
-using BCrypt;
 using System.Diagnostics;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.NetworkInformation;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Data.Sqlite;
-using System.Security.Cryptography.X509Certificates;
-using System.Windows.Forms;
 using System.Configuration;
 
 namespace BugTracker
@@ -27,7 +17,6 @@ namespace BugTracker
 
         public static bool ConnectToDB()
         {
-            Debug.WriteLine(GetSetting("database"));
             if(GetSetting("database") == null || GetSetting("database") == "")
             {
                 SetSetting("database", "Data Source=BugTracker.db");
@@ -75,7 +64,6 @@ namespace BugTracker
                 productId INTEGER NOT NULL,
                 versionId INTEGER NOT NULL,
                 description TEXT NOT NULL,
-                version TEXT NOT NULL,
                 status TEXT NOT NULL,
                 priority TEXT NOT NULL,
                 detectedBy TEXT NOT NULL,
@@ -152,9 +140,10 @@ namespace BugTracker
 
         }
 
-        public static long InsertBugItem(string description, int product, int version, string status, string priority, string detectedBy, string dateDetected, string notesIssue, string notesFix)
+        public static long InsertBugItem(string description, long? product, long? version, string? status, string? priority, string detectedBy, string dateDetected, string notesIssue, string notesFix)
         {
             var sql = "INSERT INTO bugs (description, status, priority, detectedBy, dateDetected, IssueNotes, FixNotes, productId, versionId) VALUES (@description, @status, @priority, @detectedBy, @dateDetected, @notesIssue, @notesFix, @productId, @versionId)";
+            if (status == null || priority == null) return 0;
             if(description.Length == 0 || status.Length == 0 || priority.Length == 0 || detectedBy.Length == 0) {
                 return 0;
             }
@@ -188,9 +177,9 @@ namespace BugTracker
             }
         }
 
-        public static long InsertEnhancementItem(string description, int product, int version, string status, string priority, string detectedBy, string dateDetected, string notes)
+        public static long InsertEnhancementItem(string description, long? product, long? version, string? status, string? priority, string detectedBy, string dateDetected, string notes)
         {
-            var sql = "INSERT INTO enhancements (description, status, priority, detectedBy, dateDetected, notes, productId, versionId) VALUES (@description, @status, @priority, @detectedBy, @dateDetected, @notes, @productId, @versionId)";
+            var sql = "INSERT INTO enhancements (productId, versionId, description, status, priority, detectedBy, dateDetected, notes) VALUES (@productId, @versionId, @description, @status, @priority, @detectedBy, @dateDetected, @notes)";
             if (description.Length == 0 || status.Length == 0 || priority.Length == 0 || detectedBy.Length == 0)
             {
                 return 0;
@@ -257,7 +246,7 @@ namespace BugTracker
             }
         }
 
-        public static bool DeleteVersionItem(int id)
+        public static bool DeleteVersionItem(long id)
         {
             string sql = "Delete from versions where id = @id";
             var connection = new SQLiteConnection(GetSetting("database"));
@@ -268,7 +257,7 @@ namespace BugTracker
             return rowDeleted > 0;
         }
 
-        public static bool DeleteItem(int id)
+        public static bool DeleteItem(long id)
         {
             string sql = "Delete from bugs where id = @id";
             var connection = new SQLiteConnection(GetSetting("database"));
@@ -279,7 +268,7 @@ namespace BugTracker
             return rowDeleted > 0;
         }
 
-        public static bool DeleteEnhancementItem(int id)
+        public static bool DeleteEnhancementItem(long id)
         {
             string sql = "Delete from enhancements where id = @id";
             var connection = new SQLiteConnection(GetSetting("database"));
@@ -290,7 +279,7 @@ namespace BugTracker
             return rowDeleted > 0;
         }
 
-        public static bool UpdateBugItem(int id, string description, string status, string priority, string notesIssue, string notesFix)
+        public static bool UpdateBugItem(long id, string description, string status, string priority, string notesIssue, string notesFix)
         {
             var sql = "Update bugs SET description = @description, status = @status, priority = @priority, IssueNotes = @notesIssue, FixNotes = @notesFix WHERE id = @id";
             if (description.Length == 0 || status.Length == 0 || priority.Length == 0)
@@ -318,7 +307,7 @@ namespace BugTracker
             }
         }
 
-        public static bool UpdateEnhancementItem(int id, string description, string status, string priority, string notes)
+        public static bool UpdateEnhancementItem(long id, string description, string status, string priority, string notes)
         {
             var sql = "Update enhancements SET description = @description, status = @status, priority = @priority, notes = @notes WHERE id = @id";
             if (description.Length == 0 || status.Length == 0 || priority.Length == 0)
@@ -376,7 +365,7 @@ namespace BugTracker
                 return 0;
             }
         }
-        public static bool DeleteProductItem(int id)
+        public static bool DeleteProductItem(long id)
         {
             string sql = "Delete from products where id = @id";
             var connection = new SQLiteConnection(GetSetting("database"));
@@ -387,7 +376,7 @@ namespace BugTracker
             return rowDeleted > 0;
         }
 
-        public static bool UpdateProductItem(int id, string description, string notes, string technology)
+        public static bool UpdateProductItem(long id, string description, string notes, string technology)
         {
             var sql = "Update products SET description = @description, notes = @notes, technology = @technology WHERE id = @id";
             if (description.Length == 0 || notes.Length == 0 || technology.Length == 0)
@@ -413,7 +402,7 @@ namespace BugTracker
             }
         }
 
-        public static string GetProductItemVersion(int id)
+        public static string GetProductItemVersion(long id)
         {
             string versions = "";
             string sql = "Select * from versions where productId = @id order by version desc LIMIT 1";
@@ -442,10 +431,8 @@ namespace BugTracker
             var connectionString = GetSetting("database");
             if (connectionString == null || connectionString == "")
             {
-                Console.WriteLine("You must set your 'MONGODB_URI' environment variable. To learn how to set it, see https://www.mongodb.com/docs/drivers/csharp/current/quick-start/#set-your-connection-string");
                 return false;
             }
-
             try
             {
                 var client = new MongoClient(connectionString);
@@ -465,28 +452,19 @@ namespace BugTracker
         {
             List<string> bugItems = new List<string> ();
             var connectionString = GetSetting("database");
-            if (connectionString == null || connectionString == "")
-            {
-                Console.WriteLine("You must set your 'MONGODB_URI' environment variable. To learn how to set it, see https://www.mongodb.com/docs/drivers/csharp/current/quick-start/#set-your-connection-string");
-            }
             var settings = MongoClientSettings.FromConnectionString(connectionString);
             settings.ServerApi = new ServerApi(ServerApiVersion.V1);
             var client = new MongoClient(settings);
             try
             {
                 List<string> databases = client.ListDatabaseNames().ToList();
-                foreach (string database in databases)
+                var _collection = client.GetDatabase("BugTracker").GetCollection<BsonDocument>("Bugs");
+                var items = _collection.Find(FilterDefinition<BsonDocument>.Empty).ToList();
+                foreach (BsonDocument itm in items)
                 {
-                    Debug.WriteLine(database);
+                    Debug.WriteLine(itm.GetElement("Description"));
+                    bugItems.Add(itm.ToString());
                 }
-                //var _collection = client.GetDatabase("BugTracker").GetCollection<BsonDocument>("Bugs");
-                //System.Diagnostics.Debug.WriteLine("Got collection");
-                ////var filter = Builders<BsonDocument>.Filter.Eq(r=>r.Description, "First Test Bug");
-                //var items = _collection.Find(FilterDefinition<BsonDocument>.Empty).ToList();
-                //foreach (BsonDocument itm in items)
-                //{
-                //    System.Diagnostics.Debug.WriteLine(itm.GetElement("Description"));
-                //}
             } catch (Exception e)
             {
                 Debug.WriteLine(e.Message);

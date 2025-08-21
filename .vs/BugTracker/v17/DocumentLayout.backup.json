@@ -7,8 +7,8 @@
       "RelativeMoniker": "D:0:0:{8EC6B998-7792-4FA8-BE38-2E3A6FF662F5}|BugTracker.csproj|solutionrelative:bugtracker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8EC6B998-7792-4FA8-BE38-2E3A6FF662F5}|BugTracker.csproj|c:\\users\\trenduser\\desktop\\projects\\cbugtracker\\bugtracker\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8EC6B998-7792-4FA8-BE38-2E3A6FF662F5}|BugTracker.csproj|solutionrelative:login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8EC6B998-7792-4FA8-BE38-2E3A6FF662F5}|BugTracker.csproj|c:\\users\\trenduser\\desktop\\projects\\cbugtracker\\bugtracker\\dboperations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8EC6B998-7792-4FA8-BE38-2E3A6FF662F5}|BugTracker.csproj|solutionrelative:dboperations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -23,14 +23,15 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Login.cs",
-              "DocumentMoniker": "C:\\Users\\TrendUser\\Desktop\\Projects\\CBugTracker\\BugTracker\\Login.cs",
-              "RelativeDocumentMoniker": "Login.cs",
-              "ToolTip": "C:\\Users\\TrendUser\\Desktop\\Projects\\CBugTracker\\BugTracker\\Login.cs",
-              "RelativeToolTip": "Login.cs",
-              "ViewState": "AgIAACQAAAAAAAAAAAAowD0AAAAJAAAAAAAAAA==",
+              "Title": "DBOperations.cs",
+              "DocumentMoniker": "C:\\Users\\TrendUser\\Desktop\\Projects\\CBugTracker\\BugTracker\\DBOperations.cs",
+              "RelativeDocumentMoniker": "DBOperations.cs",
+              "ToolTip": "C:\\Users\\TrendUser\\Desktop\\Projects\\CBugTracker\\BugTracker\\DBOperations.cs",
+              "RelativeToolTip": "DBOperations.cs",
+              "ViewState": "AgIAAKUBAAAAAAAAAAAswLwBAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-19T13:59:41.746Z"
+              "WhenOpened": "2025-08-21T09:40:51.295Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -40,7 +41,7 @@
               "RelativeDocumentMoniker": "BugTracker.cs",
               "ToolTip": "C:\\Users\\TrendUser\\Desktop\\Projects\\CBugTracker\\BugTracker\\BugTracker.cs",
               "RelativeToolTip": "BugTracker.cs",
-              "ViewState": "AgIAANUAAAAAAAAAAAAmwOsAAAAmAAAAAAAAAA==",
+              "ViewState": "AgIAADIAAAAAAAAAAAAAAIECAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-19T13:21:01.859Z",
               "EditorCaption": ""

@@ -840,6 +840,7 @@
             comboProducts.Name = "comboProducts";
             comboProducts.Size = new Size(213, 23);
             comboProducts.TabIndex = 0;
+            comboProducts.SelectedIndexChanged += comboProducts_SelectedIndexChanged;
             // 
             // comboVersions
             // 
@@ -1406,6 +1407,7 @@
             comboEnProduct.Name = "comboEnProduct";
             comboEnProduct.Size = new Size(195, 23);
             comboEnProduct.TabIndex = 0;
+            comboEnProduct.SelectedIndexChanged += comboProducts_SelectedIndexChanged;
             // 
             // comboEnVersion
             // 
