@@ -372,8 +372,8 @@ namespace BugTracker
             try
             {
                 string description = txtDescription.Text;
-                string status = comboStatus.SelectedItem.ToString();
-                string priority = comboPriority.SelectedItem.ToString();
+                string? status = comboStatus.SelectedItem.ToString();
+                string? priority = comboPriority.SelectedItem.ToString();
                 string notesIssue = txtNotesIssue.Text;
                 string notesFix = txtNotesFix.Text;
                 long id = ExtractIntFromDropDown(txtID.Text);
@@ -406,8 +406,8 @@ namespace BugTracker
             try
             {
                 string description = txtEnDescription.Text;
-                string status = comboEnStatus.SelectedItem.ToString();
-                string priority = comboEnPriority.SelectedItem.ToString();
+                string? status = comboEnStatus.SelectedItem.ToString();
+                string? priority = comboEnPriority.SelectedItem.ToString();
                 string notes = txtEnNotes.Text;
                 long id = ExtractIntFromDropDown(txtEnID.Text);
                 bool result = DBOperations.UpdateEnhancementItem(id, description, status, priority, notes);
@@ -473,7 +473,7 @@ namespace BugTracker
                 comboStatus.SelectedIndex = r.Cells[4].Value.ToString() == "Open" ? 0 : r.Cells[4].Value.ToString() == "In Progress" ? 1 : 2;
                 comboPriority.SelectedIndex = r.Cells[5].Value.ToString() == "High" ? 0 : r.Cells[5].Value.ToString() == "Medium" ? 1 : 2;
                 txtDetectedName.Text = r.Cells[6].Value.ToString();
-                dtPicker.Value = DateTime.Parse(r.Cells[7].Value.ToString());
+                dtPicker.Value = DateTime.Parse(r.Cells[7].Value.ToString() ?? DateTime.Today.ToString());
                 txtNotesIssue.Text = r.Cells[8].Value.ToString();
                 txtNotesFix.Text = r.Cells[9].Value.ToString();
                 if (r.Cells[4].Value.ToString() == "Closed")
@@ -526,7 +526,7 @@ namespace BugTracker
                 comboEnStatus.SelectedIndex = r.Cells[4].Value.ToString() == "Open" ? 0 : r.Cells[4].Value.ToString() == "In Progress" ? 1 : 2;
                 comboEnPriority.SelectedIndex = r.Cells[5].Value.ToString() == "High" ? 0 : r.Cells[5].Value.ToString() == "Medium" ? 1 : 2;
                 txtEnDetected.Text = r.Cells[6].Value.ToString();
-                dtDetected.Value = DateTime.Parse(r.Cells[7].Value.ToString());
+                dtDetected.Value = DateTime.Parse(r.Cells[7].Value.ToString() ?? DateTime.Today.ToString());
                 txtEnNotes.Text = r.Cells[8].Value.ToString();
                 if (r.Cells[4].Value.ToString() == "Closed")
                 {

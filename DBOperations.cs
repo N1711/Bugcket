@@ -135,7 +135,7 @@ namespace BugTracker
             catch (SQLiteException ex)
             {
                 Console.WriteLine(ex.Message);
-                return null;
+                return new SQLiteDataAdapter();
             }
 
         }
@@ -179,6 +179,7 @@ namespace BugTracker
 
         public static long InsertEnhancementItem(string description, long? product, long? version, string? status, string? priority, string detectedBy, string dateDetected, string notes)
         {
+            if (status == null || priority == null) return 0;
             var sql = "INSERT INTO enhancements (productId, versionId, description, status, priority, detectedBy, dateDetected, notes) VALUES (@productId, @versionId, @description, @status, @priority, @detectedBy, @dateDetected, @notes)";
             if (description.Length == 0 || status.Length == 0 || priority.Length == 0 || detectedBy.Length == 0)
             {
@@ -279,9 +280,10 @@ namespace BugTracker
             return rowDeleted > 0;
         }
 
-        public static bool UpdateBugItem(long id, string description, string status, string priority, string notesIssue, string notesFix)
+        public static bool UpdateBugItem(long id, string description, string? status, string? priority, string notesIssue, string notesFix)
         {
             var sql = "Update bugs SET description = @description, status = @status, priority = @priority, IssueNotes = @notesIssue, FixNotes = @notesFix WHERE id = @id";
+            if (status == null || priority == null) return false;
             if (description.Length == 0 || status.Length == 0 || priority.Length == 0)
             {
                 return false;
@@ -307,8 +309,9 @@ namespace BugTracker
             }
         }
 
-        public static bool UpdateEnhancementItem(long id, string description, string status, string priority, string notes)
+        public static bool UpdateEnhancementItem(long id, string description, string? status, string? priority, string notes)
         {
+            if (status == null || priority == null) return false;
             var sql = "Update enhancements SET description = @description, status = @status, priority = @priority, notes = @notes WHERE id = @id";
             if (description.Length == 0 || status.Length == 0 || priority.Length == 0)
             {
@@ -555,8 +558,7 @@ namespace BugTracker
 
         public static bool LoginUser(string name, string plainTextPassword)
         {
-            bool result = false;
-            string hashedPassword = "";
+            string hashedPassword;
             var connection = new SQLiteConnection(GetSetting("database"));
             var sql = "SELECT * from users where Name = @name";
             if (name.ToLower().Contains("drop") || name.ToLower().Contains("delete") || name.ToLower().Contains("update") || name.ToLower().Contains("union")
@@ -564,38 +566,40 @@ namespace BugTracker
             try
             {
                 connection.Open();
-                SQLiteCommand command = new SQLiteCommand(sql, connection);
+                SQLiteCommand command = new(sql, connection);
                 command.Parameters.AddWithValue("@name", name);
                 using SQLiteDataReader reader = command.ExecuteReader();
                 if(reader.Read())
                 {
-                    User.Id = reader.GetInt32(0);
-                    User.Name = reader.GetString(1);
-                    User.accessLevel = reader.GetInt32(2);
-                    User.loggedIn = true;
-                    hashedPassword = reader.GetString(3);
+                    if (plainTextPassword.Length > 0)
+                    {
+                        hashedPassword = reader.GetString(2);
+                        if (BCrypt.Net.BCrypt.Verify(plainTextPassword, hashedPassword)) {
+                            User.Id = reader.GetInt32(0);
+                            User.Name = reader.GetString(1);
+                            User.accessLevel = reader.GetInt32(3);
+                            User.loggedIn = true;
+                            return true;
+                        }
+                    }
+                    else
+                    {
+                        connection.Close();
+                        return false;
+                    }
                 } else
                 {
                     connection.Close();
                     return false;
-                }
-                if(plainTextPassword.Length > 0)
-                {
-                    return BCrypt.Net.BCrypt.Verify(plainTextPassword, hashedPassword);
-                } else
-                {
-                    connection.Close();
-                    return false;
-                }
-                
+                }            
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
-                result = false;
                 connection.Close();
+                return false;
             }
-            return result;
+            return true;
         }
 
         public static string GetSetting(string key)
