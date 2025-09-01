@@ -3,7 +3,7 @@ A C# forms application to track and manage bugs and enhancements for a software 
 
 # Architecture
 ## Application flow
-<img width="1234" height="683" alt="image" src="https://github.com/user-attachments/assets/231fbf3d-1e36-4b2f-b812-5e86d1033b56" />
+<img width="1228" height="689" alt="image" src="https://github.com/user-attachments/assets/39b92361-a681-4e3e-a90b-7d878973640b" />
 
 ## Database diagram
 <img width="841" height="436" alt="image" src="https://github.com/user-attachments/assets/f23facd0-bbab-4551-a1ab-2979d4b25d70" />
