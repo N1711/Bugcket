@@ -1,5 +1,5 @@
 # Bugcket
-A C# forms application to track and manage bugs and enhancements for a software product. 100% human generated code. Not all features working due to lack of free time.
+A C# forms application to track and manage bugs and enhancements for a software product. 100% human generated code. Work in progress.
 
 # Architecture
 ## Application flow
