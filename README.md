@@ -17,16 +17,20 @@ A C# forms application to track and manage bugs and enhancements for a software 
 
 # Screenshots
 
-Loading application (connecting to the database in the background)
+Loading application (connecting to the database in the background)  
+
 <img width="463" height="484" alt="image" src="https://github.com/user-attachments/assets/3f2bc4e2-88d9-408f-89fc-bc1a0cd105ed" />
 
-Login Screen (default credentials: user: admin, password: adminDexinis)
+Login Screen (default credentials: user: admin, password: adminDexinis)  
+
 <img width="316" height="358" alt="image" src="https://github.com/user-attachments/assets/bc245f4b-5f26-4dd0-85d4-46631668b112" />
 
-Main Application
+Main Application  
+
 <img width="1905" height="1027" alt="image" src="https://github.com/user-attachments/assets/baad4262-3cee-4881-b6cd-d6c3e2db9b9a" />
 
-Guide
+Guide  
+
 <img width="679" height="520" alt="image" src="https://github.com/user-attachments/assets/95d30347-dbd6-4732-b84b-127eaf009eba" />
 
 
