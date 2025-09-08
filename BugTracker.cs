@@ -22,6 +22,7 @@ namespace BugTracker
         public string lastQuery = "";
         public BugTracker()
         {
+            //main form loads, redirects to login if not authenticated
             if (!User.loggedIn)
             {
                 Login l = new Login();
@@ -38,6 +39,7 @@ namespace BugTracker
 
         private void BugTracker_Load(object sender, EventArgs e)
         {
+            //make the app load full screen but do not hide behind the taskbar
             this.Width = Screen.PrimaryScreen.WorkingArea.Width;
             this.Height = Screen.PrimaryScreen.WorkingArea.Height;
             this.Left = 0;

@@ -14,7 +14,10 @@ namespace BugTracker
         {
 
         }
-
+        /// <summary>
+        ///  Static method to connect to sqlite database. If the program starts for the first time, a new default database is created.
+        /// </summary>
+        /// <returns>boolean</returns>
         public static bool ConnectToDB()
         {
             if(GetSetting("database") == null || GetSetting("database") == "")
@@ -40,6 +43,11 @@ namespace BugTracker
             }
         }
 
+        /// <summary>
+        /// Default tables are created once during first start. Connection is initialized in the parent method
+        /// </summary>
+        /// <param name="conn"></param>
+        /// <returns>true / false</returns>
         private static bool CreateDefaultTables(SQLiteConnection conn)
         {
             var sql = @"CREATE TABLE IF NOT EXISTS bugs(
@@ -120,7 +128,11 @@ namespace BugTracker
             }
 
         }
-
+        /// <summary>
+        /// <c>getDbItems</c> Accepts sql commands from the main form and returns SQLiteDataAdapter ready to plug in a datagrid source. No validation as it is an internal non-editable static query
+        /// </summary>
+        /// <param name="sql"></param>
+        /// <returns>SQLiteDataAdapter type</returns>
         public static SQLiteDataAdapter getDbItems(string sql) { 
             try
             {
@@ -139,7 +151,19 @@ namespace BugTracker
             }
 
         }
-
+        /// <summary>
+        /// Inserts item in the bugs database
+        /// </summary>
+        /// <param name="description"></param>
+        /// <param name="product"></param>
+        /// <param name="version"></param>
+        /// <param name="status"></param>
+        /// <param name="priority"></param>
+        /// <param name="detectedBy"></param>
+        /// <param name="dateDetected"></param>
+        /// <param name="notesIssue"></param>
+        /// <param name="notesFix"></param>
+        /// <returns>Id (long) of the inserted element or 0 if error</returns>
         public static long InsertBugItem(string description, long? product, long? version, string? status, string? priority, string detectedBy, string dateDetected, string notesIssue, string notesFix)
         {
             var sql = "INSERT INTO bugs (description, status, priority, detectedBy, dateDetected, IssueNotes, FixNotes, productId, versionId) VALUES (@description, @status, @priority, @detectedBy, @dateDetected, @notesIssue, @notesFix, @productId, @versionId)";
@@ -147,9 +171,9 @@ namespace BugTracker
             if(description.Length == 0 || status.Length == 0 || priority.Length == 0 || detectedBy.Length == 0) {
                 return 0;
             }
+            var connection = new SQLiteConnection(GetSetting("database"));
             try
             {
-                var connection = new SQLiteConnection(GetSetting("database"));
                 connection.Open();
                 var command = new SQLiteCommand(sql, connection);
                 command.Parameters.AddWithValue("@description", description);
@@ -175,6 +199,10 @@ namespace BugTracker
                 Debug.WriteLine(ex.Message);
                 return 0;
             }
+            finally
+            {
+                connection.Close();
+            }
         }
 
         public static long InsertEnhancementItem(string description, long? product, long? version, string? status, string? priority, string detectedBy, string dateDetected, string notes)
@@ -185,9 +213,10 @@ namespace BugTracker
             {
                 return 0;
             }
+            var connection = new SQLiteConnection(GetSetting("database"));
             try
             {
-                var connection = new SQLiteConnection(GetSetting("database"));
+                
                 connection.Open();
                 var command = new SQLiteCommand(sql, connection);
                 command.Parameters.AddWithValue("@description", description);
@@ -213,6 +242,10 @@ namespace BugTracker
                 Debug.WriteLine(ex.Message);
                 return 0;
             }
+            finally
+            {
+                connection.Close();
+            }
         }
 
         public static long InsertVersionItem(int productId, string version)
@@ -222,9 +255,10 @@ namespace BugTracker
             {
                 return 0;
             }
+            var connection = new SQLiteConnection(GetSetting("database"));
             try
             {
-                var connection = new SQLiteConnection(GetSetting("database"));
+                
                 connection.Open();
                 var command = new SQLiteCommand(sql, connection);
                 command.Parameters.AddWithValue("@productId", productId);
@@ -244,6 +278,9 @@ namespace BugTracker
             {
                 Debug.WriteLine(ex.Message);
                 return 0;
+            } finally
+            {
+                connection.Close();
             }
         }
 
@@ -251,33 +288,66 @@ namespace BugTracker
         {
             string sql = "Delete from versions where id = @id";
             var connection = new SQLiteConnection(GetSetting("database"));
-            connection.Open();
-            using var command = new SQLiteCommand(sql, connection);
-            command.Parameters.AddWithValue("@id", id);
-            var rowDeleted = command.ExecuteNonQuery();
-            return rowDeleted > 0;
+            try
+            {
+                connection.Open();
+                using var command = new SQLiteCommand(sql, connection);
+                command.Parameters.AddWithValue("@id", id);
+                var rowDeleted = command.ExecuteNonQuery();
+                return rowDeleted > 0;
+            } catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                return false;
+            } finally
+            {
+                connection.Close();
+            }
+            
         }
 
         public static bool DeleteItem(long id)
         {
             string sql = "Delete from bugs where id = @id";
             var connection = new SQLiteConnection(GetSetting("database"));
-            connection.Open();
-            using var command = new SQLiteCommand(sql, connection);
-            command.Parameters.AddWithValue("@id", id);
-            var rowDeleted = command.ExecuteNonQuery();
-            return rowDeleted > 0;
+            try
+            {
+                connection.Open();
+                using var command = new SQLiteCommand(sql, connection);
+                command.Parameters.AddWithValue("@id", id);
+                var rowDeleted = command.ExecuteNonQuery();
+                return rowDeleted > 0;
+            } catch (Exception ex)
+            {
+                return false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
         }
 
         public static bool DeleteEnhancementItem(long id)
         {
             string sql = "Delete from enhancements where id = @id";
             var connection = new SQLiteConnection(GetSetting("database"));
-            connection.Open();
-            using var command = new SQLiteCommand(sql, connection);
-            command.Parameters.AddWithValue("@id", id);
-            var rowDeleted = command.ExecuteNonQuery();
-            return rowDeleted > 0;
+            try
+            {
+                connection.Open();
+                using var command = new SQLiteCommand(sql, connection);
+                command.Parameters.AddWithValue("@id", id);
+                var rowDeleted = command.ExecuteNonQuery();
+                return rowDeleted > 0;
+            } catch (Exception ex)
+            {
+                Debug.WriteLine(ex.Message);
+                return false;
+            } finally
+            {
+                connection.Close();
+            }
+            
         }
 
         public static bool UpdateBugItem(long id, string description, string? status, string? priority, string notesIssue, string notesFix)
@@ -288,9 +358,10 @@ namespace BugTracker
             {
                 return false;
             }
+            var connection = new SQLiteConnection(GetSetting("database"));
             try
             {
-                var connection = new SQLiteConnection(GetSetting("database"));
+                
                 connection.Open();
                 var command = new SQLiteCommand(sql, connection);
                 command.Parameters.AddWithValue("@description", description);
@@ -306,6 +377,9 @@ namespace BugTracker
             {
                 Debug.WriteLine(ex.Message);
                 return false;
+            } finally
+            {
+                connection.Close();
             }
         }
 
@@ -317,9 +391,9 @@ namespace BugTracker
             {
                 return false;
             }
+            var connection = new SQLiteConnection(GetSetting("database"));
             try
             {
-                var connection = new SQLiteConnection(GetSetting("database"));
                 connection.Open();
                 var command = new SQLiteCommand(sql, connection);
                 command.Parameters.AddWithValue("@description", description);
@@ -334,6 +408,9 @@ namespace BugTracker
             {
                 Debug.WriteLine(ex.Message);
                 return false;
+            } finally
+            {
+                connection.Close();
             }
         }
 
@@ -344,9 +421,9 @@ namespace BugTracker
             {
                 return 0;
             }
+            var connection = new SQLiteConnection(GetSetting("database"));
             try
             {
-                var connection = new SQLiteConnection(GetSetting("database"));
                 connection.Open();
                 var command = new SQLiteCommand(sql, connection);
                 command.Parameters.AddWithValue("@description", description);
@@ -366,6 +443,9 @@ namespace BugTracker
             {
                 Debug.WriteLine(ex.Message);
                 return 0;
+            } finally
+            {
+                connection.Close();
             }
         }
         public static bool DeleteProductItem(long id)
@@ -386,9 +466,9 @@ namespace BugTracker
             {
                 return false;
             }
+            var connection = new SQLiteConnection(GetSetting("database"));
             try
             {
-                var connection = new SQLiteConnection(GetSetting("database"));
                 connection.Open();
                 var command = new SQLiteCommand(sql, connection);
                 command.Parameters.AddWithValue("@description", description);
@@ -402,6 +482,9 @@ namespace BugTracker
             {
                 Debug.WriteLine(ex.Message);
                 return false;
+            } finally
+            {
+                connection.Close();
             }
         }
 
@@ -424,6 +507,9 @@ namespace BugTracker
             catch (Exception ex)
             {
                 Debug.WriteLine($"{ex.Message}");
+            } finally
+            {
+                connection.Close();
             }
 
             return versions;
@@ -446,9 +532,6 @@ namespace BugTracker
             {
                 return false;
             }
-
-            
-
         }
 
         public static List<string> getBugItemsMongo ()
@@ -472,8 +555,7 @@ namespace BugTracker
             {
                 Debug.WriteLine(e.Message);
             }
-            
-            
+ 
             return bugItems;
         }
 
@@ -493,12 +575,13 @@ namespace BugTracker
                     string name = reader.GetString(key);
                     versions.Add(new PriorityModel(id, name));
                 }
-                connection.Close();
             }
             catch (Exception ex)
             {
-                connection.Close();
                 Debug.WriteLine($"{ex.Message}");
+            } finally
+            {
+                connection.Close();
             }
             
             return versions;
@@ -520,19 +603,20 @@ namespace BugTracker
                         userTotal = dataReader.GetInt32(0);
                     }
                 }
-                connection.Close();
                 return userTotal > 0;
             } catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
-                connection.Close();
                 return false;
+            } finally
+            {
+                connection.Close();
             }
         }
 
         public static bool CreateDefaultUser()
         {
-            bool result = false;
+            bool result;
             string unencryptedPassword = "adminDexinis";
             string encryptedPassword = BCrypt.Net.BCrypt.HashPassword(unencryptedPassword);
             var connection = new SQLiteConnection(GetSetting("database"));
@@ -551,8 +635,10 @@ namespace BugTracker
             {
                 Debug.WriteLine(ex.Message);
                 result = false;
+            } finally
+            {
+                connection.Close();
             }
-            connection.Close();
             return result;
         }
 
@@ -584,20 +670,20 @@ namespace BugTracker
                     }
                     else
                     {
-                        connection.Close();
                         return false;
                     }
                 } else
                 {
-                    connection.Close();
                     return false;
                 }            
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
-                connection.Close();
                 return false;
+            } finally
+            {
+                connection.Close();
             }
             return true;
         }
